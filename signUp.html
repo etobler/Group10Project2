@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="projectTwo.css">
+        <script type="text/javascript" src="projectTwo.js"></script>
+        <title>Mentch SignUp</title>
+    </head>
+    <body>
+        <br> <br>
+        <h1>MENTCH</h1>
+        <h2>Find your perfect mentor or mentee</h2>
+        <br><br>
+        <form id="signUpForm">
+            <table id="signUpTable">
+                <tr>
+                    <td id="createAccountId">
+                        Create An Account
+                        <hr>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Email:
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input 	id="emailId" type="text" 
+                        placeholder="enterEmail" minlength="5" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Username:
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input 	id="userNameId" type="text" 
+                        placeholder="enterUsername" minlength="5" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Password:
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input 	id="passwordId" type="text" 
+                        placeholder="enterPassword" minlength="5" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="mentorOrMenteeTextId">
+                        Are you signing up to be a mentor or mentee?
+                    </td>
+                </tr>
+                <form id="mentorMenteeRadioButtons">
+                    <tr>
+                        <td>
+                            <input type="radio" id="mentorRadioButton" name="status" value="mentor"> 
+                            <label id="mentorId" for="mentor">Mentor</label>
+                            <input type="radio" id="menteeRadioButton" name="status" value="mentee"> 
+                            <label id="menteeId" for="mentee">Mentee</label>
+                        </td>
+                    </tr>
+                </form>
+                <tr>
+                    <td>
+                        <button id="signUpSurveyButtonId" type="button">Sign Up & Fill Out Survey</button>
+                        <hr id="hrSignUpId">
+                    </td>
+                </tr>
+                <tr>
+                    <td id="signUpSpacing">
+                        .
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

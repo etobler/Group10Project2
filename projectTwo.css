@@ -25,12 +25,12 @@ table {
     width: 300px;
 }
 
-#logInTableId {
+#logInTableId, #signUpTable {
     text-align: left;
     padding-top: 10px;
 }
 
-#logInHeaderId {
+#logInHeaderId, #createAccountId {
     text-align: center;
 }
 
@@ -64,4 +64,46 @@ input {
     margin-left: 5px;
     border: 1.5px solid darkgray;
     width: 270px;
+}
+
+a {
+    color:white;
+    text-decoration: none;
+}
+
+#createAccountId {
+    padding-top: 10px;
+}
+
+#mentorOrMenteeTextId {
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#signUpSurveyButtonId {
+    text-align: center;
+    margin-top: 5px;
+    margin-left: 19px;
+    margin-bottom: 5px;
+}
+
+#signUpSpacing {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #eeeeee;
+}
+
+#mentorRadioButton, #menteeRadioButton {
+    /* margin: 0px;
+    padding: 0px; */
+    float: left;
+    vertical-align: middle;
+    color: red;
+    margin: 0px;
+    /* text-align: left; */
+}
+
+#mentorId, #menteeId {
+    margin: 0px 0px 0px 10px; float: left;
 }
