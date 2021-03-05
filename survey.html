@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="uft-8">
+        <link rel="stylesheet" type="text/css" href="projectTwo.css">
+        <script type="text/javascript" src="projectTwo.js"></script>
+        <title>Survey</title>
+    </head>
+    <body>
+        <br> <br>
+        <h1>MENTCH</h1>
+        <h2>Find your perfect mentor or mentee</h2>
+        <br><br>
+        <form id="surveyFormId">
+            <table id="surveyTableId">
+                <tr>
+                    <td id="matchSurveyId" colspan="4">
+                        Mentor & Mentee Match Survey
+                        <hr>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Username: 
+                    </td>
+                    <td>
+                        Department:
+                    </td>
+                    <td>
+                        Seeking a mentor or mentee?
+                    </td>
+                    <td>
+                        ???
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input 	id="newUserId" type="text" 
+                        placeholder="enterUsername" minlength="5" required>
+                    </td>
+                    <td>
+                        <input list="departmentId">
+                        <datalist id="departmentId">
+                            <option value="Mobile Development"></option>
+                            <option value="Back-End Development"></option>
+                            <option value="Front-End Development"></option>
+                            <option value="Full-stack Development"></option>
+                        </datalist>
+                    </td>
+                    <td>
+                        <input list="seekingId">
+                        <datalist id="seekingId">
+                            <option value="Mentor"></option>
+                            <option value="Mentee"></option>
+                        </datalist>
+                    </td>
+                    <td>
+                        Placeholder
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <br>
+                        Example question here:
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4"> 
+                        <input list="questionOne" id="questionOneId">
+                        <datalist id="questionOne">
+                            <option value="Option 1"></option>
+                            <option value="Option 2"></option>
+                        </datalist>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <br>
+                        Example question here:
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4"> 
+                        <input list="questionOne" id="questionOneId">
+                        <datalist id="questionOne">
+                            <option value="Option 1"></option>
+                            <option value="Option 2"></option>
+                        </datalist>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <br>
+                        Example question here:
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4"> 
+                        <input list="questionOne" id="questionOneId">
+                        <datalist id="questionOne">
+                            <option value="Option 1"></option>
+                            <option value="Option 2"></option>
+                        </datalist>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <br>
+                        <button id="startMentchingButtonId" type="button">Start Mentching</button>
+                        <hr>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <td id="signUpSpacing">
+                            .
+                        </td>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

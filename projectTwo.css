@@ -25,12 +25,12 @@ table {
     width: 300px;
 }
 
-#logInTableId, #signUpTable {
+#logInTableId, #signUpTable, #surveyTableId {
     text-align: left;
     padding-top: 10px;
 }
 
-#logInHeaderId, #createAccountId {
+#logInHeaderId, #createAccountId, #matchSurveyId {
     text-align: center;
 }
 
@@ -106,3 +106,20 @@ a {
 #mentorRadioButton {
     margin-left: 50px;
 }
+
+#surveyTableId {
+    width: 900px;
+}
+
+#newUserId {
+    width: 100px;
+}
+
+#startMentchingButtonId, #questionOneId {
+    width: 850px;
+}
+
+#startMentchingButtonId {
+    margin-left: 20px;
+}
+
