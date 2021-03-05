@@ -97,13 +97,12 @@ a {
 #mentorRadioButton, #menteeRadioButton {
     /* margin: 0px;
     padding: 0px; */
-    float: left;
-    vertical-align: middle;
-    color: red;
-    margin: 0px;
+    vertical-align: top;
+    width: 10px;
+    margin-left: 40px;
     /* text-align: left; */
 }
 
-#mentorId, #menteeId {
-    margin: 0px 0px 0px 10px; float: left;
+#mentorRadioButton {
+    margin-left: 50px;
 }
