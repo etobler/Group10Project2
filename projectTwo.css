@@ -139,7 +139,7 @@ a {
     background-color: #dadada;
     border: 0px;
     font-size: 15px;
-    margin-top: 0px;
+    margin-top: 10px;
     margin-right: 20px;
 }
 
@@ -174,7 +174,6 @@ a {
 }
 
 .buttonTableClass {
-    /* width: 170px; */
     width: 100%;
     border: 2px solid #4b667e;
     text-align: left;
@@ -186,7 +185,6 @@ a {
 }
 
 .buttonSpacing {
-    /* border-radius: 0px; */
     padding-bottom: 0px;
     padding-top: 0px;
 }
@@ -202,7 +200,6 @@ a {
     display: table;
     float: left;
     text-align: left;
-    /* padding-left: 0px; */
     width: 85%;
     height: 100%;
     background-color: #BEBEBE;
@@ -227,4 +224,35 @@ a {
     width: 20%;
     background-color: #cacaca;
     color: rgb(112, 112, 112);
+} 
+
+#myMentorsTitle {
+    background-color: #dadada;
+    text-align: left;
+    float: left;
+    width: 83%;
+    height: 80px;
+    padding-top: 15px;
+    color: rgb(112, 112, 112);
+    padding-left: 2%;
+}
+
+#profileId {
+    margin: 20px;
+    width: 80%;
+    height: 300px;
+    background-color: #dadada;
+    float: left;
+    border-radius: 25px;
+}
+
+#profilePictureId {
+    margin: 20px;
+    float: left;
+    border: 3px solid rgb(112, 112, 112);
+}
+
+#profileName {
+    font-size: 40px;
+    margin-bottom: 0px;
 }
