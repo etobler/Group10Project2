@@ -127,11 +127,6 @@ a {
     float: right;
 }
 
-#headerId {
-    text-align: center;
-    padding-top: 20px;
-}
-
 #homepageTableId {
     width: 700px;
     background-color: #BEBEBE;
@@ -144,31 +139,46 @@ a {
     background-color: #dadada;
     border: 0px;
     font-size: 15px;
-    margin-top: 20px;
+    margin-top: 0px;
     margin-right: 20px;
+}
+
+#headerId {
+    text-align: center;
+    padding-top: 20px;
+    background-color: #4b667e;
+    margin-bottom: 0px;
+    padding-left: 15px;
 }
 
 #whiteLine {
     border-top: 1px solid white;
     width: 70%;
+    background-color: #4b667e;
+    margin: 0px;
+    margin-left: 25px;
+    padding: 0px;
+    padding-left: 10px;
 }
 
 #homepageTable {
-    /* clear: right; */
     margin: 0px;
     display: table;
     background-color: #4b667e;
-    text-align: center;
     padding-left: 0px;
     color: white;
-    width: 200px;
-    height: 900px;
+    width: 15%;
+    border-collapse: collapse;
+    display: inline;
+    float: left;
 }
 
 .buttonTableClass {
-    width: 170px;
-    border: 0px;
+    /* width: 170px; */
+    width: 100%;
+    border: 2px solid #4b667e;
     text-align: left;
+    border-radius: 0px;
 }
 
 .buttonTableClass:hover {
@@ -176,6 +186,45 @@ a {
 }
 
 .buttonSpacing {
+    /* border-radius: 0px; */
     padding-bottom: 0px;
     padding-top: 0px;
+}
+
+#extraSpacing {
+    color: #4b667e;
+    padding-bottom: 500px;
+    background-color: #4b667e;
+}
+
+#homepageTableTwo {
+    margin: auto;
+    display: table;
+    float: left;
+    text-align: left;
+    /* padding-left: 0px; */
+    width: 85%;
+    height: 100%;
+    background-color: #BEBEBE;
+}
+
+#secondHeadingId {
+    padding-left: 50px;
+    color:white;
+    display: inline;
+    float: left;
+}
+
+#homePagePicture {
+    display: block;
+    float: left;
+    width: 85%;
+}
+
+.homePageButton {
+    border: 0px;
+    margin: 25px;
+    width: 20%;
+    background-color: #cacaca;
+    color: rgb(112, 112, 112);
 }
