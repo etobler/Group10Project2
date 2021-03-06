@@ -123,3 +123,59 @@ a {
     margin-left: 20px;
 }
 
+#logOutButtonId {
+    float: right;
+}
+
+#headerId {
+    text-align: center;
+    padding-top: 20px;
+}
+
+#homepageTableId {
+    width: 700px;
+    background-color: #BEBEBE;
+    padding: 10px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+#logOutButtonId {
+    background-color: #dadada;
+    border: 0px;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+#whiteLine {
+    border-top: 1px solid white;
+    width: 70%;
+}
+
+#homepageTable {
+    /* clear: right; */
+    margin: 0px;
+    display: table;
+    background-color: #4b667e;
+    text-align: center;
+    padding-left: 0px;
+    color: white;
+    width: 200px;
+    height: 900px;
+}
+
+.buttonTableClass {
+    width: 170px;
+    border: 0px;
+    text-align: left;
+}
+
+.buttonTableClass:hover {
+    background-color: #dadada;
+}
+
+.buttonSpacing {
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
