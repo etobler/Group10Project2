@@ -246,10 +246,26 @@ a {
     border-radius: 25px;
 }
 
+#myProfileId {
+    margin: 20px;
+    width: 80%;
+    height: 200px;
+    background-color: #dadada;
+    float: left;
+    border-radius: 25px;
+}
+
 #profilePictureId {
     margin: 20px;
     float: left;
     border: 3px solid rgb(112, 112, 112);
+}
+
+#myProfilePictureId {
+    margin: 20px;
+    float: left;
+    border: 3px solid rgb(112, 112, 112);
+    height: 150px;
 }
 
 #profileName {
