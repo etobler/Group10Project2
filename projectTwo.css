@@ -25,6 +25,10 @@ table {
     width: 40%;
 }
 
+#logInTableId, #signInButtonFormId {
+    width: 26%;
+}
+
 #logInTableId, #signUpTable, #surveyTableId {
     text-align: left;
     padding-top: 10px;
@@ -63,7 +67,7 @@ input {
     padding: 5px;
     margin-left: 5px;
     border: 1.5px solid darkgray;
-    width: 270px;
+    width: 90%;
 }
 
 a {
@@ -84,7 +88,7 @@ a {
 #signUpSurveyButtonId {
     text-align: center;
     margin-top: 5px;
-    margin-left: 19px;
+    margin-left: 250px;
     margin-bottom: 5px;
 }
 
@@ -97,11 +101,11 @@ a {
 #mentorRadioButton, #menteeRadioButton {
     vertical-align: top;
     width: 10px;
-    margin-left: 40px;
+    margin-left: 200px;
 }
 
 #mentorRadioButton {
-    margin-left: 50px;
+    margin-left: 200px;
 }
 
 #surveyTableId {
