@@ -264,7 +264,7 @@ select {
     margin-right: 0px; */
 }
 
-#myProfileIdTwo {
+#myProfileIdTwo, #settingsId {
     margin: 1%;
     width: 85%;
     height: 100%;
@@ -301,13 +301,13 @@ select {
     margin-bottom: 0px;
 }
 
-#profileTitleId {
+#profileTitleId, #personalInfoId {
     font-size: 30px;
     margin-left: 20px;
     margin-bottom: 5px;
 }
 
-#profileParagraph {
+#profileParagraph, #personalSettings {
     margin-left: 20px;
 }
 
