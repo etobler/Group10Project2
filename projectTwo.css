@@ -54,6 +54,11 @@ hr {
     width: 95%;
 }
 
+/* tbody {
+    margin: 0px;
+    padding: 0px;
+} */
+
 #signUpButtonId {
     margin-top: 10px;
     margin-bottom: 20px;
@@ -176,12 +181,13 @@ select {
     color: white;
     width: 12%;
     border-collapse: collapse;
-    display: inline;
+    /* display: inline; */
     float: left;
 }
 
 .buttonTableClass {
-    width: 120px;
+    /* width: 120px; */
+    width: 100%;
     border: 2px solid #4b667e;
     text-align: left;
     border-radius: 0px;
@@ -194,6 +200,7 @@ select {
 .buttonSpacing {
     padding-bottom: 0px;
     padding-top: 0px;
+    /* width: 100% */
 }
 
 #extraSpacing {
