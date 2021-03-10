@@ -169,10 +169,10 @@ select {
 }
 
 #homepageTable {
-    margin: 0px;
+    /* margin: 0px; */
     display: table;
     background-color: #4b667e;
-    padding-left: 0px;
+    /* padding-left: 0px; */
     color: white;
     width: 12%;
     border-collapse: collapse;
@@ -203,13 +203,15 @@ select {
 }
 
 #homepageTableTwo {
-    margin: auto;
+    /* margin: auto; */
     display: table;
     float: left;
     text-align: left;
     width: 85%;
     height: 100%;
     background-color: #BEBEBE;
+    margin: 12px;
+    /* margin: 10%; */
 }
 
 #secondHeadingId {
@@ -223,11 +225,12 @@ select {
     display: block;
     float: left;
     width: 85%;
+    padding-left: 1%;
 }
 
 .homePageButton {
     border: 0px;
-    margin: 25px;
+    margin: 1%;
     width: 26%;
     background-color: #cacaca;
     color: rgb(112, 112, 112);
@@ -238,16 +241,18 @@ select {
     text-align: left;
     float: left;
     width: 86%;
-    height: 80px;
+    height: 100%;
     padding-top: 15px;
+    padding-left: 1%;
+    padding-bottom: 1.5%;
     color: rgb(112, 112, 112);
     padding-left: 2%;
 }
 
 #profileId {
-    margin: 20px;
+    margin: 1%;
     width: 85%;
-    height: 300px;
+    height: 50%;
     background-color: #dadada;
     float: left;
     border-radius: 25px;
@@ -256,18 +261,19 @@ select {
 }
 
 #myProfileIdTwo {
-    margin: 20px;
+    margin: 1%;
     width: 85%;
-    height: 400px;
+    height: 100%;
     background-color: #dadada;
     float: left;
     border-radius: 25px;
+    padding-bottom: 4%;
 }
 
 #myProfileId {
-    margin: 20px;
+    margin: 1%;
     width: 85%;
-    height: 200px;
+    height: 20%;
     background-color: #dadada;
     float: left;
     border-radius: 25px;
@@ -302,9 +308,9 @@ select {
 }
 
 #milestonesPhase {
-    margin: 20px;
+    margin: 1%;
     width: 85%;
-    height: 300px;
+    height: 100%;
     background-color: #dadada;
     float: left;
     border-radius: 25px;
