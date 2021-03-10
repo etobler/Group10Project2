@@ -2,6 +2,7 @@ body {
     background-color: #BEBEBE;
     color: #444444;
     font-family:verdana;
+    margin: 0px;
 }
 
 h1 {
@@ -74,6 +75,9 @@ a {
     color:white;
     text-decoration: none;
 }
+select {
+    width: 99%;
+}
 
 #createAccountId {
     padding-top: 10px;
@@ -87,8 +91,10 @@ a {
 
 #signUpSurveyButtonId {
     text-align: center;
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
     margin-top: 5px;
-    margin-left: 250px;
     margin-bottom: 5px;
 }
 
@@ -314,6 +320,8 @@ a {
     margin-top: 0px;
     margin-left: 20px;
 }
+
+/* CODE BELOW THIS IS FOR THE PROGRESS BAR  */
 
 :root {
     --color-white: #fff;
