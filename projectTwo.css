@@ -168,20 +168,17 @@ select {
     width: 65%;
     background-color: #4b667e;
     margin: 0px;
-    margin-left: 20px;
+    margin-left: 17%;
     padding: 0px;
-    padding-left: 10px;
+    /* padding-left: 10px; */
 }
 
 #homepageTable {
-    /* margin: 0px; */
     display: table;
     background-color: #4b667e;
-    /* padding-left: 0px; */
     color: white;
     width: 12%;
     border-collapse: collapse;
-    /* display: inline; */
     float: left;
 }
 
