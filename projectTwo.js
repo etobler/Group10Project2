@@ -11,6 +11,12 @@ var signUpUsername;
 var SignUpPassword;
 
 // Survey page variables
+var fullName;
+var department;
+var mentorOrMentee;
+var yearsWorked;
+var favoriteHobby;
+var formalOrCasual;
 
 // Home page variables
 
@@ -56,9 +62,40 @@ function clickSignIn(form) {
         signInUsername = document.getElementById("userNameId").value;
         signInPassword = document.getElementById("passwordId").value;
 
+         // erasing values from form
+         document.getElementById("userNameId").value = "";
+         document.getElementById("passwordId").value = "";
+
         // comparing values to database
 
         // go to homepage
         window.location.href = "homepage.html";
+
+    }
+}
+
+function clickMentching(form) {
+    if (!form.checkValidity()) {
+        alert("Please make sure you filled out full name, and chose an option for each of the drop down lists.")
+    }
+    else {
+        //getting values from form
+        fullName = document.getElementById("fullName").value;
+        department = document.getElementById("departmentId").value;
+        mentorOrMentee = document.getElementById("mentorOrMentee").value;
+        yearsWorked = document.getElementById("questionOne").value;
+        favoriteHobby = document.getElementById("questionTwo").value;
+        formalOrCasual = document.getElementById("questionThree").value;
+
+        if (mentorOrMentee == "Mentor" && (yearsWorked == "1 Year or Less" || yearsWorked == "2 Years")) {
+            // if someone has 2 or less years worked at the company they cannot be a mentor
+            alert("You must have 3 or more years of seniority to be a mentor.");
+        }
+        else {
+            // sending values to database to add details to new user 
+
+            // go to homepage
+            window.location.href = "homepage.html";
+        }
     }
 }

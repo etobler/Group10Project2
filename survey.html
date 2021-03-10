@@ -32,10 +32,10 @@
                 </tr>
                 <tr>
                     <td>
-                        <input id="fullName" type="text" required>
+                        <input id="fullName" type="text" minlength="3" required>
                     </td>
                     <td>
-                        <select id="departmentId">
+                        <select id="departmentId" required>
                             <option disabled selected value> -- Select an Option -- </option>
                             <option value="Mobile Development">Mobile Development</option>
                             <option value="Back-End Development">Back-End Development</option>
@@ -44,7 +44,7 @@
                         </select>
                     </td>
                     <td>
-                        <select>
+                        <select id="mentorOrMentee" required>
                             <option disabled selected value> -- Select an Option -- </option>
                             <option value="Mentor">Mentor</option>
                             <option value="Mentee">Mentee</option>
@@ -59,7 +59,7 @@
                 </tr>
                 <tr>
                     <td colspan="4"> 
-                        <select id="questionOne">
+                        <select id="questionOne" required>
                             <option disabled selected value> -- Select an Option -- </option>
                             <option value="1 Year or Less">1 Year or Less</option>
                             <option value="2 Years">2 Years</option>
@@ -82,7 +82,7 @@
                 </tr>
                 <tr>
                     <td colspan="4"> 
-                        <select id="questionTwo">
+                        <select id="questionTwo" required>
                             <option disabled selected value> -- Select an Option -- </option>
                             <option value="Video Games">Video Games</option>
                             <option value="Hiking">Hiking</option>
@@ -100,7 +100,7 @@
                 </tr>
                 <tr>
                     <td colspan="4"> 
-                        <select id="questionThree">
+                        <select id="questionThree" required>
                             <option disabled selected value> -- Select an Option -- </option>
                             <option value="Formal">Formal</option>
                             <option value="Casual">Casual</option>
@@ -110,7 +110,7 @@
                 <tr>
                     <td colspan="4">
                         <br>
-                        <button id="startMentchingButtonId" type="button"><a class="navLink" href="homepage.html">Start Mentching</a></button>
+                        <button id="startMentchingButtonId" type="button" onclick="clickMentching(this.form)">Start Mentching</button>
                         <hr>
                     </td>
                 </tr>
