@@ -27,7 +27,7 @@
                 <tr>
                     <td>
                         <input 	id="emailId" type="text" 
-                        placeholder="enterEmail" minlength="5" required>
+                        placeholder="enterEmail" required>
                     </td>
                 </tr>
                 <tr>
@@ -57,7 +57,7 @@
                         Are you signing up to be a mentor or mentee?
                     </td>
                 </tr>
-                <form id="mentorMenteeRadioButtons">
+                <!-- <form id="mentorMenteeRadioButtons">
                     <tr>
                         <td>
                             <input type="radio" id="mentorRadioButton" name="status" value="mentor"> 
@@ -66,10 +66,10 @@
                             <label id="menteeId" for="mentee">Mentee</label>
                         </td>
                     </tr>
-                </form>
+                </form> -->
                 <tr>
                     <td>
-                        <button id="signUpSurveyButtonId" type="button"><a class="navLink" href="survey.html">Sign Up & Fill Out Survey</a></button>
+                        <button id="signUpSurveyButtonId" type="button" onclick="clickSignUp(this.form)"><a class="navLink" href="survey.html">Sign Up & Fill Out Survey</a></button>
                         <hr id="hrSignUpId">
                     </td>
                 </tr>
