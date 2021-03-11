@@ -22,6 +22,39 @@ var formalOrCasual;
 
 // My profile variables
 
+
+function processForm(){
+
+    let sqlStmt
+    sqlStmt = "SELECT * FROM Test";
+
+    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+
+
+        console.log(sqlStmt);
+        console.log(data);
+        //console.log("name: ", data.name);
+    })
+};
+/*
+    var con = createConnection({
+        host: "107.180.1.16",
+        user: "group102021",
+        password: "2021group10",
+        database: "2021group10"
+      });
+      
+      con.connect(function(err) {
+        if (err) throw err;
+        con.query("SELECT * FROM Test", function (err, result, fields) {
+            if (err) throw err;
+            console.log(result);
+            console.log(fields);
+          });
+      });
+	}
+*/
+
 // Mentors variables
 
 // Mentees variables

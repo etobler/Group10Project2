@@ -1,12 +1,11 @@
 
 "use strict";
 // Creating your own Web server with nodejs.
-
 var http = require('http');     // Alternate mechanisim: import * as http from 'http';
 var fs = require('fs');         // import * as fs from 'fs';
 var url = require('url');       // import * as url from 'url';
 var path = require('path');     // import * as path from 'path';
-var mysql = require('mysql');
+//var mysql = require('mysql');
 
 var fileExtensions = {
      ".html":    "text/html",
@@ -57,7 +56,7 @@ var server = http.createServer(function(request, response) {
     }
       return;
 });
-
+/*// Test the db to ensure there is a connection and that we can make queries.
 var con = mysql.createConnection({
     host: "107.180.1.16",
     user: "group102021",
@@ -84,7 +83,7 @@ var con = mysql.createConnection({
     if (err) throw err;
     console.log(result);
   });
-
+*/
 server.listen(5001);
 
 console.log("\nThe Web server is running. I am a robot.\n"  + 

@@ -1,6 +1,6 @@
 "use strict";
-/*
-var mysql = require('mysql');
+
+//import { createConnection } from 'mysql';
 
 
 window.onload = function()
@@ -10,7 +10,7 @@ window.onload = function()
 
 function processForm(){
 
-    var con = mysql.createConnection({
+    var con = createConnection({
         host: "107.180.1.16",
         user: "group102021",
         password: "2021group10",
@@ -25,8 +25,8 @@ function processForm(){
             console.log(fields);
           });
       });
-
-
+	}
+/*
 		let sqlStmt, whereClause;
 		sqlStmt = "SELECT * FROM Test";
 		//whereClause = " WHERE RecNumber = " + number;
