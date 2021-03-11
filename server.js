@@ -60,16 +60,29 @@ var server = http.createServer(function(request, response) {
 var con = mysql.createConnection({
     host: "107.180.1.16",
     user: "group102021",
-    password: "2021group10"
+    password: "2021group10",
+    database: "2021group10"
   });
   
   con.connect(function(err) {
     if (err) throw err;
-    console.log("Connected to MySQL!");
+    console.log("Connected to MySQL!");  
   });
+  
 
+  con.query("SELECT * FROM Test", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+    //console.log(fields);
+    //con.end(err);
+  });
+  
 server.listen(5001);
 
 console.log("\nThe Web server is running. I am a robot.\n"  + 
     "I am listening on http://127.0.0.1:5001 or http://localhost:5001");
+
+        
+
+
 
