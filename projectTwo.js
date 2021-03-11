@@ -24,8 +24,8 @@ var formalOrCasual;
 
 
 function processForm(){
-
-    let sqlStmt
+    console.log("Entered processForm");
+    let sqlStmt;
     sqlStmt = "SELECT * FROM Test";
 
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
@@ -33,9 +33,24 @@ function processForm(){
 
         console.log(sqlStmt);
         console.log(data);
-        //console.log("name: ", data.name);
-    })
-};
+
+        var dataAsString = JSON.stringify(data);
+        console.log("data as a string:" + dataAsString);
+
+        var recordAsString = JSON.stringify(data.Result[0]);
+        console.log("Single row as string: ", recordAsString);
+
+        var fieldValue = data.Result[0].name;
+		console.log("Single row's Name: ", fieldValue);
+        
+        var fieldValue2 = data.Result.name;
+
+        for (var i=0; data.Result.length > i; i++){
+            console.log(data.Result[i].name)
+        }
+    });
+    console.log("Where am I?")
+}
 /*
     var con = createConnection({
         host: "107.180.1.16",
