@@ -14,7 +14,8 @@ var fileExtensions = {
      ".js":      "text/javascript",
      ".jpeg":    "image/jpeg",
      ".jpg":     "image/jpeg",
-     ".png":     "image/png"
+     ".png":     "image/png",
+     ".json":    "text/json"
  };
 
 var server = http.createServer(function(request, response) { 
@@ -69,14 +70,21 @@ var con = mysql.createConnection({
     console.log("Connected to MySQL!");  
   });
   
+  con.query("SELECT * FROM Test", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+  });
+  
+  con.query("UPDATE Test SET isAwesome = 1 WHERE name = ('Nathan')", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+  });
 
   con.query("SELECT * FROM Test", function (err, result, fields) {
     if (err) throw err;
     console.log(result);
-    //console.log(fields);
-    //con.end(err);
   });
-  
+
 server.listen(5001);
 
 console.log("\nThe Web server is running. I am a robot.\n"  + 
