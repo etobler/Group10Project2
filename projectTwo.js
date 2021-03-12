@@ -22,6 +22,17 @@ var formalOrCasual;
 
 // My profile variables
 
+// Mentors variables
+
+// Mentees variables
+
+// Milestones variables
+
+// Change status variables
+
+// Chat variables
+
+// Settings variables 
 
 function processForm(){
     console.log("Entered processForm");
@@ -70,17 +81,6 @@ function processForm(){
 	}
 */
 
-// Mentors variables
-
-// Mentees variables
-
-// Milestones variables
-
-// Change status variables
-
-// Chat variables
-
-// Settings variables 
 
 function clickSignUp(form) {
     // if input isn't valid pops up an error message
