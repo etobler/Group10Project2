@@ -49,7 +49,6 @@ function processForm(){
             console.log(data.Result[i].name)
         }
     });
-    console.log("Where am I?")
 }
 /*
     var con = createConnection({

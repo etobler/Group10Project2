@@ -76,7 +76,6 @@ var con = mysql.createConnection({
     if (err) throw err;
     console.log(result);
     con.end();
-
   });
   
   con.query("UPDATE Test SET isAwesome = 1 WHERE name = ('Nathan')", function (err, result, fields) {
