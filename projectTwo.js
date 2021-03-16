@@ -37,13 +37,12 @@ var formalOrCasual;
 function processForm(){
     console.log("Entered processForm");
     let sqlStmt;
+    
     sqlStmt = "SELECT * FROM Test";
-
+ 
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
-
-
         console.log(sqlStmt);
-        console.log(data);
+        //console.log(data);
 
         var dataAsString = JSON.stringify(data);
         console.log("data as a string:" + dataAsString);
@@ -53,34 +52,29 @@ function processForm(){
 
         var fieldValue = data.Result[0].name;
 		console.log("Single row's Name: ", fieldValue);
-        
-        var fieldValue2 = data.Result.name;
 
         for (var i=0; data.Result.length > i; i++){
             console.log(data.Result[i].name)
         }
     });
+    updateIsAwesome();
 }
-/*
-    var con = createConnection({
-        host: "107.180.1.16",
-        user: "group102021",
-        password: "2021group10",
-        database: "2021group10"
-      });
-      
-      con.connect(function(err) {
-        if (err) throw err;
-        con.query("SELECT * FROM Test", function (err, result, fields) {
-            if (err) throw err;
-            console.log(result);
-            console.log(fields);
-          });
-      });
-	}
-*/
+function updateIsAwesome(){
+    console.log("Entered updateIsAwesome");
+    let sqlStmt1;
+    sqlStmt1 = "UPDATE Test SET isAwesome = 1 WHERE name = ('Nathan')";
+    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt1, function(data){
+        console.log(sqlStmt1);
+  
+    });
+}
+//     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data){
+//         console.log(sqlStmt);
 
-
+//         var recordAsString1 = JSON.stringify(data.Result[0]);
+//         console.log("Single row as string: ", recordAsString1);
+//     });
+ 
 function clickSignUp(form) {
     // if input isn't valid pops up an error message
     if (!form.checkValidity()) {
