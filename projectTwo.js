@@ -39,26 +39,47 @@ function processForm(){
     console.log("Entered processForm");
     let sqlStmt;
     
-    sqlStmt = "SELECT * FROM Test";
+    sqlStmt = "SELECT * FROM Mentor";
  
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
-        console.log(sqlStmt);
+        //console.log(sqlStmt);
         //console.log(data);
 
-        var dataAsString = JSON.stringify(data);
-        console.log("data as a string:" + dataAsString);
+        // var dataAsString = JSON.stringify(data);
+        // console.log("data as a string:" + dataAsString);
 
-        var recordAsString = JSON.stringify(data.Result[0]);
-        console.log("Single row as string: ", recordAsString);
+        // var recordAsString = JSON.stringify(data.Result[0]);
+        // console.log("Single row as string: ", recordAsString);
 
-        var fieldValue = data.Result[0].name;
-		console.log("Single row's Name: ", fieldValue);
+        var name = data.Result[0].Name;
+		console.log("Single row's Name: ", name);
 
-        document.getElementById("profileName").innerHTML = fieldValue;
+        var bio = data.Result[0].Bio;
+		console.log("Single row's Name: ", bio);
 
-        for (var i=0; data.Result.length > i; i++){
-            console.log(data.Result[i].name)
-        }
+        var email = data.Result[0].Email;
+		console.log("Single row's Name: ", email);
+
+        var phone = data.Result[0].Phone;
+		console.log("Single row's Name: ", phone);
+
+        var slack = data.Result[0].Slack;
+		console.log("Single row's Name: ", slack);
+
+        var skype = data.Result[0].Skype;
+		console.log("Single row's Name: ", skype);
+
+        document.getElementById("profileName").innerHTML = name;
+        document.getElementById("profileParagraph").innerHTML = bio;
+        // document.getElementById("profileParagraph").innerHTML = "Email:  " + email;
+        // document.getElementById("profileParagraph").innerHTML = "Phone:  " + phone;
+        // document.getElementById("profileParagraph").innerHTML = "Slack:  " + slack;
+        // document.getElementById("profileParagraph").innerHTML = "Skype:  " + skype;
+        
+
+        // for (var i=0; data.Result.length > i; i++){
+        //     console.log(data.Result[i].Name)
+        // }
     });
     //updateIsAwesome();
 }
