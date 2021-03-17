@@ -36,6 +36,7 @@ var formalOrCasual;
 
 function processForm(){
     window.location.href = "profilePage.html";
+    /*displays the data in the test table from mysql*/
     console.log("Entered processForm");
     let sqlStmt;
     
@@ -54,11 +55,13 @@ function processForm(){
         var fieldValue = data.Result[0].name;
 		console.log("Single row's Name: ", fieldValue);
 
+        document.getElementById("profileName").innerHTML = fieldValue;
+
         for (var i=0; data.Result.length > i; i++){
             console.log(data.Result[i].name)
         }
     });
-    updateIsAwesome();
+    //updateIsAwesome();
 }
 function updateIsAwesome(){
     console.log("Entered updateIsAwesome");
