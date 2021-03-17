@@ -35,6 +35,7 @@ var formalOrCasual;
 // Settings variables 
 
 function processForm(){
+    window.location.href = "profilePage.html";
     console.log("Entered processForm");
     let sqlStmt;
     
@@ -139,4 +140,16 @@ function clickMentching(form) {
             window.location.href = "homepage.html";
         }
     }
+}
+
+function goToHomePage() {
+    window.location.href = "homepage.html";
+}
+
+function goToMentorsPage() {
+    window.location.href = "mentorsPage.html";
+}
+
+function goToMenteesPage() {
+    window.location.href = "menteesPage.html";
 }
