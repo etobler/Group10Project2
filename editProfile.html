@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="projectTwo.css">
+        <script type="text/javascript" src="projectTwo.js"></script>
+        <script src="https://mysqljs.com/mysql.js" type="text/javascript"></script>
+        <title>Edit Profile</title>
+    </head>
+    <body>
+        <table id="homepageTable">
+            <tr>
+                <td>
+                    <h2 id="headerId">Mentch</h2>
+                    <hr id="whiteLine">
+                </td>
+            </tr>
+            <tr>
+                <td class="buttonSpacing">
+                    <button class="buttonTableClass" id="homeButtonId" type="button"><a class="navLink" href="homepage.html">Home</a></button>
+                </td>
+            </tr>
+            <tr>
+                <td class="buttonSpacing">
+                    <button class="buttonTableClass" id="myProfileButtonId" type="button" onclick="processForm()"><a class="navLink" href="profilePage.html">My Profile</a></button>
+                </td>
+            </tr>
+            <tr>
+                <td class="buttonSpacing">
+                    <button class="buttonTableClass" id="mentorsButtonId" type="button"><a class="navLink" href="mentorsPage.html">Mentors</a></button>
+                </td>
+            </tr>
+            <tr>
+                <td class="buttonSpacing">
+                    <button class="buttonTableClass" id="menteesButtonId" type="button"><a class="navLink" href="menteesPage.html">Mentees</a></button> 
+                </td class="buttonSpacing">
+            </tr>
+            <tr>
+                <td class="buttonSpacing">
+                    <button class="buttonTableClass" id="milestonesButtonId" type="button"><a class="navLink" href="milestonesPage.html">Milestones</a></button>   
+                </td>
+            </tr>
+            <tr>
+                <td class="buttonSpacing">
+                    <button class="buttonTableClass" id="changeStatusButtonId" type="button">Change Status</button>        
+                </td>
+            </tr>
+            <tr>
+                <td class="buttonSpacing">
+                    <button class="buttonTableClass" id="chatButtonId" type="button">Chat</button>
+                </td>
+            </tr>
+            <!-- <tr>
+                <td class="buttonSpacing">
+                    <button class="buttonTableClass" id="settingsButtonId" type="button"><a class="navLink" href="settings.html">Settings</button>
+                </td>
+            </tr> -->
+            <tr>
+                <td id="extraSpacing">.</td>
+            </tr>
+        </table>
+        <div id="homepageTableTwo">
+            <h3 id="secondHeadingId">Find your perfect mentor or mentee</h3>
+            <button id="logOutButtonId" type="button"><a class="navLink" href="projectTwo.html">Log Out</a></button>
+            <!-- <p id="homePagePicture">picture</p> -->
+        </div>
+        <div>
+            <h1 id="titleBanner">Edit Profile</h1>
+        </div>
+        <div>
+            <table style="width: 33%; margin-left: 50px; text-align: left;">
+                <tr>
+                    <td id="AboutHeaderId" style="font-size: 26px; padding-left: 6px;"> 
+                        <b>About</b>
+                        <hr>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 6px; padding-bottom: 3px;">
+                        <b>Bio:</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-bottom: 8px;">
+                        <input id="BioID" type="text" placeholder="Tell us a little bit about yourself">
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td id="ContactHeaderId" style="font-size: 26px; padding-left: 6px;"> 
+                        <b>Contact</b>
+                        <hr>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 6px; padding-bottom: 3px;">
+                        <b>Email Address:</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-bottom: 8px;">
+                        <input id="emailID" type="text" placeholder="enterEmailAddress">
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 6px; padding-bottom: 3px;">
+                        <b>Phone Number:</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-bottom: 8px;">
+                        <input id="PhoneNumID" type="text" placeholder="enterPhoneNumber">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 6px; padding-bottom: 3px;">
+                        <b>Slack:</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-bottom: 8px;">
+                        <input id="SlackID" type="text" placeholder="enterSlackUserName">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 6px; padding-bottom: 3px;">
+                        <b>Skype:</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-bottom: 15px;">
+                        <input id="SkypeID" type="text" placeholder="enterSkypeUserName">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 165px; padding-bottom: 10px;">
+                        <button id= "updateID" type="button"><a class="navLink" href="profilePage.html">Update</a></button>
+                    </td>
+                </tr>
+            </table>  
+        </div>
+    </body>
+</html>
