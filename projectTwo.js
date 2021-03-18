@@ -35,7 +35,6 @@ var formalOrCasual;
 // Settings variables 
 
 function processForm(){
-    window.location.href = "profilePage.html";
     /*displays the data in the test table from mysql*/
     console.log("Entered processForm");
     let sqlStmt;
@@ -155,4 +154,8 @@ function goToMentorsPage() {
 
 function goToMenteesPage() {
     window.location.href = "menteesPage.html";
+}
+
+function goToProfilePage() {
+    window.location.href = "profilePage.html";
 }
