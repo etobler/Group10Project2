@@ -188,3 +188,16 @@ function updateProfileInfo() {
 function goToMilestonesPage() {
     window.location.href = "milestonesPage.html";
 }
+
+function goToEditPage() {
+    window.location.href = "editProfile.html";
+}
+
+function deleteProfile() {
+    var deleteVar = confirm("Are you sure you want to delete your profile?");
+    if (deleteVar == true) {
+        // write code to remove row from database
+        
+    }
+    window.location.href = "projectTwo.html";
+}
