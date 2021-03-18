@@ -71,10 +71,10 @@ function processForm(){
 
         document.getElementById("profileName").innerHTML = name;
         document.getElementById("profileParagraph").innerHTML = bio;
-        // document.getElementById("profileParagraph").innerHTML = "Email:  " + email;
-        // document.getElementById("profileParagraph").innerHTML = "Phone:  " + phone;
-        // document.getElementById("profileParagraph").innerHTML = "Slack:  " + slack;
-        // document.getElementById("profileParagraph").innerHTML = "Skype:  " + skype;
+        document.getElementById("emailPlaceHolder").innerHTML = "Email:  " + email;
+        document.getElementById("phonePlaceHolder").innerHTML = "Phone:  " + phone;
+        document.getElementById("slackPlaceHolder").innerHTML = "Slack:  " + slack;
+        document.getElementById("skypePlaceHolder").innerHTML = "Skype:  " + skype;
         
 
         // for (var i=0; data.Result.length > i; i++){
