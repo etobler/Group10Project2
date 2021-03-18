@@ -180,3 +180,7 @@ function goToMenteesPage() {
 function goToProfilePage() {
     window.location.href = "profilePage.html";
 }
+
+function updateProfileInfo() {
+    window.location.href = "profilePage.html";
+}

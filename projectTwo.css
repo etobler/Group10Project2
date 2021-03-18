@@ -35,7 +35,7 @@ table {
     padding-top: 10px;
 }
 
-#logInHeaderId, #createAccountId, #matchSurveyId {
+#logInHeaderId, #createAccountId, #matchSurveyId, .centerText {
     text-align: center;
 }
 
@@ -334,6 +334,24 @@ select {
 
 #editSettingsButton {
     margin-left: 70%;
+}
+
+.editTitle {
+    font-weight: bold;
+    font-size: larger;
+    text-align: center;
+}
+
+.bioTextId {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.centerButton {
+    margin-top: 2%;
+    margin-left: 45%;
+    margin-right: 45%;
 }
 
 /* CODE BELOW THIS IS FOR THE PROGRESS BAR  */

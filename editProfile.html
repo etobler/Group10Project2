@@ -17,22 +17,23 @@
             </tr>
             <tr>
                 <td class="buttonSpacing">
-                    <button class="buttonTableClass" id="homeButtonId" type="button"><a class="navLink" href="homepage.html">Home</a></button>
+                    <button class="buttonTableClass" id="homeButtonId" type="button" onclick="goToHomePage()">Home</button>
                 </td>
             </tr>
             <tr>
                 <td class="buttonSpacing">
-                    <button class="buttonTableClass" id="myProfileButtonId" type="button" onclick="processForm()"><a class="navLink" href="profilePage.html">My Profile</a></button>
+                    <button class="buttonTableClass" id="myProfileButtonId" type="button" onclick="goToProfilePage()">My Profile</button>
+                    <!-- <button class="buttonTableClass" id="myProfileButtonId" type="button"><a class="navLink" href="profilePage.html">My Profile</a></button> -->
                 </td>
             </tr>
             <tr>
                 <td class="buttonSpacing">
-                    <button class="buttonTableClass" id="mentorsButtonId" type="button"><a class="navLink" href="mentorsPage.html">Mentors</a></button>
+                    <button class="buttonTableClass" id="mentorsButtonId" type="button" onclick="goToMentorsPage()">Mentors</button>
                 </td>
             </tr>
             <tr>
                 <td class="buttonSpacing">
-                    <button class="buttonTableClass" id="menteesButtonId" type="button"><a class="navLink" href="menteesPage.html">Mentees</a></button> 
+                    <button class="buttonTableClass" id="menteesButtonId" type="button" onclick="goToMenteesPage()">Mentees</button> 
                 </td class="buttonSpacing">
             </tr>
             <tr>
@@ -67,78 +68,98 @@
         <div>
             <h1 id="titleBanner">Edit Profile</h1>
         </div>
-        <div>
-            <table style="width: 33%; margin-left: 50px; text-align: left;">
+        <div id="myProfileIdTwo">
+            <p class="editTitle">About</p>
+            <hr id="whiteLine">
+            <p class="centerText">Bio:</p>
+            <input class="bioTextId" type="text" placeholder="Tell us a little bit about yourself">
+            <p class="editTitle">Contact</p>
+            <hr id="whiteLine">
+            <p class="centerText">Email Address:</p>
+            <input class="bioTextId" type="text" placeholder="Enter your new email address">
+            <p class="centerText">Phone Number:</p>
+            <input class="bioTextId" type="text" placeholder="Enter your new phone number">
+            <p class="centerText">Slack:</p>
+            <input class="bioTextId" type="text" placeholder="Enter your new slack username">
+            <p class="centerText">Skype</p>
+            <input class="bioTextId" type="text" placeholder="Enter your new skype username">
+            <button class="centerButton" id="updateProfileButton" type="button" onclick="updateProfileInfo()">Update Profile</button>
+
+            <!-- <table id="editTableId">
                 <tr>
-                    <td id="AboutHeaderId" style="font-size: 26px; padding-left: 6px;"> 
+                    <td> 
                         <b>About</b>
-                        <hr>
+                        <br><br>
+                        <hr id="whiteLine">
+                        <br>
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding-left: 6px; padding-bottom: 3px;">
+                    <td>
                         <b>Bio:</b>
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding-bottom: 8px;">
+                    <td>
                         <input id="BioID" type="text" placeholder="Tell us a little bit about yourself">
                         
                     </td>
                 </tr>
                 <tr>
-                    <td id="ContactHeaderId" style="font-size: 26px; padding-left: 6px;"> 
+                    <td> 
                         <b>Contact</b>
-                        <hr>
+                        <br><br>
+                        <hr id="whiteLine">
+                        <br>
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding-left: 6px; padding-bottom: 3px;">
+                    <td>
                         <b>Email Address:</b>
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding-bottom: 8px;">
+                    <td>
                         <input id="emailID" type="text" placeholder="enterEmailAddress">
                         
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding-left: 6px; padding-bottom: 3px;">
+                    <td>
                         <b>Phone Number:</b>
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding-bottom: 8px;">
+                    <td>
                         <input id="PhoneNumID" type="text" placeholder="enterPhoneNumber">
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding-left: 6px; padding-bottom: 3px;">
+                    <td>
                         <b>Slack:</b>
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding-bottom: 8px;">
+                    <td>
                         <input id="SlackID" type="text" placeholder="enterSlackUserName">
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding-left: 6px; padding-bottom: 3px;">
+                    <td>
                         <b>Skype:</b>
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding-bottom: 15px;">
+                    <td>
                         <input id="SkypeID" type="text" placeholder="enterSkypeUserName">
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding-left: 165px; padding-bottom: 10px;">
+                    <td>
                         <button id= "updateID" type="button"><a class="navLink" href="profilePage.html">Update</a></button>
                     </td>
                 </tr>
-            </table>  
+            </table>   -->
         </div>
     </body>
 </html>
