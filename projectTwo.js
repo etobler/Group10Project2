@@ -184,3 +184,7 @@ function goToProfilePage() {
 function updateProfileInfo() {
     window.location.href = "profilePage.html";
 }
+
+function goToMilestonesPage() {
+    window.location.href = "milestonesPage.html";
+}
