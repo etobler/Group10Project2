@@ -21,6 +21,12 @@ var formalOrCasual;
 // Home page variables
 
 // My profile variables
+var profileName;
+var bio;
+var email;
+var phone;
+var slack;
+var skype;
 
 // Mentors variables
 
@@ -34,71 +40,41 @@ var formalOrCasual;
 
 // Settings variables 
 
-function processForm(){
-    /*displays the data in the test table from mysql*/
-    console.log("Entered processForm");
-    let sqlStmt;
+function processForm(number){
+    /*displays the data on the profile page from our db*/
     
-    sqlStmt = "SELECT * FROM Mentor";
+    console.log("Entered processForm");
+    let sqlStmt = "SELECT * FROM Mentor";
  
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
-        //console.log(sqlStmt);
-        //console.log(data);
 
-        // var dataAsString = JSON.stringify(data);
-        // console.log("data as a string:" + dataAsString);
+        profileName = data.Result[number].Name;
+		console.log("Single row's Name: ", profileName);
 
-        // var recordAsString = JSON.stringify(data.Result[0]);
-        // console.log("Single row as string: ", recordAsString);
+        bio = data.Result[number].Bio;
+		console.log("Bio: ", bio);
 
-        var name = data.Result[0].Name;
-		console.log("Single row's Name: ", name);
+        email = data.Result[number].Email;
+		console.log("Email: ", email);
 
-        var bio = data.Result[0].Bio;
-		console.log("Single row's Name: ", bio);
+        phone = data.Result[number].Phone;
+		console.log("Phone: ", phone);
 
-        var email = data.Result[0].Email;
-		console.log("Single row's Name: ", email);
+        slack = data.Result[number].Slack;
+		console.log("Slack: ", slack);
 
-        var phone = data.Result[0].Phone;
-		console.log("Single row's Name: ", phone);
+        skype = data.Result[number].Skype;
+		console.log("Skype: ", skype);
 
-        var slack = data.Result[0].Slack;
-		console.log("Single row's Name: ", slack);
-
-        var skype = data.Result[0].Skype;
-		console.log("Single row's Name: ", skype);
-
-        document.getElementById("profileName").innerHTML = name;
-        document.getElementById("profileParagraph").innerHTML = bio;
-        document.getElementById("emailPlaceHolder").innerHTML = "Email:  " + email;
-        document.getElementById("phonePlaceHolder").innerHTML = "Phone:  " + phone;
-        document.getElementById("slackPlaceHolder").innerHTML = "Slack:  " + slack;
-        document.getElementById("skypePlaceHolder").innerHTML = "Skype:  " + skype;
-        
-
-        // for (var i=0; data.Result.length > i; i++){
-        //     console.log(data.Result[i].Name)
-        // }
-    });
-    //updateIsAwesome();
-}
-function updateIsAwesome(){
-    console.log("Entered updateIsAwesome");
-    let sqlStmt1;
-    sqlStmt1 = "UPDATE Test SET isAwesome = 1 WHERE name = ('Nathan')";
-    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt1, function(data){
-        console.log(sqlStmt1);
-  
+        // document.getElementById("profileName").innerHTML = profileName;
+        // document.getElementById("profileParagraph").innerHTML = bio;
+        // document.getElementById("emailPlaceHolder").innerHTML = "Email:  " + email;
+        // document.getElementById("phonePlaceHolder").innerHTML = "Phone:  " + phone;
+        // document.getElementById("slackPlaceHolder").innerHTML = "Slack:  " + slack;
+        // document.getElementById("skypePlaceHolder").innerHTML = "Skype:  " + skype;
     });
 }
-//     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data){
-//         console.log(sqlStmt);
 
-//         var recordAsString1 = JSON.stringify(data.Result[0]);
-//         console.log("Single row as string: ", recordAsString1);
-//     });
- 
 function clickSignUp(form) {
     // if input isn't valid pops up an error message
     if (!form.checkValidity()) {
@@ -132,6 +108,23 @@ function clickSignIn(form) {
          document.getElementById("passwordId").value = "";
 
         // comparing values to database
+
+        let sqlStmt = "SELECT * FROM Mentor";
+ 
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+            console.log(signInUsername, signInPassword)
+            for (var i=0; data.Result.length > i; i++){
+                //console.log(data.Result[i].Username)
+                if (signInUsername === data.Result[i].Username && signInPassword === data.Result[i].Password){
+                    processForm(i);
+                    console.log("Match at " + data.Result[i].Username)
+                }
+            }
+
+
+        });
+
+
 
         // go to homepage
         window.location.href = "homepage.html";
@@ -179,6 +172,13 @@ function goToMenteesPage() {
 
 function goToProfilePage() {
     window.location.href = "profilePage.html";
+    console.log(profileName);
+    document.getElementById("profileName").innerHTML = profileName;
+    document.getElementById("profileParagraph").innerHTML = bio;
+    document.getElementById("emailPlaceHolder").innerHTML = "Email:  " + email;
+    document.getElementById("phonePlaceHolder").innerHTML = "Phone:  " + phone;
+    document.getElementById("slackPlaceHolder").innerHTML = "Slack:  " + slack;
+    document.getElementById("skypePlaceHolder").innerHTML = "Skype:  " + skype;
 }
 
 function updateProfileInfo() {
