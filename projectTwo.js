@@ -9,6 +9,8 @@ var signInPassword;
 var signUpEmail;
 var signUpUsername;
 var SignUpPassword;
+var testOne;
+var testTwo;
 
 // Survey page variables
 var fullName;
@@ -42,8 +44,12 @@ var skype;
 
 function processForm(number, type){
     /*displays the data on the profile page from our db*/
-    
+    console.log(signInUsername, signInPassword)
     console.log("Entered processForm");
+    console.log(sessionStorage.getItem("testOne", signInUsername));
+    // getting the username from the sign in info to retrieve profile info from db 
+    sessionStorage.getItem("testOne", signInUsername);
+    // console.log(sessionStorage.getItem("testOne", signInUsername));
 
     if (type == false){
         let sqlStmt = "SELECT * FROM Mentor";
@@ -136,6 +142,8 @@ function clickSignIn(form) {
         // getting values from form 
         signInUsername = document.getElementById("userNameId").value;
         signInPassword = document.getElementById("passwordId").value;
+        // getting value and setting it to use in other functions 
+        sessionStorage.setItem("testOne", signInUsername);
 
          // erasing values from form
          document.getElementById("userNameId").value = "";
@@ -172,7 +180,7 @@ function clickSignIn(form) {
 
 
         // go to homepage
-        //window.location.href = "homepage.html";
+        window.location.href = "homepage.html";
 
     }
 }
@@ -243,7 +251,39 @@ function deleteProfile() {
     var deleteVar = confirm("Are you sure you want to delete your profile?");
     if (deleteVar == true) {
         // write code to remove row from database
-        
+        let sqlStmt  = "SELECT * FROM Mentor";
+        let sqlStmt2 = "SELECT * FROM Mentee";
+ 
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+
+
+            sessionStorage.getItem("testOne", signInUsername);
+            console.log(sessionStorage.getItem("testOne", signInUsername));
+            for (var i=0; data.Result.length > i; i++){
+                if (signInUsername === data.Result[i].Username){
+                    // let sqlStmtThree = "DELETE FROM Mentor WHERE Username= 'cuba.oliver'";
+                    // MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmtThree, function(data) {
+                        // MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+                        // });
+                    // });
+                    //processForm(i, false);
+                    // console.log("Match as Mentor at " + data.Result[i].Name)
+                }
+            }
+        });
+
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt2, function(data) {
+
+            sessionStorage.getItem("testOne", signInUsername);
+            for (var i=0; data.Result.length > i; i++){
+                if (signInUsername === data.Result[i].Username){
+                    // let sqlStmtThree = "DELETE FROM Mentee WHERE Username= " + signInUsername;
+
+                    //processForm(i, true);
+                    // console.log("Match as Mentee at " + data.Result[i].Name)
+                }
+            }
+        });
     }
-    window.location.href = "projectTwo.html";
+    // window.location.href = "projectTwo.html";
 }
