@@ -26,6 +26,7 @@ var formalOrCasual;
 // Home page variables
 
 // My profile variables
+var id;
 var profileName;
 var bio;
 var email;
@@ -40,6 +41,7 @@ var mStone;
 var connectionId;
 var userCredential;
 var passCredential;
+var mentorStatus;
 
 // Mentors variables
 
@@ -67,7 +69,7 @@ function processProfilePage(){
     document.getElementById("slackPlaceHolder").innerHTML = "Slack : " + localStorage.getItem('slack');
     document.getElementById("skypePlaceHolder").innerHTML = "Skype: " + localStorage.getItem('skype');
 
-
+    console.log(localStorage.getItem('id', id));
     console.log(localStorage.getItem('name', profileName));
     console.log(localStorage.getItem('bio', bio));
     console.log(localStorage.getItem('email', email));
@@ -82,6 +84,7 @@ function processProfilePage(){
     console.log(localStorage.getItem('connectionId', connectionId));
     console.log(localStorage.getItem('userCredential', userCredential));
     console.log(localStorage.getItem('passCredential', passCredential));
+    console.log(localStorage.getItem('mentorStatus', mentorStatus));
 }
     
 function clickSignUp(form) {
@@ -108,81 +111,100 @@ function clickSignIn(form) {
         alert("Please check your input, username must be at least 3 characters, \n Password must be at least 5 characters")
     }
     else {
-        // getting values from form 
-        signInUsername = document.getElementById("userNameId").value;
-        signInPassword = document.getElementById("passwordId").value;
-
-        // getting value and setting it to use in other functions 
-        //sessionStorage.setItem("testOne", signInUsername);
+        mentorLoginCred();
+        menteeLoginCred();
 
          // erasing values from form
          document.getElementById("userNameId").value = "";
          document.getElementById("passwordId").value = "";
+    }
+}
+  
+function mentorLoginCred(){
+    // getting values from form 
+    signInUsername = document.getElementById("userNameId").value;
+    signInPassword = document.getElementById("passwordId").value;
 
-        // comparing values to database
-        let sqlStmt  = "SELECT * FROM Mentor";
-        let sqlStmt2 = "SELECT * FROM Mentee";
+    // comparing values to database
+    let sqlStmt  = "SELECT * FROM Mentor";
 
-        //Sql query and assign data
-        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
-            for (var i=0; data.Result.length > i; i++){
-                if (signInUsername === data.Result[i].Username && signInPassword === data.Result[i].Password){
-                    //console.log("Matched Mentor: " + data.Result[i].Name);
-                    profileName = data.Result[i].Name;
-                    bio = data.Result[i].Bio;
-                    email = data.Result[i].Email;
-                    phone = data.Result[i].Phone;       
-                    slack = data.Result[i].Slack;
-                    skype = data.Result[i].Skype;
-                    department = data.Result[i].Department;
-                    years = data.Result[i].YearsWorked;
-                    hobby = data.Result[i].FavoriteHobby;
-                    formCas = data.Result[i].FormalCasual;
-                    mStone = data.Result[i].Milestone;
-                    connectionId = data.Result[i].MenteeFK;
-                    userCredential = data.Result[i].Username;
-                    passCredential = data.Result[i].Password;
-                   
-                    localStorageFunction();
-                }
-            }//end for loop   
-        });//end sql query
+    //Sql query and assign data
+    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+        for (var i=0; data.Result.length > i; i++){
+            if (signInUsername === data.Result[i].Username && signInPassword === data.Result[i].Password){
+                //console.log("Matched Mentor: " + data.Result[i].Name);
+                id = data.Result[i].MentorId;
+                profileName = data.Result[i].Name;
+                bio = data.Result[i].Bio;
+                email = data.Result[i].Email;
+                phone = data.Result[i].Phone;       
+                slack = data.Result[i].Slack;
+                skype = data.Result[i].Skype;
+                department = data.Result[i].Department;
+                years = data.Result[i].YearsWorked;
+                hobby = data.Result[i].FavoriteHobby;
+                formCas = data.Result[i].FormalCasual;
+                mStone = data.Result[i].Milestone;
+                connectionId = data.Result[i].MenteeFK;
+                userCredential = data.Result[i].Username;
+                passCredential = data.Result[i].Password;
+                mentorStatus = true;
+            
+                localStorageFunction();
+                break;
+            }
+        }//end for loop   
+    });//end sql query
 
-        //Sql query and assign data
-        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt2, function(data) {
-            var counter = 0;
-            for (var i=0; data.Result.length > i; i++){
-                if (signInUsername === data.Result[i].Username && signInPassword === data.Result[i].Password){
-                    //console.log("Matched Mentee: " + data.Result[i].Name)
-                    profileName = data.Result[i].Name;
-                    bio = data.Result[i].Bio;
-                    email = data.Result[i].Email;
-                    phone = data.Result[i].Phone;       
-                    slack = data.Result[i].Slack;
-                    skype = data.Result[i].Skype;
-                    department = data.Result[i].Department;
-                    years = data.Result[i].YearsWorked;
-                    hobby = data.Result[i].FavoriteHobby;
-                    formCas = data.Result[i].FormalCasual;
-                    mStone = data.Result[i].Milestone;
-                    connectionId = data.Result[i].MentorFK;
-                    userCredential = data.Result[i].Username;
-                    passCredential = data.Result[i].Password;
+}
 
-                    localStorageFunction();
-                    break;
-                }
-        
-                counter += 1;
-                if (data.Result.length == counter){    
-                    alert("Username or Password is incorrect. Please try again.")
-                }
-            }//end for loop
-            console.log(data.Result.length)
-            console.log(counter);
-        });//end sql query
-    }//end else statement
-}//end function
+function menteeLoginCred(){
+    // getting values from form 
+    signInUsername = document.getElementById("userNameId").value;
+    signInPassword = document.getElementById("passwordId").value;
+
+    // getting value and setting it to use in other functions 
+    //sessionStorage.setItem("testOne", signInUsername);
+
+    // comparing values to database
+    let sqlStmt2 = "SELECT * FROM Mentee";
+
+    //Sql query and assign data
+    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt2, function(data) {
+    var counter = 0;
+        for (var i=0; data.Result.length > i; i++){
+            if (signInUsername === data.Result[i].Username && signInPassword === data.Result[i].Password){
+                //console.log("Matched Mentee: " + data.Result[i].Name)
+                id = data.Result[i].MenteeId;
+                profileName = data.Result[i].Name;
+                bio = data.Result[i].Bio;
+                email = data.Result[i].Email;
+                phone = data.Result[i].Phone;       
+                slack = data.Result[i].Slack;
+                skype = data.Result[i].Skype;
+                department = data.Result[i].Department;
+                years = data.Result[i].YearsWorked;
+                hobby = data.Result[i].FavoriteHobby;
+                formCas = data.Result[i].FormalCasual;
+                mStone = data.Result[i].Milestone;
+                connectionId = data.Result[i].MentorFK;
+                userCredential = data.Result[i].Username;
+                passCredential = data.Result[i].Password;
+                mentorStatus = false;
+
+                localStorageFunction();
+                break;
+            }
+
+            counter += 1;
+            if (data.Result.length == counter){    
+                alert("Username or Password is incorrect. Please try again.")
+            }
+        }//end for loop
+    console.log(data.Result.length)
+    console.log(counter);
+    });//end sql query
+}
 
 //Clears any existing local storage and invokes populateStorage function
 function localStorageFunction (){
@@ -198,6 +220,7 @@ function localStorageFunction (){
 //Stores data in the local storage
 function populateStorage(){
 
+    localStorage.setItem('id', id);
     localStorage.setItem('name', profileName);
     localStorage.setItem('bio', bio);
     localStorage.setItem('email', email);
@@ -212,8 +235,8 @@ function populateStorage(){
     localStorage.setItem('connectionId', connectionId);
     localStorage.setItem('userCredential', userCredential);
     localStorage.setItem('passCredential', passCredential);
+    localStorage.setItem('mentorStatus', mentorStatus);
 
-    console.log("populateStorageFunction: "+localStorage.getItem('name'));
     goToHomePage();
 }
 
@@ -321,7 +344,6 @@ function processUpdatePage(){
     document.getElementById("slackUpdateId").value = localStorage.getItem('slack');
     document.getElementById("skypeUpdateId").value = localStorage.getItem('skype');
 
-
 }
 
 function updateProfileInfo() {
@@ -335,4 +357,21 @@ function updateProfileInfo() {
 
     alert("Successfully updated your profile.")
     goToProfilePage();
+
+}
+
+function updateQuery(){
+    if (localStorage.getItem('mentorStatus', mentorStatus) == true){
+        let sqlStatement, whereClause;
+        sqlStatement = "UPDATE Mentor SET Bio = " + localStorage.getItem('bio');
+		whereClause = " WHERE name = " + localStorage.getItem('name');
+
+		sqlStatement = sqlStatement + whereClause;
+    } else if (localStorage.getItem('mentorStatus', mentorStatus) == false){
+        let sqlStatement, whereClause;
+        sqlStatement = "UPDATE Mentee SET Bio = " + localStorage.getItem('bio');
+        whereClause = " WHERE name = " + localStorage.getItem('name');
+    }
+
+    //UPDATE Mentor SET MenteeFK = 1 WHERE name = ('PENELOPE GUINNESS');
 }
