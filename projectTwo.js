@@ -169,16 +169,17 @@ function clickSignIn(form) {
                     userCredential = data.Result[i].Username;
                     passCredential = data.Result[i].Password;
 
-                    //localStorageFunction();
+                    localStorageFunction();
+                    break;
                 }
+        
                 counter += 1;
+                if (data.Result.length == counter){    
+                    alert("Username or Password is incorrect. Please try again.")
+                }
             }//end for loop
             console.log(data.Result.length)
             console.log(counter);
-
-            if (data.Result.length == counter){    
-                alert("Username or Password is incorrect. Please try again.")
-            }
         });//end sql query
     }//end else statement
 }//end function
@@ -259,10 +260,6 @@ function goToProfilePage() {
 
 }
 
-function updateProfileInfo() {
-    window.location.href = "profilePage.html";
-}
-
 function goToMilestonesPage() {
     window.location.href = "milestonesPage.html";
 }
@@ -314,4 +311,28 @@ function deleteProfile() {
         });
     }
     // window.location.href = "projectTwo.html";
+}
+
+function processUpdatePage(){
+
+    document.getElementById("bioUpdateId").value = localStorage.getItem('bio');
+    document.getElementById("emailUpdateId").value = localStorage.getItem('email');
+    document.getElementById("phoneUpdateId").value = localStorage.getItem('phone');
+    document.getElementById("slackUpdateId").value = localStorage.getItem('slack');
+    document.getElementById("skypeUpdateId").value = localStorage.getItem('skype');
+
+
+}
+
+function updateProfileInfo() {
+    //window.location.href = "profilePage.html";
+
+    localStorage.setItem('bio', document.getElementById("bioUpdateId").value);
+    localStorage.setItem('email', document.getElementById("emailUpdateId").value);
+    localStorage.setItem('phone', document.getElementById("phoneUpdateId").value);
+    localStorage.setItem('slack', document.getElementById("slackUpdateId").value);
+    localStorage.setItem('skype', document.getElementById("skypeUpdateId").value);
+
+    alert("Successfully updated your profile.")
+    goToProfilePage();
 }

@@ -72,17 +72,18 @@
             <p class="editTitle">About</p>
             <hr id="whiteLine">
             <p class="centerText">Bio:</p>
-            <input class="bioTextId" type="text" placeholder="Tell us a little bit about yourself">
+            <input class="bioTextId" id="bioUpdateId" type="text" onclick="processUpdatePage()" placeholder="Tell us a little bit about yourself">
+ 
             <p class="editTitle">Contact</p>
             <hr id="whiteLine">
             <p class="centerText">Email Address:</p>
-            <input class="bioTextId" type="text" placeholder="Enter your new email address">
+            <input class="bioTextId" id="emailUpdateId" type="text" onclick="processUpdatePage()" placeholder="Enter your new email address">
             <p class="centerText">Phone Number:</p>
-            <input class="bioTextId" type="text" placeholder="Enter your new phone number">
+            <input class="bioTextId" id="phoneUpdateId" type="text" onclick="processUpdatePage()" placeholder="Enter your new phone number">
             <p class="centerText">Slack:</p>
-            <input class="bioTextId" type="text" placeholder="Enter your new slack username">
+            <input class="bioTextId" id="slackUpdateId" type="text" onclick="processUpdatePage()" placeholder="Enter your new slack username">
             <p class="centerText">Skype</p>
-            <input class="bioTextId" type="text" placeholder="Enter your new skype username">
+            <input class="bioTextId" id="skypeUpdateId" type="text" onclick="processUpdatePage()" placeholder="Enter your new skype username">
             <button class="centerButton" id="updateProfileButton" type="button" onclick="updateProfileInfo()">Update Profile</button>
         </div>
     </body>
