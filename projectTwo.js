@@ -85,7 +85,13 @@ function processProfilePage(){
     console.log(localStorage.getItem('userCredential'));
     console.log(localStorage.getItem('passCredential'));
     console.log(localStorage.getItem('mentorStatus'));
+
+    let sqlStmt  = "SELECT * FROM Mentor";
+    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+        id = data.Result[i].MentorId;
+})
 }
+
     
 function clickSignUp(form) {
     // if input isn't valid pops up an error message
@@ -112,7 +118,7 @@ function clickSignIn(form) {
     }
     else {
         mentorLoginCred();
-        menteeLoginCred();
+        
 
          // erasing values from form
          document.getElementById("userNameId").value = "";
@@ -131,7 +137,7 @@ function mentorLoginCred(){
     //Sql query and assign data
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
         for (var i=0; data.Result.length > i; i++){
-            if (signInUsername === data.Result[i].Username && signInPassword === data.Result[i].Password){
+            if (signInUsername == data.Result[i].Username && signInPassword == data.Result[i].Password){
                 //console.log("Matched Mentor: " + data.Result[i].Name);
                 id = data.Result[i].MentorId;
                 profileName = data.Result[i].Name;
@@ -155,7 +161,7 @@ function mentorLoginCred(){
             }
         }//end for loop   
     });//end sql query
-
+    //menteeLoginCred();
 }
 
 function menteeLoginCred(){
@@ -173,7 +179,7 @@ function menteeLoginCred(){
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt2, function(data) {
     var counter = 0;
         for (var i=0; data.Result.length > i; i++){
-            if (signInUsername === data.Result[i].Username && signInPassword === data.Result[i].Password){
+            if (signInUsername == data.Result[i].Username && signInPassword == data.Result[i].Password){
                 //console.log("Matched Mentee: " + data.Result[i].Name)
                 id = data.Result[i].MenteeId;
                 profileName = data.Result[i].Name;
@@ -361,8 +367,6 @@ function updateProfileInfo() {
     localStorage.setItem('phone', document.getElementById("phoneUpdateId").value);
     localStorage.setItem('slack', document.getElementById("slackUpdateId").value);
     localStorage.setItem('skype', document.getElementById("skypeUpdateId").value);
-
-
 
     updateQuery();
     alert("Successfully updated your profile.")
