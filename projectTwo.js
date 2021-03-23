@@ -125,6 +125,7 @@ function clickSignIn(form) {
         //Sql query and assign data
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
 
+            
             for (var i=0; data.Result.length > i; i++){
                 if (signInUsername === data.Result[i].Username && signInPassword === data.Result[i].Password){
                     console.log("Matched Mentor: " + data.Result[i].Name);
@@ -146,15 +147,14 @@ function clickSignIn(form) {
                    
                     localStorageFunction();
                 }
-                // if (data.Result.length == i){
-                //     alert("Username or Password is incorrect. Please try again.")
-                // }
-            }   
+
+            }//end for loop   
         });//end sql query
 
         //Sql query and assign data
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt2, function(data) {
 
+            var counter = 1;
             for (var i=0; data.Result.length > i; i++){
                 if (signInUsername === data.Result[i].Username && signInPassword === data.Result[i].Password){
                     console.log("Matched Mentee: " + data.Result[i].Name)
@@ -176,6 +176,11 @@ function clickSignIn(form) {
 
                     localStorageFunction();
                 }
+                counter += 1;
+                // if (data.Result.length == counter){
+                //     console.log("do something")
+                //     alert("Username or Password is incorrect. Please try again.")
+                // }
             }
         });
 
