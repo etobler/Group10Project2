@@ -119,13 +119,11 @@ function clickSignIn(form) {
          document.getElementById("passwordId").value = "";
 
         // comparing values to database
-
         let sqlStmt  = "SELECT * FROM Mentor";
         let sqlStmt2 = "SELECT * FROM Mentee";
 
+        //Sql query and assign data
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
-
-            console.log(signInUsername, signInPassword)
 
             for (var i=0; data.Result.length > i; i++){
                 if (signInUsername === data.Result[i].Username && signInPassword === data.Result[i].Password){
@@ -154,17 +152,32 @@ function clickSignIn(form) {
             }   
         });//end sql query
 
-        // MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt2, function(data) {
+        //Sql query and assign data
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt2, function(data) {
 
-        //     console.log(signInUsername, signInPassword)
+            for (var i=0; data.Result.length > i; i++){
+                if (signInUsername === data.Result[i].Username && signInPassword === data.Result[i].Password){
+                    console.log("Matched Mentee: " + data.Result[i].Name)
 
-        //     for (var i=0; data.Result.length > i; i++){
-        //         if (signInUsername === data.Result[i].Username && signInPassword === data.Result[i].Password){
-        //             //processForm(i, true);
-        //             console.log("Match as Mentee at " + data.Result[i].Name)
-        //         }
-        //     }
-        // });
+                    profileName = data.Result[i].Name;
+                    bio = data.Result[i].Bio;
+                    email = data.Result[i].Email;
+                    phone = data.Result[i].Phone;       
+                    slack = data.Result[i].Slack;
+                    skype = data.Result[i].Skype;
+                    department = data.Result[i].Department;
+                    years = data.Result[i].YearsWorked;
+                    hobby = data.Result[i].FavoriteHobby;
+                    formCas = data.Result[i].FormalCasual;
+                    mStone = data.Result[i].Milestone;
+                    connectionId = data.Result[i].MentorFK;
+                    userCredential = data.Result[i].Username;
+                    passCredential = data.Result[i].Password;
+
+                    localStorageFunction();
+                }
+            }
+        });
 
     }
 }
