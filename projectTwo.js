@@ -197,7 +197,7 @@ function menteeLoginCred(){
             }
 
             counter += 1;
-            if (data.Result.length == counter){    
+            if (data.Result.length === counter){    
                 alert("Username or Password is incorrect. Please try again.")
             }
         }//end for loop
@@ -337,17 +337,23 @@ function deleteProfile() {
 }
 
 function processUpdatePage(){
-
     document.getElementById("bioUpdateId").value = localStorage.getItem('bio');
+}
+function processUpdatePage1(){
     document.getElementById("emailUpdateId").value = localStorage.getItem('email');
+}
+function processUpdatePage2(){
     document.getElementById("phoneUpdateId").value = localStorage.getItem('phone');
-    document.getElementById("slackUpdateId").value = localStorage.getItem('slack');
-    document.getElementById("skypeUpdateId").value = localStorage.getItem('skype');
 
+}
+function processUpdatePage3(){
+    document.getElementById("slackUpdateId").value = localStorage.getItem('slack');
+}
+function processUpdatePage4(){
+    document.getElementById("skypeUpdateId").value = localStorage.getItem('skype');
 }
 
 function updateProfileInfo() {
-    //window.location.href = "profilePage.html";
 
     localStorage.setItem('bio', document.getElementById("bioUpdateId").value);
     localStorage.setItem('email', document.getElementById("emailUpdateId").value);
@@ -355,23 +361,46 @@ function updateProfileInfo() {
     localStorage.setItem('slack', document.getElementById("slackUpdateId").value);
     localStorage.setItem('skype', document.getElementById("skypeUpdateId").value);
 
+
+
+    updateQuery();
     alert("Successfully updated your profile.")
     goToProfilePage();
 
 }
 
 function updateQuery(){
-    if (localStorage.getItem('mentorStatus', mentorStatus) == true){
-        let sqlStatement, whereClause;
-        sqlStatement = "UPDATE Mentor SET Bio = " + localStorage.getItem('bio');
-		whereClause = " WHERE name = " + localStorage.getItem('name');
+  
+    // if (localStorage.getItem('mentorStatus') == true){
 
-		sqlStatement = sqlStatement + whereClause;
-    } else if (localStorage.getItem('mentorStatus', mentorStatus) == false){
-        let sqlStatement, whereClause;
-        sqlStatement = "UPDATE Mentee SET Bio = " + localStorage.getItem('bio');
-        whereClause = " WHERE name = " + localStorage.getItem('name');
-    }
+    //     sqlStatement = "UPDATE Mentor SET Bio = " + localStorage.getItem('bio');
+	// 	whereClause = " WHERE MentorId = " + localStorage.getItem('id');
+	// 	sqlStatement = sqlStatement + whereClause;
+    //     console.log(sqlStatement);
 
-    //UPDATE Mentor SET MenteeFK = 1 WHERE name = ('PENELOPE GUINNESS');
+
+    // } else if (localStorage.getItem('mentorStatus') == false){
+
+        let sqlStatement, whereClause;
+        sqlStatement = "UPDATE Mentee SET Bio = " + "'" + document.getElementById("bioUpdateId").value + "'";
+        whereClause = " WHERE MenteeId = " + localStorage.getItem('id');
+        sqlStatement = sqlStatement + whereClause;
+        //console.log(sqlStatement);
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+            //UPDATE Mentee SET bio = 'Hello there!' WHERE MenteeId = 4;
+        })
+
+        sqlStatement = "UPDATE Mentee SET Email = " + "'" + document.getElementById("emailUpdateId").value + "'";
+        sqlStatement = sqlStatement + whereClause;
+        console.log(sqlStatement);
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+        })
+
+        sqlStatement = "UPDATE Mentee SET Phone = " + "'" + document.getElementById("phoneUpdateId").value + "'";
+        sqlStatement = sqlStatement + whereClause;
+        console.log(sqlStatement);
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+        })
+    // }
+
 }
