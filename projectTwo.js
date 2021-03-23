@@ -383,32 +383,36 @@ function updateQuery(){
     } else if (localStorage.getItem('mentorStatus') == 'false'){
 
         let sqlStatement, whereClause;
+
+        //update bio
         sqlStatement = "UPDATE Mentee SET Bio = " + "'" + document.getElementById("bioUpdateId").value + "'";
         whereClause = " WHERE MenteeId = " + localStorage.getItem('id');
         sqlStatement = sqlStatement + whereClause;
-        //console.log(sqlStatement);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
-            //UPDATE Mentee SET bio = 'Hello there!' WHERE MenteeId = 4;
         })
 
+        //update email
         sqlStatement = "UPDATE Mentee SET Email = " + "'" + document.getElementById("emailUpdateId").value + "'";
         sqlStatement = sqlStatement + whereClause;
         console.log(sqlStatement);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         })
 
+        //update phone
         sqlStatement = "UPDATE Mentee SET Phone = " + "'" + document.getElementById("phoneUpdateId").value + "'";
         sqlStatement = sqlStatement + whereClause;
         console.log(sqlStatement);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         })
 
+        //update slack
         sqlStatement = "UPDATE Mentee SET Slack = " + "'" + document.getElementById("slackUpdateId").value + "'";
         sqlStatement = sqlStatement + whereClause;
         console.log(sqlStatement);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         })
 
+        //update skype
         sqlStatement = "UPDATE Mentee SET Skype = " + "'" + document.getElementById("skypeUpdateId").value + "'";
         sqlStatement = sqlStatement + whereClause;
         console.log(sqlStatement);
