@@ -69,22 +69,22 @@ function processProfilePage(){
     document.getElementById("slackPlaceHolder").innerHTML = "Slack : " + localStorage.getItem('slack');
     document.getElementById("skypePlaceHolder").innerHTML = "Skype: " + localStorage.getItem('skype');
 
-    console.log(localStorage.getItem('id', id));
-    console.log(localStorage.getItem('name', profileName));
-    console.log(localStorage.getItem('bio', bio));
-    console.log(localStorage.getItem('email', email));
-    console.log(localStorage.getItem('phone', phone));
-    console.log(localStorage.getItem('slack', slack));
-    console.log(localStorage.getItem('skype', skype));
-    console.log(localStorage.getItem('department', department));
-    console.log(localStorage.getItem('years', years));
-    console.log(localStorage.getItem('hobby', hobby));
-    console.log(localStorage.getItem('formCas', formCas));
-    console.log(localStorage.getItem('mStone', mStone));
-    console.log(localStorage.getItem('connectionId', connectionId));
-    console.log(localStorage.getItem('userCredential', userCredential));
-    console.log(localStorage.getItem('passCredential', passCredential));
-    console.log(localStorage.getItem('mentorStatus', mentorStatus));
+    console.log(localStorage.getItem('id'));
+    console.log(localStorage.getItem('name'));
+    console.log(localStorage.getItem('bio'));
+    console.log(localStorage.getItem('email'));
+    console.log(localStorage.getItem('phone'));
+    console.log(localStorage.getItem('slack'));
+    console.log(localStorage.getItem('skype'));
+    console.log(localStorage.getItem('department'));
+    console.log(localStorage.getItem('years'));
+    console.log(localStorage.getItem('hobby'));
+    console.log(localStorage.getItem('formCas'));
+    console.log(localStorage.getItem('mStone'));
+    console.log(localStorage.getItem('connectionId'));
+    console.log(localStorage.getItem('userCredential'));
+    console.log(localStorage.getItem('passCredential'));
+    console.log(localStorage.getItem('mentorStatus'));
 }
     
 function clickSignUp(form) {
@@ -149,7 +149,7 @@ function mentorLoginCred(){
                 userCredential = data.Result[i].Username;
                 passCredential = data.Result[i].Password;
                 mentorStatus = true;
-            
+                console.log(mentorStatus);
                 localStorageFunction();
                 break;
             }
@@ -195,14 +195,15 @@ function menteeLoginCred(){
                 localStorageFunction();
                 break;
             }
-
             counter += 1;
-            if (data.Result.length === counter){    
-                alert("Username or Password is incorrect. Please try again.")
-            }
+
         }//end for loop
-    console.log(data.Result.length)
-    console.log(counter);
+    
+    console.log("length "+data.Result.length)
+    console.log("counter "+counter);
+    if (data.Result.length == counter){    
+        alert("Username or Password is incorrect. Please try again.")
+    }
     });//end sql query
 }
 
@@ -371,7 +372,7 @@ function updateProfileInfo() {
 
 function updateQuery(){
   
-    // if (localStorage.getItem('mentorStatus') == true){
+    if (localStorage.getItem('mentorStatus') == 'true'){
 
     //     sqlStatement = "UPDATE Mentor SET Bio = " + localStorage.getItem('bio');
 	// 	whereClause = " WHERE MentorId = " + localStorage.getItem('id');
@@ -379,7 +380,7 @@ function updateQuery(){
     //     console.log(sqlStatement);
 
 
-    // } else if (localStorage.getItem('mentorStatus') == false){
+    } else if (localStorage.getItem('mentorStatus') == 'false'){
 
         let sqlStatement, whereClause;
         sqlStatement = "UPDATE Mentee SET Bio = " + "'" + document.getElementById("bioUpdateId").value + "'";
@@ -401,6 +402,19 @@ function updateQuery(){
         console.log(sqlStatement);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         })
-    // }
+
+        sqlStatement = "UPDATE Mentee SET Slack = " + "'" + document.getElementById("slackUpdateId").value + "'";
+        sqlStatement = sqlStatement + whereClause;
+        console.log(sqlStatement);
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+        })
+
+        sqlStatement = "UPDATE Mentee SET Skype = " + "'" + document.getElementById("skypeUpdateId").value + "'";
+        sqlStatement = sqlStatement + whereClause;
+        console.log(sqlStatement);
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+        })
+
+    }
 
 }
