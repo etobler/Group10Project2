@@ -1,5 +1,8 @@
 "use strict";
 
+
+
+
 // Sign in page variables
 var signInUsername; 
 var signInPassword;
@@ -29,6 +32,14 @@ var email;
 var phone;
 var slack;
 var skype;
+var department;
+var years;
+var hobby;
+var formCas;
+var mStone;
+var connectionId;
+var userCredential;
+var passCredential;
 
 // Mentors variables
 
@@ -42,79 +53,37 @@ var skype;
 
 // Settings variables 
 
-function processForm(number, type){
-    /*displays the data on the profile page from our db*/
-    console.log(signInUsername, signInPassword)
-    console.log("Entered processForm");
-    console.log(sessionStorage.getItem("testOne", signInUsername));
-    // getting the username from the sign in info to retrieve profile info from db 
-    sessionStorage.getItem("testOne", signInUsername);
-    // console.log(sessionStorage.getItem("testOne", signInUsername));
-
-    if (type == false){
-        let sqlStmt = "SELECT * FROM Mentor";
-    
-        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
-
-            profileName = data.Result[number].Name;
-            console.log("Single row's Name: ", profileName);
-
-            bio = data.Result[number].Bio;
-            console.log("Bio: ", bio);
-
-            email = data.Result[number].Email;
-            console.log("Email: ", email);
-
-            phone = data.Result[number].Phone;
-            console.log("Phone: ", phone);
-
-            slack = data.Result[number].Slack;
-            console.log("Slack: ", slack);
-
-            skype = data.Result[number].Skype;
-            console.log("Skype: ", skype);
-
-            // document.getElementById("profileName").innerHTML = profileName;
-            // document.getElementById("profileParagraph").innerHTML = bio;
-            // document.getElementById("emailPlaceHolder").innerHTML = "Email:  " + email;
-            // document.getElementById("phonePlaceHolder").innerHTML = "Phone:  " + phone;
-            // document.getElementById("slackPlaceHolder").innerHTML = "Slack:  " + slack;
-            // document.getElementById("skypePlaceHolder").innerHTML = "Skype:  " + skype;
-        });
-    }
-    else if (type == true) {
-        let sqlStmt = "SELECT * FROM Mentee";
-    
-        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
-
-            profileName = data.Result[number].Name;
-            console.log("Single row's Name: ", profileName);
-
-            bio = data.Result[number].Bio;
-            console.log("Bio: ", bio);
-
-            email = data.Result[number].Email;
-            console.log("Email: ", email);
-
-            phone = data.Result[number].Phone;
-            console.log("Phone: ", phone);
-
-            slack = data.Result[number].Slack;
-            console.log("Slack: ", slack);
-
-            skype = data.Result[number].Skype;
-            console.log("Skype: ", skype);
-
-            // document.getElementById("profileName").innerHTML = profileName;
-            // document.getElementById("profileParagraph").innerHTML = bio;
-            // document.getElementById("emailPlaceHolder").innerHTML = "Email:  " + email;
-            // document.getElementById("phonePlaceHolder").innerHTML = "Phone:  " + phone;
-            // document.getElementById("slackPlaceHolder").innerHTML = "Slack:  " + slack;
-            // document.getElementById("skypePlaceHolder").innerHTML = "Skype:  " + skype;
-        });
-    }
+function logout(){
+    localStorage.clear();
 }
 
+function processProfilePage(){
+    /*displays the data on the profile page from our db*/
+
+    document.getElementById("profileName").innerHTML = localStorage.getItem('name');
+    document.getElementById("profileParagraph").innerHTML = localStorage.getItem('bio');
+    document.getElementById("emailPlaceHolder").innerHTML = "Email:  " + localStorage.getItem('email');
+    document.getElementById("phonePlaceHolder").innerHTML = "Phone:  " + localStorage.getItem('phone');
+    document.getElementById("slackPlaceHolder").innerHTML = "Slack:  " + localStorage.getItem('slack');
+    document.getElementById("skypePlaceHolder").innerHTML = "Skype:  " + localStorage.getItem('skype');
+
+
+    console.log(localStorage.getItem('name', profileName));
+    console.log(localStorage.getItem('bio', bio));
+    console.log(localStorage.getItem('email', email));
+    console.log(localStorage.getItem('phone', phone));
+    console.log(localStorage.getItem('slack', slack));
+    console.log(localStorage.getItem('skype', skype));
+    console.log(localStorage.getItem('department', department));
+    console.log(localStorage.getItem('years', years));
+    console.log(localStorage.getItem('hobby', hobby));
+    console.log(localStorage.getItem('formCas', formCas));
+    console.log(localStorage.getItem('mStone', mStone));
+    console.log(localStorage.getItem('connectionId', connectionId));
+    console.log(localStorage.getItem('userCredential', userCredential));
+    console.log(localStorage.getItem('passCredential', passCredential));
+}
+    
 function clickSignUp(form) {
     // if input isn't valid pops up an error message
     if (!form.checkValidity()) {
@@ -143,7 +112,7 @@ function clickSignIn(form) {
         signInUsername = document.getElementById("userNameId").value;
         signInPassword = document.getElementById("passwordId").value;
         // getting value and setting it to use in other functions 
-        sessionStorage.setItem("testOne", signInUsername);
+        //sessionStorage.setItem("testOne", signInUsername);
 
          // erasing values from form
          document.getElementById("userNameId").value = "";
@@ -153,36 +122,84 @@ function clickSignIn(form) {
 
         let sqlStmt  = "SELECT * FROM Mentor";
         let sqlStmt2 = "SELECT * FROM Mentee";
- 
+
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
 
             console.log(signInUsername, signInPassword)
 
             for (var i=0; data.Result.length > i; i++){
                 if (signInUsername === data.Result[i].Username && signInPassword === data.Result[i].Password){
-                    //processForm(i, false);
-                    console.log("Match as Mentor at " + data.Result[i].Name)
+                    console.log("Matched Mentor: " + data.Result[i].Name);
+
+                    profileName = data.Result[i].Name;
+                    bio = data.Result[i].Bio;
+                    email = data.Result[i].Email;
+                    phone = data.Result[i].Phone;       
+                    slack = data.Result[i].Slack;
+                    skype = data.Result[i].Skype;
+                    department = data.Result[i].Department;
+                    years = data.Result[i].YearsWorked;
+                    hobby = data.Result[i].FavoriteHobby;
+                    formCas = data.Result[i].FormalCasual;
+                    mStone = data.Result[i].Milestone;
+                    connectionId = data.Result[i].MenteeFK;
+                    userCredential = data.Result[i].Username;
+                    passCredential = data.Result[i].Password;
+                   
+                    localStorageFunction();
                 }
-            }
-        });
+                // if (data.Result.length == i){
+                //     alert("Username or Password is incorrect. Please try again.")
+                // }
+            }   
+        });//end sql query
 
-        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt2, function(data) {
+        // MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt2, function(data) {
 
-            console.log(signInUsername, signInPassword)
+        //     console.log(signInUsername, signInPassword)
 
-            for (var i=0; data.Result.length > i; i++){
-                if (signInUsername === data.Result[i].Username && signInPassword === data.Result[i].Password){
-                    //processForm(i, true);
-                    console.log("Match as Mentee at " + data.Result[i].Name)
-                }
-            }
-        });
-
-
-        // go to homepage
-        window.location.href = "homepage.html";
+        //     for (var i=0; data.Result.length > i; i++){
+        //         if (signInUsername === data.Result[i].Username && signInPassword === data.Result[i].Password){
+        //             //processForm(i, true);
+        //             console.log("Match as Mentee at " + data.Result[i].Name)
+        //         }
+        //     }
+        // });
 
     }
+}
+
+//Clears any existing local storage and invokes populateStorage function
+function localStorageFunction (){
+    console.log("localStorageFunction: "+profileName);
+    if(!localStorage.getItem('name')) {
+        populateStorage();
+      } else {
+        localStorage.clear();
+        populateStorage();
+      }
+}
+
+//Stores data in the local storage
+function populateStorage(){
+
+    localStorage.setItem('name', profileName);
+    localStorage.setItem('bio', bio);
+    localStorage.setItem('email', email);
+    localStorage.setItem('phone', phone);
+    localStorage.setItem('slack', slack);
+    localStorage.setItem('skype', skype);
+    localStorage.setItem('department', department);
+    localStorage.setItem('years', years);
+    localStorage.setItem('hobby', hobby);
+    localStorage.setItem('formCas', formCas);
+    localStorage.setItem('mStone', mStone);
+    localStorage.setItem('connectionId', connectionId);
+    localStorage.setItem('userCredential', userCredential);
+    localStorage.setItem('passCredential', passCredential);
+
+    console.log("populateStorageFunction: "+localStorage.getItem('name'));
+    goToHomePage();
 }
 
 function clickMentching(form) {
@@ -226,13 +243,6 @@ function goToMenteesPage() {
 function goToProfilePage() {
     window.location.href = "profilePage.html";
 
-    // console.log(profileName);
-    // document.getElementById("profileName").innerHTML = profileName;
-    // document.getElementById("profileParagraph").innerHTML = bio;
-    // document.getElementById("emailPlaceHolder").innerHTML = "Email:  " + email;
-    // document.getElementById("phonePlaceHolder").innerHTML = "Phone:  " + phone;
-    // document.getElementById("slackPlaceHolder").innerHTML = "Slack:  " + slack;
-    // document.getElementById("skypePlaceHolder").innerHTML = "Skype:  " + skype;
 }
 
 function updateProfileInfo() {
