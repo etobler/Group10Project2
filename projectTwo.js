@@ -102,9 +102,34 @@ function clickSignUp(form) {
         SignUpPassword = document.getElementById("passwordId").value;
 
         // sending values to database to create new account 
+        let sqlStmt  = "SELECT * FROM Mentor";
 
-        // go to survey page 
-        window.location.href = "survey.html";
+        //Sql query and assign data
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+            var counter = 0;
+            for (var i=0; data.Result.length > i; i++){
+                if (signUpEmail == data.Result[i].Email){
+                    alert("This email is already in our systems. Please sign in or use another email.")
+                    return;
+                }
+                if(signUpUsername == data.Result[i].Username){
+                    alert("This username is already taken. Please choose a different username.")
+                    return;
+                }
+            }
+            email = signUpEmail;
+            userCredential = signUpUsername;
+            passCredential = SignUpPassword;
+            console.log(email, userCredential, passCredential);
+            localStorage.setItem('email', email);
+            localStorage.setItem('userCredential', userCredential);
+            localStorage.setItem('passCredential', passCredential);
+
+            goToSurveyPage();
+        })
+
+        //goToSurveyPage();
+        //newUserLocalStorageFunction(); 
     }
 }
 
@@ -200,29 +225,77 @@ function populateStorage(){
     goToHomePage();
 }
 
+function populateSavedData(){
+    document.getElementById("emailId").value = localStorage.getItem('email');
+}
+
 function clickMentching(form) {
     if (!form.checkValidity()) {
         alert("Please make sure you filled out full name, and chose an option for each of the drop down lists.")
     }
     else {
         //getting values from form
-        fullName = document.getElementById("fullName").value;
-        department = document.getElementById("departmentId").value;
-        mentorOrMentee = document.getElementById("mentorOrMentee").value;
-        yearsWorked = document.getElementById("questionOne").value;
-        favoriteHobby = document.getElementById("questionTwo").value;
-        formalOrCasual = document.getElementById("questionThree").value;
+        profileName    = document.getElementById("fullName").value;
+        profileName    = profileName.toUpperCase();
+        department     = document.getElementById("departmentId").value;
+        mentorStatus   = document.getElementById("mentorOrMentee").value;
+        years          = document.getElementById("questionOne").value;
+        hobby          = document.getElementById("questionTwo").value;
+        formCas        = document.getElementById("questionThree").value;
+        email          = document.getElementById("emailId").value;
+        phone          = document.getElementById("phoneNumberId").value;
+        slack          = document.getElementById("slackId").value;
+        skype          = document.getElementById("skypeId").value;
+        userCredential = localStorage.getItem('userCredential');
+        passCredential = localStorage.getItem('passCredential');
 
-        if (mentorOrMentee == "Mentor" && (yearsWorked == "1 Year or Less" || yearsWorked == "2 Years")) {
+        if (mentorStatus == 1 && (years == 1 || years == 2)) {
             // if someone has 2 or less years worked at the company they cannot be a mentor
             alert("You must have 3 or more years of seniority to be a mentor.");
+            return;
         }
         else {
             // sending values to database to add details to new user 
+            // INSERT INTO Mentor (Name, Department, YearsWorked, FavoriteHobby, FormalCasual, Email, Phone, Slack, Skype, Username, Password, MentorStatus) 
+            // VALUES ('KEVIN BLOOM', 1, 7, 0, 1, 'kevin.bloom@gmail.com', '6239876543', 'kevin6', 'live:kevin6', 'kevin.bloom', 'jhgfd', true);
 
-            // go to homepage
-            window.location.href = "homepage.html";
+            // let sqlStatement, values;
+            // sqlStatement = "INSERT INTO Mentor (Name, Department, YearsWorked, FavoriteHobby, FormalCasual, Email, Phone, Slack, Skype, Username, Password, MentorStatus)"
+            // values = " VALUES ('"+profileName+"', "+department+", "+years+", "+hobby+", "+formCas+", '"+email+"', '"+phone+"', '"+slack+"', '"+skype+"', '"+userCredential+"', '"+passCredential+"', "+mentorStatus+");"
+            // sqlStatement = sqlStatement + values;
+            // console.log(sqlStatement);
+            // MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+            // })
+
+
         }
+        let sqlStmt  = "SELECT * FROM Mentor";
+
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+            var counter = 0
+            for (var i=0; data.Result.length >= i; i++){
+                if (i == data.Result.length){
+                    id = data.Result[i-1].MentorId;
+                    profileName = data.Result[i-1].Name;
+                    bio = data.Result[i-1].Bio;
+                    email = data.Result[i-1].Email;
+                    phone = data.Result[i-1].Phone;       
+                    slack = data.Result[i-1].Slack;
+                    skype = data.Result[i-1].Skype;
+                    department = data.Result[i-1].Department;
+                    years = data.Result[i-1].YearsWorked;
+                    hobby = data.Result[i-1].FavoriteHobby;
+                    formCas = data.Result[i-1].FormalCasual;
+                    mStone = data.Result[i-1].Milestone;
+                    connectionId = data.Result[i-1].MenteeFK;
+                    userCredential = data.Result[i-1].Username;
+                    passCredential = data.Result[i-1].Password;
+                    mentorStatus = data.Result[i-1].MentorStatus;
+                    connectionId = data.Result[i-1].ConnectionId;
+                    localStorageFunction();
+                }
+            }
+        })
     }
 }
 
@@ -253,6 +326,10 @@ function goToEditPage() {
 
 function goToSignUpPage(){
     window.location.href = "signUp.html";
+}
+
+function goToSurveyPage(){
+    window.location.href = "survey.html";
 }
 
 function deleteProfile() {
@@ -367,3 +444,4 @@ function updateQuery(){
         })
 
 }
+

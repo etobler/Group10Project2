@@ -7,7 +7,7 @@
         <script type="text/javascript" src="https://mysqljs.com/mysql.js"></script>
         <title>Survey</title>
     </head>
-    <body>
+    <body onload=populateSavedData()>
         <br> <br>
         <h1>MENTCH</h1>
         <h2>Find your perfect mentor or mentee</h2>
@@ -38,17 +38,17 @@
                     <td>
                         <select id="departmentId" required>
                             <option disabled selected value> -- Select an Option -- </option>
-                            <option value="Mobile Development">Mobile Development</option>
-                            <option value="Back-End Development">Back-End Development</option>
-                            <option value="Front-End Development">Front-End Development</option>
-                            <option value="Full-stack Development">Full-stack Development</option>
+                            <option value=0>Mobile Development</option>
+                            <option value=1>Back-End Development</option>
+                            <option value=2>Front-End Development</option>
+                            <option value=3>Full-stack Development</option>
                         </select>
                     </td>
                     <td>
                         <select id="mentorOrMentee" required>
                             <option disabled selected value> -- Select an Option -- </option>
-                            <option value="Mentor">Mentor</option>
-                            <option value="Mentee">Mentee</option>
+                            <option value=1>Mentor</option>
+                            <option value=0>Mentee</optioSn>
                         </select>
                     </td>
                 </tr>
@@ -90,16 +90,16 @@
                     <td colspan="4"> 
                         <select id="questionOne" required>
                             <option disabled selected value> -- Select an Option -- </option>
-                            <option value="1 Year or Less">1 Year or Less</option>
-                            <option value="2 Years">2 Years</option>
-                            <option value="3 Years">3 Years</option>
-                            <option value="4 Years">4 Years</option>
-                            <option value="5 Years">5 Years</option>
-                            <option value="6 Years">6 Years</option>
-                            <option value="7 Years">7 Years</option>
-                            <option value="8 Years">8 Years</option>
-                            <option value="9 Years">9 Years</option>
-                            <option value="10+ Years">10+ Years</option>
+                            <option value=1>1 Year or Less</option>
+                            <option value=2>2 Years</option>
+                            <option value=3>3 Years</option>
+                            <option value=4>4 Years</option>
+                            <option value=5>5 Years</option>
+                            <option value=6>6 Years</option>
+                            <option value=7>7 Years</option>
+                            <option value=8>8 Years</option>
+                            <option value=9>9 Years</option>
+                            <option value=10>10+ Years</option>
                         </select>  
                     </td>
                 </tr>
@@ -113,11 +113,11 @@
                     <td colspan="4"> 
                         <select id="questionTwo" required>
                             <option disabled selected value> -- Select an Option -- </option>
-                            <option value="Video Games">Video Games</option>
-                            <option value="Hiking">Hiking</option>
-                            <option value="Photography">Photography</option>
-                            <option value="Painting">Painting</option>
-                            <option value="Watching TV">Watching TV</option>
+                            <option value=0>Video Games</option>
+                            <option value=1>Hiking</option>
+                            <option value=2>Photography</option>
+                            <option value=3>Painting</option>
+                            <option value=4>Watching TV</option>
                         </select>
                     </td>
                 </tr>
@@ -131,8 +131,8 @@
                     <td colspan="4"> 
                         <select id="questionThree" required>
                             <option disabled selected value> -- Select an Option -- </option>
-                            <option value="Formal">Formal</option>
-                            <option value="Casual">Casual</option>
+                            <option value=0>Formal</option>
+                            <option value=1>Casual</option>
                         </select>
                     </td>
                 </tr>
