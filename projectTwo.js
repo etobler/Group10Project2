@@ -38,10 +38,10 @@ var years;
 var hobby;
 var formCas;
 var mStone;
-var connectionId;
 var userCredential;
 var passCredential;
 var mentorStatus;
+var connectionId;
 
 // Mentors variables
 
@@ -81,15 +81,12 @@ function processProfilePage(){
     console.log(localStorage.getItem('hobby'));
     console.log(localStorage.getItem('formCas'));
     console.log(localStorage.getItem('mStone'));
-    console.log(localStorage.getItem('connectionId'));
     console.log(localStorage.getItem('userCredential'));
     console.log(localStorage.getItem('passCredential'));
     console.log(localStorage.getItem('mentorStatus'));
+    console.log(localStorage.getItem('connectionId'));
 
-    let sqlStmt  = "SELECT * FROM Mentor";
-    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
-        id = data.Result[i].MentorId;
-})
+
 }
 
     
@@ -119,7 +116,6 @@ function clickSignIn(form) {
     else {
         mentorLoginCred();
         
-
          // erasing values from form
          document.getElementById("userNameId").value = "";
          document.getElementById("passwordId").value = "";
@@ -136,6 +132,7 @@ function mentorLoginCred(){
 
     //Sql query and assign data
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+        var counter = 0;
         for (var i=0; data.Result.length > i; i++){
             if (signInUsername == data.Result[i].Username && signInPassword == data.Result[i].Password){
                 //console.log("Matched Mentor: " + data.Result[i].Name);
@@ -154,62 +151,18 @@ function mentorLoginCred(){
                 connectionId = data.Result[i].MenteeFK;
                 userCredential = data.Result[i].Username;
                 passCredential = data.Result[i].Password;
-                mentorStatus = true;
-                console.log(mentorStatus);
-                localStorageFunction();
-                break;
-            }
-        }//end for loop   
-    });//end sql query
-    //menteeLoginCred();
-}
-
-function menteeLoginCred(){
-    // getting values from form 
-    signInUsername = document.getElementById("userNameId").value;
-    signInPassword = document.getElementById("passwordId").value;
-
-    // getting value and setting it to use in other functions 
-    //sessionStorage.setItem("testOne", signInUsername);
-
-    // comparing values to database
-    let sqlStmt2 = "SELECT * FROM Mentee";
-
-    //Sql query and assign data
-    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt2, function(data) {
-    var counter = 0;
-        for (var i=0; data.Result.length > i; i++){
-            if (signInUsername == data.Result[i].Username && signInPassword == data.Result[i].Password){
-                //console.log("Matched Mentee: " + data.Result[i].Name)
-                id = data.Result[i].MenteeId;
-                profileName = data.Result[i].Name;
-                bio = data.Result[i].Bio;
-                email = data.Result[i].Email;
-                phone = data.Result[i].Phone;       
-                slack = data.Result[i].Slack;
-                skype = data.Result[i].Skype;
-                department = data.Result[i].Department;
-                years = data.Result[i].YearsWorked;
-                hobby = data.Result[i].FavoriteHobby;
-                formCas = data.Result[i].FormalCasual;
-                mStone = data.Result[i].Milestone;
-                connectionId = data.Result[i].MentorFK;
-                userCredential = data.Result[i].Username;
-                passCredential = data.Result[i].Password;
-                mentorStatus = false;
-
+                mentorStatus = data.Result[i].MentorStatus;
+                connectionId = data.Result[i].ConnectionId;
                 localStorageFunction();
                 break;
             }
             counter += 1;
-
         }//end for loop
-    
-    console.log("length "+data.Result.length)
-    console.log("counter "+counter);
-    if (data.Result.length == counter){    
-        alert("Username or Password is incorrect. Please try again.")
-    }
+        console.log("length "+data.Result.length)
+        console.log("counter "+counter);
+        if (data.Result.length == counter){    
+            alert("Username or Password is incorrect. Please try again.")
+        }   
     });//end sql query
 }
 
@@ -239,10 +192,10 @@ function populateStorage(){
     localStorage.setItem('hobby', hobby);
     localStorage.setItem('formCas', formCas);
     localStorage.setItem('mStone', mStone);
-    localStorage.setItem('connectionId', connectionId);
     localStorage.setItem('userCredential', userCredential);
     localStorage.setItem('passCredential', passCredential);
     localStorage.setItem('mentorStatus', mentorStatus);
+    localStorage.setItem('connectionId', connectionId);
 
     goToHomePage();
 }
@@ -375,54 +328,42 @@ function updateProfileInfo() {
 }
 
 function updateQuery(){
-  
-    if (localStorage.getItem('mentorStatus') == 'true'){
-
-    //     sqlStatement = "UPDATE Mentor SET Bio = " + localStorage.getItem('bio');
-	// 	whereClause = " WHERE MentorId = " + localStorage.getItem('id');
-	// 	sqlStatement = sqlStatement + whereClause;
-    //     console.log(sqlStatement);
-
-
-    } else if (localStorage.getItem('mentorStatus') == 'false'){
 
         let sqlStatement, whereClause;
 
         //update bio
-        sqlStatement = "UPDATE Mentee SET Bio = " + "'" + document.getElementById("bioUpdateId").value + "'";
-        whereClause = " WHERE MenteeId = " + localStorage.getItem('id');
+        sqlStatement = "UPDATE Mentor SET Bio = " + "'" + document.getElementById("bioUpdateId").value + "'";
+        whereClause = " WHERE MentorId = " + localStorage.getItem('id');
         sqlStatement = sqlStatement + whereClause;
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         })
 
         //update email
-        sqlStatement = "UPDATE Mentee SET Email = " + "'" + document.getElementById("emailUpdateId").value + "'";
+        sqlStatement = "UPDATE Mentor SET Email = " + "'" + document.getElementById("emailUpdateId").value + "'";
         sqlStatement = sqlStatement + whereClause;
         console.log(sqlStatement);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         })
 
         //update phone
-        sqlStatement = "UPDATE Mentee SET Phone = " + "'" + document.getElementById("phoneUpdateId").value + "'";
+        sqlStatement = "UPDATE Mentor SET Phone = " + "'" + document.getElementById("phoneUpdateId").value + "'";
         sqlStatement = sqlStatement + whereClause;
         console.log(sqlStatement);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         })
 
         //update slack
-        sqlStatement = "UPDATE Mentee SET Slack = " + "'" + document.getElementById("slackUpdateId").value + "'";
+        sqlStatement = "UPDATE Mentor SET Slack = " + "'" + document.getElementById("slackUpdateId").value + "'";
         sqlStatement = sqlStatement + whereClause;
         console.log(sqlStatement);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         })
 
         //update skype
-        sqlStatement = "UPDATE Mentee SET Skype = " + "'" + document.getElementById("skypeUpdateId").value + "'";
+        sqlStatement = "UPDATE Mentor SET Skype = " + "'" + document.getElementById("skypeUpdateId").value + "'";
         sqlStatement = sqlStatement + whereClause;
         console.log(sqlStatement);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         })
-
-    }
 
 }
