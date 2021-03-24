@@ -339,11 +339,32 @@ function deleteProfile() {
     if (deleteVar == true) {
         // write code to remove row from database
         
-        let sqlStmt  = "DELETE FROM Mentor WHERE MentorId = "+localStorage.getItem('id')+";";
- 
+        let sqlStmt  = "SELECT * FROM Mentor";
+        var temp;
+        console.log(localStorage.getItem('id'));
+        //Sql query and assign data
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+            for (var i=0; data.Result.length > i; i++){
+                if (localStorage.getItem('id') == data.Result[i].ConnectionId){
+                    //save that i
+                    temp = data.Result[i].MentorId;
+                    
+                }
+            }
+        })
+        console.log(temp);
+        sqlStmt = "UPDATE Mentor SET ConnectionId = ''";
+        let whereClause = " WHERE MentorId = " + temp;
+        sqlStmt = sqlStmt + whereClause;
+        console.log(sqlStmt);
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+            console.log("update");
+        })
 
-        });
+
+        // sqlStmt  = "DELETE FROM Mentor WHERE MentorId = "+localStorage.getItem('id')+";";
+        // MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+        // });
 
         alert("Your profile was successfully deleted.")
         logout();
