@@ -375,23 +375,29 @@ function deleteProfile() {
 
 function processUpdatePage(){
     document.getElementById("bioUpdateId").value = localStorage.getItem('bio');
+    document.getElementById("emailUpdateId").value = localStorage.getItem('email');
+    document.getElementById("phoneUpdateId").value = localStorage.getItem('phone');
+    document.getElementById("slackUpdateId").value = localStorage.getItem('slack');
+    document.getElementById("skypeUpdateId").value = localStorage.getItem('skype');
 }
+
 function processUpdatePage1(){
     document.getElementById("emailUpdateId").value = localStorage.getItem('email');
 }
+
 function processUpdatePage2(){
     document.getElementById("phoneUpdateId").value = localStorage.getItem('phone');
-
 }
+
 function processUpdatePage3(){
     document.getElementById("slackUpdateId").value = localStorage.getItem('slack');
 }
+
 function processUpdatePage4(){
     document.getElementById("skypeUpdateId").value = localStorage.getItem('skype');
 }
 
 function updateProfileInfo() {
-
     localStorage.setItem('bio', document.getElementById("bioUpdateId").value);
     localStorage.setItem('email', document.getElementById("emailUpdateId").value);
     localStorage.setItem('phone', document.getElementById("phoneUpdateId").value);
@@ -401,7 +407,6 @@ function updateProfileInfo() {
     updateQuery();
     alert("Successfully updated your profile.")
     goToProfilePage();
-
 }
 
 function updateQuery(){
