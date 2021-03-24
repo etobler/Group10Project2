@@ -57,6 +57,8 @@ var connectionId;
 
 function logout(){
     localStorage.clear();
+    window.location.href = "projecttwo.html";
+
 }
 
 function processProfilePage(){
@@ -336,39 +338,16 @@ function deleteProfile() {
     var deleteVar = confirm("Are you sure you want to delete your profile?");
     if (deleteVar == true) {
         // write code to remove row from database
-        let sqlStmt  = "SELECT * FROM Mentor";
-        let sqlStmt2 = "SELECT * FROM Mentee";
+        
+        let sqlStmt  = "DELETE FROM Mentor WHERE MentorId = "+localStorage.getItem('id')+";";
  
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
 
-
-            sessionStorage.getItem("testOne", signInUsername);
-            console.log(sessionStorage.getItem("testOne", signInUsername));
-            for (var i=0; data.Result.length > i; i++){
-                if (signInUsername === data.Result[i].Username){
-                    // let sqlStmtThree = "DELETE FROM Mentor WHERE Username= 'cuba.oliver'";
-                    // MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmtThree, function(data) {
-                        // MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
-                        // });
-                    // });
-                    //processForm(i, false);
-                    // console.log("Match as Mentor at " + data.Result[i].Name)
-                }
-            }
         });
 
-        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt2, function(data) {
+        alert("Your profile was successfully deleted.")
+        logout();
 
-            sessionStorage.getItem("testOne", signInUsername);
-            for (var i=0; data.Result.length > i; i++){
-                if (signInUsername === data.Result[i].Username){
-                    // let sqlStmtThree = "DELETE FROM Mentee WHERE Username= " + signInUsername;
-
-                    //processForm(i, true);
-                    // console.log("Match as Mentee at " + data.Result[i].Name)
-                }
-            }
-        });
     }
     // window.location.href = "projectTwo.html";
 }
@@ -378,22 +357,6 @@ function processUpdatePage(){
     document.getElementById("emailUpdateId").value = localStorage.getItem('email');
     document.getElementById("phoneUpdateId").value = localStorage.getItem('phone');
     document.getElementById("slackUpdateId").value = localStorage.getItem('slack');
-    document.getElementById("skypeUpdateId").value = localStorage.getItem('skype');
-}
-
-function processUpdatePage1(){
-    document.getElementById("emailUpdateId").value = localStorage.getItem('email');
-}
-
-function processUpdatePage2(){
-    document.getElementById("phoneUpdateId").value = localStorage.getItem('phone');
-}
-
-function processUpdatePage3(){
-    document.getElementById("slackUpdateId").value = localStorage.getItem('slack');
-}
-
-function processUpdatePage4(){
     document.getElementById("skypeUpdateId").value = localStorage.getItem('skype');
 }
 
