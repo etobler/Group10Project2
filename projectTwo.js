@@ -259,13 +259,13 @@ function clickMentching(form) {
             // INSERT INTO Mentor (Name, Department, YearsWorked, FavoriteHobby, FormalCasual, Email, Phone, Slack, Skype, Username, Password, MentorStatus) 
             // VALUES ('KEVIN BLOOM', 1, 7, 0, 1, 'kevin.bloom@gmail.com', '6239876543', 'kevin6', 'live:kevin6', 'kevin.bloom', 'jhgfd', true);
 
-            // let sqlStatement, values;
-            // sqlStatement = "INSERT INTO Mentor (Name, Department, YearsWorked, FavoriteHobby, FormalCasual, Email, Phone, Slack, Skype, Username, Password, MentorStatus)"
-            // values = " VALUES ('"+profileName+"', "+department+", "+years+", "+hobby+", "+formCas+", '"+email+"', '"+phone+"', '"+slack+"', '"+skype+"', '"+userCredential+"', '"+passCredential+"', "+mentorStatus+");"
-            // sqlStatement = sqlStatement + values;
-            // console.log(sqlStatement);
-            // MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
-            // })
+            let sqlStatement, values;
+            sqlStatement = "INSERT INTO Mentor (Name, Department, YearsWorked, FavoriteHobby, FormalCasual, Email, Phone, Slack, Skype, Username, Password, MentorStatus)"
+            values = " VALUES ('"+profileName+"', "+department+", "+years+", "+hobby+", "+formCas+", '"+email+"', '"+phone+"', '"+slack+"', '"+skype+"', '"+userCredential+"', '"+passCredential+"', "+mentorStatus+");"
+            sqlStatement = sqlStatement + values;
+            console.log(sqlStatement);
+            MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+            })
 
 
         }
