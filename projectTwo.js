@@ -277,23 +277,23 @@ function clickMentching(form) {
             var counter = 0
             for (var i=0; data.Result.length >= i; i++){
                 if (i == data.Result.length){
-                    id = data.Result[i-1].MentorId;
-                    profileName = data.Result[i-1].Name;
-                    bio = data.Result[i-1].Bio;
-                    email = data.Result[i-1].Email;
-                    phone = data.Result[i-1].Phone;       
-                    slack = data.Result[i-1].Slack;
-                    skype = data.Result[i-1].Skype;
-                    department = data.Result[i-1].Department;
-                    years = data.Result[i-1].YearsWorked;
-                    hobby = data.Result[i-1].FavoriteHobby;
-                    formCas = data.Result[i-1].FormalCasual;
-                    mStone = data.Result[i-1].Milestone;
-                    connectionId = data.Result[i-1].MenteeFK;
-                    userCredential = data.Result[i-1].Username;
-                    passCredential = data.Result[i-1].Password;
-                    mentorStatus = data.Result[i-1].MentorStatus;
-                    connectionId = data.Result[i-1].ConnectionId;
+                    id = data.Result[i].MentorId;
+                    profileName = data.Result[i].Name;
+                    bio = data.Result[i].Bio;
+                    email = data.Result[i].Email;
+                    phone = data.Result[i].Phone;       
+                    slack = data.Result[i].Slack;
+                    skype = data.Result[i].Skype;
+                    department = data.Result[i].Department;
+                    years = data.Result[i].YearsWorked;
+                    hobby = data.Result[i].FavoriteHobby;
+                    formCas = data.Result[i].FormalCasual;
+                    mStone = data.Result[i].Milestone;
+                    connectionId = data.Result[i].MenteeFK;
+                    userCredential = data.Result[i].Username;
+                    passCredential = data.Result[i].Password;
+                    mentorStatus = data.Result[i].MentorStatus;
+                    connectionId = data.Result[i].ConnectionId;
                     localStorageFunction();
                 }
             }
@@ -339,38 +339,23 @@ function deleteProfile() {
     if (deleteVar == true) {
         // write code to remove row from database
         
-        let sqlStmt  = "SELECT * FROM Mentor";
-        var temp;
         console.log(localStorage.getItem('id'));
-        //Sql query and assign data
-        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
-            for (var i=0; data.Result.length > i; i++){
-                if (localStorage.getItem('id') == data.Result[i].ConnectionId){
-                    //save that i
-                    temp = data.Result[i].MentorId;
-                    
-                }
-            }
-        })
-        console.log(temp);
-        sqlStmt = "UPDATE Mentor SET ConnectionId = ''";
-        let whereClause = " WHERE MentorId = " + temp;
+        console.log(localStorage.getItem('connectionId'));
+ 
+        let sqlStmt = "UPDATE Mentor SET ConnectionId = null";
+        let whereClause = " WHERE MentorId = " + localStorage.getItem('connectionId')+";";
         sqlStmt = sqlStmt + whereClause;
         console.log(sqlStmt);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
-            console.log("update");
         })
 
-
-        // sqlStmt  = "DELETE FROM Mentor WHERE MentorId = "+localStorage.getItem('id')+";";
-        // MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
-        // });
+        sqlStmt  = "DELETE FROM Mentor WHERE MentorId = "+localStorage.getItem('id')+";";
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+        });
 
         alert("Your profile was successfully deleted.")
         logout();
-
     }
-    // window.location.href = "projectTwo.html";
 }
 
 function processUpdatePage(){
