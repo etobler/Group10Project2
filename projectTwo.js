@@ -393,7 +393,7 @@ function deleteProfile() {
         console.log(localStorage.getItem('connectionId'));
  
         let sqlStmt = "UPDATE Mentor SET ConnectionId = null";
-        let whereClause = " WHERE MentorId = " + localStorage.getItem('connectionId')+";";
+        let whereClause = " WHERE MentorId = "+localStorage.getItem('connectionId')+";";
         sqlStmt = sqlStmt + whereClause;
         console.log(sqlStmt);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
