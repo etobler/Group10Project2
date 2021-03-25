@@ -344,12 +344,16 @@ function clickMentching(form) {
                     passCredential = data.Result[i].Password;
                     mentorStatus = data.Result[i].MentorStatus;
                     connectionId = data.Result[i].ConnectionId;
-                    localStorageFunction();
+                    
                 }
             }
         })
     }
+    alert("You successfully created a profile. Please login.")
+    logout();
 }
+
+
 
 function goToHomePage() {
     window.location.href = "homepage.html";
@@ -397,15 +401,20 @@ function deleteProfile() {
         sqlStmt = sqlStmt + whereClause;
         console.log(sqlStmt);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
-        })
-
-        sqlStmt  = "DELETE FROM Mentor WHERE MentorId = "+localStorage.getItem('id')+";";
-        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
         });
+        deleteQuery();
+
+
 
         alert("Your profile was successfully deleted.")
         logout();
     }
+}
+
+function deleteQuery(){
+    let sqlStmt2  = "DELETE FROM Mentor WHERE MentorId = "+localStorage.getItem('id')+";";
+    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt2, function(data) {
+    });
 }
 
 function processUpdatePage(){
