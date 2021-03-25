@@ -42,6 +42,7 @@ var userCredential;
 var passCredential;
 var mentorStatus;
 var connectionId;
+var photo;
 
 // Mentors variables
 
@@ -87,6 +88,8 @@ function processProfilePage(){
     console.log(localStorage.getItem('passCredential'));
     console.log(localStorage.getItem('mentorStatus'));
     console.log(localStorage.getItem('connectionId'));
+    console.log(localStorage.getItem('photo'));
+
 
 
 }
@@ -230,6 +233,7 @@ function mentorLoginCred(){
                 passCredential = data.Result[i].Password;
                 mentorStatus = data.Result[i].MentorStatus;
                 connectionId = data.Result[i].ConnectionId;
+                photo = data.Result[i].Photo;
                 localStorageFunction();
                 break;
             }
@@ -273,6 +277,7 @@ function populateStorage(){
     localStorage.setItem('passCredential', passCredential);
     localStorage.setItem('mentorStatus', mentorStatus);
     localStorage.setItem('connectionId', connectionId);
+    localStorage.setItem('photo', photo);
 
     goToHomePage();
 }
