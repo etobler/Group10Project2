@@ -91,6 +91,56 @@ function processProfilePage(){
 
 }
 
+function processMilestonesPage() {
+    // Changes milestone progress bar based on milestone retrieved from database
+    console.log(localStorage.getItem('mStone'));
+    let tempMile = localStorage.getItem('mStone');
+    console.log(tempMile);
+    // let testing = 3;
+    if(tempMile == 0) {
+        console.log("Do nothing");
+    }
+    else if(tempMile == 1) {
+        // removes old progress bar info and moves it to the next step
+        var tempProgressBarId = document.getElementById("connectBar");
+        tempProgressBarId.classList.add("is-active");
+        var tempProgressBarId = document.getElementById("initiateBar");
+        tempProgressBarId.classList.remove("is-active")
+        var tempProgressBarId = document.getElementById("initiateBar");
+        tempProgressBarId.classList.add("is-complete");
+
+    }
+    else if(tempMile == 2) {
+        // removes old progress bar info and moves it to the next step
+        var tempProgressBarId = document.getElementById("growBar");
+        tempProgressBarId.classList.add("is-active");
+        var tempProgressBarId = document.getElementById("initiateBar");
+        tempProgressBarId.classList.remove("is-active")
+        var tempProgressBarId = document.getElementById("initiateBar");
+        tempProgressBarId.classList.add("is-complete");
+        var tempProgressBarId = document.getElementById("connectBar");
+        tempProgressBarId.classList.add("is-complete");
+
+    }
+    else if(tempMile == 3) {
+        // removes old progress bar info and moves it to the next step
+        var tempProgressBarId = document.getElementById("transitionBar");
+        tempProgressBarId.classList.add("is-active");
+        var tempProgressBarId = document.getElementById("initiateBar");
+        tempProgressBarId.classList.remove("is-active")
+        var tempProgressBarId = document.getElementById("initiateBar");
+        tempProgressBarId.classList.add("is-complete");
+        var tempProgressBarId = document.getElementById("connectBar");
+        tempProgressBarId.classList.add("is-complete");
+        var tempProgressBarId = document.getElementById("growBar");
+        tempProgressBarId.classList.add("is-complete");
+
+    }
+    else {
+        //nope
+    }
+}
+
     
 function clickSignUp(form) {
     // if input isn't valid pops up an error message

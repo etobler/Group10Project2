@@ -7,7 +7,7 @@
         <script type="text/javascript" src="https://mysqljs.com/mysql.js"></script>
         <title>Mentch Milestones</title>
     </head>
-    <body>
+    <body onload="processMilestonesPage()">
         <table id="homepageTable">
             <tr>
                 <td>
@@ -69,10 +69,10 @@
         </div>
         <section>
             <ol class="progress-bar">
-              <li class="is-active"><span>Initiate</span></li>  
-              <li><span>Connect</span></li>  
-              <li><span>Grow</span></li>   
-              <li><span>Transition</span></li>   
+              <li id="initiateBar"class="is-active"><span>Initiate</span></li>  
+              <li id="connectBar"><span>Connect</span></li>  
+              <li id="growBar"><span>Grow</span></li>   
+              <li id="transitionBar"><span>Transition</span></li>   
             </ol>
           </section>
         <div id="milestonesPhase">
