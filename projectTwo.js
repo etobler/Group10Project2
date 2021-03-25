@@ -71,6 +71,9 @@ function processProfilePage(){
     document.getElementById("phonePlaceHolder").innerHTML = "Phone: " + localStorage.getItem('phone');
     document.getElementById("slackPlaceHolder").innerHTML = "Slack : " + localStorage.getItem('slack');
     document.getElementById("skypePlaceHolder").innerHTML = "Skype: " + localStorage.getItem('skype');
+    document.getElementById("myProfilePictureId").src = localStorage.getItem('photo');
+
+    
 
     console.log(localStorage.getItem('id'));
     console.log(localStorage.getItem('name'));
