@@ -396,6 +396,18 @@ function goToSurveyPage(){
     window.location.href = "survey.html";
 }
 
+function connectButton(){
+    let sqlStatement, whereClause;
+
+    //update bio
+    sqlStatement = "UPDATE Mentor SET Milestone = " + 2;
+    whereClause = " WHERE MentorId = " + localStorage.getItem('id');
+    sqlStatement = sqlStatement + whereClause;
+    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+    })
+    localStorage.setItem('mStone', 2);
+}
+
 function deleteProfile() {
     var deleteVar = confirm("Are you sure you want to delete your profile?");
     if (deleteVar == true) {
