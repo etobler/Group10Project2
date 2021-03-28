@@ -396,6 +396,10 @@ function goToSurveyPage(){
     window.location.href = "survey.html";
 }
 
+function goToChangeStatusPage(){
+    window.location.href = "changeStatus.html";
+}
+
 function connectButton(){
     let sqlStatement, whereClause;
 
