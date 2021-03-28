@@ -355,6 +355,12 @@ select {
     margin-bottom: 0.5%; */
 }
 
+#changeStatusDesc {
+    width: 75%;
+    text-align: center;
+    margin-left: 12.5%;
+} 
+
 /* CODE BELOW THIS IS FOR THE PROGRESS BAR  */
 
 :root {
