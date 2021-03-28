@@ -524,3 +524,89 @@ function updateQuery(){
 
 }
 
+function matchMentor() {
+    //function to actually do the matching using hobby and relationship type 
+    var userHobby = localStorage.getItem('hobby');
+    var userType = localStorage.getItem('formCas');
+    let sqlStatement, whereClause;
+    var hobbyArray = []; 
+    var typeArray = [];
+    console.log(userHobby);
+
+    matchHobby();
+
+    localStorage.getItem('hobbyArray');
+    localStorage.getItem('typeArray');
+    console.log(localStorage.getItem('hobbyArray'));
+    console.log(localStorage.getItem('typeArray'));
+
+    // making sure the arrays are sorted in ascending order
+    hobbyArray.sort(function(a, b){return a - b});
+    typeArray.sort(function(a, b){return a - b});
+
+    hobbyArray.forEach(compareArrays);
+
+
+}
+
+function matchHobby() {
+    var userHobby = localStorage.getItem('hobby');
+    let sqlStatement, whereClause;
+    var hobbyArray = []; 
+
+    // favorite hobby
+    sqlStatement = "SELECT * FROM Mentor";
+    whereClause = " WHERE FavoriteHobby = " + userHobby;
+    sqlStatement = sqlStatement + whereClause;
+    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+        for (var i=0; data.Result.length > i; i++){
+            id = data.Result[i].MentorId;
+            // adding mentor id to an array if they like the same hobby 
+            hobbyArray.push(id);
+            console.log('hobby: '+ hobbyArray);
+        }
+        // calling function here so it goes after 
+        localStorage.setItem('hobbyArray', hobbyArray);
+        console.log(localStorage.getItem('hobbyArray'));
+        matchType();
+            
+    });
+}
+
+function matchType() {
+    var userType = localStorage.getItem('formCas');
+    let sqlStatement, whereClause;
+    var typeArray = [];
+    
+    sqlStatement = "SELECT * FROM Mentor";
+    whereClause = " WHERE FormalCasual = " + userType;
+    sqlStatement = sqlStatement + whereClause;
+    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+        for (var i=0; data.Result.length > i; i++){
+            id = data.Result[i].MentorId;
+            // adding mentor id to an array if they like the same relationship type
+            typeArray.push(id);
+            console.log('Type: ' + typeArray);
+            localStorage.setItem('typeArray', typeArray);
+        }
+            
+    });
+    // localStorage.setItem('typeArray', typeArray);
+    console.log(localStorage.getItem('hobbyArray'));
+    console.log(localStorage.getItem('typeArray'));
+    matchingResults();
+
+}
+
+function matchingResults() {
+    localStorage.getItem('hobbyArray');
+    localStorage.getItem('typeArray');
+    console.log(localStorage.getItem('hobbyArray'));
+    console.log(localStorage.getItem('typeArray'));
+    // console.log(hobbyArray);
+    // console.log(typeArray);
+}
+
+function compareArrays() {
+    //comparing the arrays to see if any numbers are the same
+}
