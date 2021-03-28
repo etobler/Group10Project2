@@ -104,7 +104,7 @@ function processMilestonesPage() {
     console.log(tempMile);
     // let testing = 3;
     if(tempMile == 0) {
-        console.log("Do nothing");
+        // console.log("Do nothing");
     }
     else if(tempMile == 1) {
         // removes old progress bar info and moves it to the next step
@@ -411,7 +411,7 @@ function changeStatus() {
     })
     localStorage.setItem('mentorStatus', 1);
 
-    let sqlStatement, whereClause;
+    // let sqlStatement, whereClause;
 
     //update milestone spot in database
     sqlStatement = "UPDATE Mentor SET Milestone = " + 3;
