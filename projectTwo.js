@@ -400,10 +400,32 @@ function goToChangeStatusPage(){
     window.location.href = "changeStatus.html";
 }
 
+function changeStatus() {
+    let sqlStatement, whereClause;
+
+    //update mentor status in database
+    sqlStatement = "UPDATE Mentor SET MentorStatus = " + 1;
+    whereClause = " WHERE MentorId = " + localStorage.getItem('id');
+    sqlStatement = sqlStatement + whereClause;
+    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+    })
+    localStorage.setItem('mentorStatus', 1);
+
+    let sqlStatement, whereClause;
+
+    //update milestone spot in database
+    sqlStatement = "UPDATE Mentor SET Milestone = " + 3;
+    whereClause = " WHERE MentorId = " + localStorage.getItem('id');
+    sqlStatement = sqlStatement + whereClause;
+    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+    })
+    localStorage.setItem('mStone', 3);
+}
+
 function connectButton(){
     let sqlStatement, whereClause;
 
-    //update bio
+    //update milestone spot in database
     sqlStatement = "UPDATE Mentor SET Milestone = " + 2;
     whereClause = " WHERE MentorId = " + localStorage.getItem('id');
     sqlStatement = sqlStatement + whereClause;
