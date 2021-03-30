@@ -44,6 +44,24 @@ var mentorStatus;
 var connectionId;
 var photo;
 
+// Connection Variables
+var id1;
+var profileName1;
+var bio1;
+var email1;
+var phone1;
+var slack1;
+var skype1;
+var department1;
+var years1;
+var hobby1;
+var formCas1;
+var mStone1;
+var userCredential1;
+var passCredential1;
+var mentorStatus1;
+var connectionId1;
+var photo1;
 // Mentors variables
 
 // Mentees variables
@@ -93,8 +111,27 @@ function processProfilePage(){
     console.log(localStorage.getItem('connectionId'));
     console.log(localStorage.getItem('photo'));
 
+    console.log(localStorage.getItem('id1'));
+    console.log(localStorage.getItem('name1'));
 
+}
 
+function processMentorPage(){
+    if(localStorage.getItem('mentorStatus') == 0 && localStorage.getItem('connectionId') != null){
+        document.getElementById("profilePictureId").src = localStorage.getItem('photo1');
+        document.getElementById("profileName").innerHTML = localStorage.getItem('name1');
+    }else{
+        //do nothing
+    }
+}
+
+function processMenteePage(){
+    if(localStorage.getItem('mentorStatus') == 1 && localStorage.getItem('connectionId') != null){
+        document.getElementById("profilePictureId").src = localStorage.getItem('photo1');
+        document.getElementById("profileName").innerHTML = localStorage.getItem('name1');
+    }else{
+        //do nothing
+    }
 }
 
 function processMilestonesPage() {
@@ -237,11 +274,43 @@ function mentorLoginCred(){
                 mentorStatus = data.Result[i].MentorStatus;
                 connectionId = data.Result[i].ConnectionId;
                 photo = data.Result[i].Photo;
-                localStorageFunction();
-                break;
+
             }
-            counter += 1;
         }//end for loop
+        for (var i=0; data.Result.length > i; i++){
+            if(connectionId == data.Result[i].MentorId){
+                id1 = data.Result[i].MentorId;
+                profileName1 = data.Result[i].Name;
+                bio1 = data.Result[i].Bio;
+                email1 = data.Result[i].Email;
+                phone1 = data.Result[i].Phone;       
+                slack1 = data.Result[i].Slack;
+                skype1 = data.Result[i].Skype;
+                department1 = data.Result[i].Department;
+                years = data.Result[i].YearsWorked;
+                hobby1 = data.Result[i].FavoriteHobby;
+                formCas1 = data.Result[i].FormalCasual;
+                mStone1 = data.Result[i].Milestone;
+                connectionId1 = data.Result[i].MenteeFK;
+                userCredential1 = data.Result[i].Username;
+                passCredential1 = data.Result[i].Password;
+                mentorStatus1 = data.Result[i].MentorStatus;
+                connectionId1 = data.Result[i].ConnectionId;
+                photo1 = data.Result[i].Photo;
+            }
+
+            counter += 1;
+            if (data.Result.length == counter){    
+                if (id == undefined){
+                    break;
+                }else{
+                    localStorageFunction();
+                    return;
+                }
+                
+            }  
+        }//end for loop
+
         console.log("length "+data.Result.length)
         console.log("counter "+counter);
         if (data.Result.length == counter){    
@@ -263,7 +332,7 @@ function localStorageFunction (){
 
 //Stores data in the local storage
 function populateStorage(){
-
+    //set user data
     localStorage.setItem('id', id);
     localStorage.setItem('name', profileName);
     localStorage.setItem('bio', bio);
@@ -281,6 +350,25 @@ function populateStorage(){
     localStorage.setItem('mentorStatus', mentorStatus);
     localStorage.setItem('connectionId', connectionId);
     localStorage.setItem('photo', photo);
+
+    //set connected mentor or mentee data
+    localStorage.setItem('id1', id1);
+    localStorage.setItem('name1', profileName1);
+    localStorage.setItem('bio1', bio1);
+    localStorage.setItem('email1', email1);
+    localStorage.setItem('phone1', phone1);
+    localStorage.setItem('slack1', slack1);
+    localStorage.setItem('skype1', skype1);
+    localStorage.setItem('department1', department1);
+    localStorage.setItem('years1', years1);
+    localStorage.setItem('hobby1', hobby1);
+    localStorage.setItem('formCas1', formCas1);
+    localStorage.setItem('mStone1', mStone1);
+    localStorage.setItem('userCredential1', userCredential1);
+    localStorage.setItem('passCredential1', passCredential1);
+    localStorage.setItem('mentorStatus1', mentorStatus1);
+    localStorage.setItem('connectionId1', connectionId1);
+    localStorage.setItem('photo1', photo1);
 
     goToHomePage();
 }
