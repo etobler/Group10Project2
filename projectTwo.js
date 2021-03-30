@@ -86,7 +86,6 @@ function hidePassword() {
 function logout(){
     localStorage.clear();
     window.location.href = "projecttwo.html";
-
 }
 
 function processProfilePage(){
@@ -99,8 +98,6 @@ function processProfilePage(){
     document.getElementById("slackPlaceHolder").innerHTML = "Slack : " + localStorage.getItem('slack');
     document.getElementById("skypePlaceHolder").innerHTML = "Skype: " + localStorage.getItem('skype');
     document.getElementById("myProfilePictureId").src = localStorage.getItem('photo');
-
-    
 
     console.log(localStorage.getItem('id'));
     console.log(localStorage.getItem('name'));
@@ -138,7 +135,6 @@ function processMentorPage(){
     }else{
         //do nothing
     }
-
 }
 
 function processMenteePage(){
@@ -205,7 +201,6 @@ function processMilestonesPage() {
         //nope
     }
 }
-
     
 function clickSignUp(form) {
     // if input isn't valid pops up an error message
@@ -263,7 +258,7 @@ function clickSignIn(form) {
          document.getElementById("passwordId").value = "";
     //}
 }
-  
+
 function mentorLoginCred(){
     // getting values from form 
     signInUsername = document.getElementById("userNameId").value;
@@ -341,8 +336,8 @@ function mentorLoginCred(){
     });//end sql query
 }
 
-//Clears any existing local storage and invokes populateStorage function
 function localStorageFunction (){
+    //This function clears any existing local storage and invokes populateStorage function
     console.log("localStorageFunction: "+profileName);
     if(!localStorage.getItem('name')) {
         populateStorage();
@@ -352,8 +347,9 @@ function localStorageFunction (){
       }
 }
 
-//Stores data in the local storage
 function populateStorage(){
+    // This function stores data in the local storage
+
     //set user data
     localStorage.setItem('id', id);
     localStorage.setItem('name', profileName);
@@ -396,6 +392,7 @@ function populateStorage(){
 }
 
 function populateSavedData(){
+    //This function inserts the new user's email in the survey page
     document.getElementById("emailId").value = localStorage.getItem('email');
 }
 
@@ -531,6 +528,14 @@ function changeStatus() {
 }
 
 function connectButton(){
+    // Throw an if statement in here to determine if the button says connect or delete.
+    // If it says delete, first delete the connection. 
+    //Change the button back to connect and the connectionId back to null.
+    // Else, when the button says connect, populate a new match by calling matchMentor function.
+    // Change the button to "confirm match".
+    // if the button says confirm the match, update the database.
+    // Change button back to delete 
+
     let sqlStatement, whereClause;
 
     //update milestone spot in database
@@ -545,7 +550,6 @@ function connectButton(){
 function deleteProfile() {
     var deleteVar = confirm("Are you sure you want to delete your profile?");
     if (deleteVar == true) {
-        // write code to remove row from database
         
         console.log(localStorage.getItem('id'));
         console.log(localStorage.getItem('connectionId'));
@@ -556,10 +560,8 @@ function deleteProfile() {
         console.log(sqlStmt);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
         });
+
         deleteQuery();
-
-
-
         alert("Your profile was successfully deleted.")
         logout();
     }
