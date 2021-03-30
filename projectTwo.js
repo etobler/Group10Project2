@@ -720,7 +720,7 @@ function compareArrays() {
     localStorage.getItem('hobbyArray');
     localStorage.getItem('typeArray');
     console.log(localStorage.getItem('hobbyArray').length);
-    console.log(localStorage.getItem('typeArray').length);
+    // console.log(localStorage.getItem('typeArray').length);
 
     for (var i = 0; i <= localStorage.getItem('hobbyArray').length; i++) {
         console.log(localStorage.getItem('hobbyArray')[i]);
