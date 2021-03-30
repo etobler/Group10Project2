@@ -179,6 +179,7 @@ select {
     background-color: #4b667e;
     color: white;
     width: 12%;
+    height: 100vh;
     border-collapse: collapse;
     float: left;
 }
