@@ -129,8 +129,14 @@ function processMentorPage(){
     if(localStorage.getItem('mentorStatus') == 0 && localStorage.getItem('connectionId') != 'null'){
         document.getElementById("profilePictureId").src = localStorage.getItem('photo1');
         document.getElementById("profileName").innerHTML = localStorage.getItem('name1');
+        document.getElementById("mentorConnectButton").innerHTML = 'Delete Connection';
+
+
     }else{
-        //do nothing
+        document.getElementById("profileName").innerHTML = 'Not Available for your Current Status as a Mentor';
+        var mentorButton = document.getElementById("mentorConnectButton");
+        mentorButton.disabled = true;
+
     }
 }
 
@@ -138,8 +144,12 @@ function processMenteePage(){
     if(localStorage.getItem('mentorStatus') == 1 && localStorage.getItem('connectionId') != 'null'){
         document.getElementById("profilePictureId").src = localStorage.getItem('photo1');
         document.getElementById("profileName").innerHTML = localStorage.getItem('name1');
+        document.getElementById("menteeConnectButton").innerHTML = 'Delete Connection';
+
     }else{
-        //do nothing
+        document.getElementById("profileName").innerHTML = 'Not Available for your Current Status as a Mentee';
+        var menteeButton = document.getElementById("menteeConnectButton");
+        menteeButton.disabled = true;
     }
 }
 
@@ -296,7 +306,7 @@ function mentorLoginCred(){
                 slack1 = data.Result[i].Slack;
                 skype1 = data.Result[i].Skype;
                 department1 = data.Result[i].Department;
-                years = data.Result[i].YearsWorked;
+                years1 = data.Result[i].YearsWorked;
                 hobby1 = data.Result[i].FavoriteHobby;
                 formCas1 = data.Result[i].FormalCasual;
                 mStone1 = data.Result[i].Milestone;
