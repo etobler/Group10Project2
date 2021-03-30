@@ -74,6 +74,15 @@ var photo1;
 
 // Settings variables 
 
+function hidePassword() {
+    var x = document.getElementById("passwordId");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+
 function logout(){
     localStorage.clear();
     window.location.href = "projecttwo.html";
@@ -117,7 +126,7 @@ function processProfilePage(){
 }
 
 function processMentorPage(){
-    if(localStorage.getItem('mentorStatus') == 0 && localStorage.getItem('connectionId') != null){
+    if(localStorage.getItem('mentorStatus') == 0 && localStorage.getItem('connectionId') != 'null'){
         document.getElementById("profilePictureId").src = localStorage.getItem('photo1');
         document.getElementById("profileName").innerHTML = localStorage.getItem('name1');
     }else{
@@ -126,7 +135,7 @@ function processMentorPage(){
 }
 
 function processMenteePage(){
-    if(localStorage.getItem('mentorStatus') == 1 && localStorage.getItem('connectionId') != null){
+    if(localStorage.getItem('mentorStatus') == 1 && localStorage.getItem('connectionId') != 'null'){
         document.getElementById("profilePictureId").src = localStorage.getItem('photo1');
         document.getElementById("profileName").innerHTML = localStorage.getItem('name1');
     }else{
