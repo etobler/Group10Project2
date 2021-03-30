@@ -131,13 +131,14 @@ function processMentorPage(){
         document.getElementById("profileName").innerHTML = localStorage.getItem('name1');
         document.getElementById("mentorConnectButton").innerHTML = 'Delete Connection';
 
-
-    }else{
+    }else if(localStorage.getItem('mentorStatus') == 1){
         document.getElementById("profileName").innerHTML = 'Not Available for your Current Status as a Mentor';
         var mentorButton = document.getElementById("mentorConnectButton");
         mentorButton.disabled = true;
-
+    }else{
+        //do nothing
     }
+
 }
 
 function processMenteePage(){
@@ -146,10 +147,12 @@ function processMenteePage(){
         document.getElementById("profileName").innerHTML = localStorage.getItem('name1');
         document.getElementById("menteeConnectButton").innerHTML = 'Delete Connection';
 
-    }else{
+    }else if (localStorage.getItem('mentorStatus') == 0){
         document.getElementById("profileName").innerHTML = 'Not Available for your Current Status as a Mentee';
         var menteeButton = document.getElementById("menteeConnectButton");
         menteeButton.disabled = true;
+    }else{
+        //do nothing
     }
 }
 
@@ -249,16 +252,16 @@ function clickSignUp(form) {
 
 function clickSignIn(form) {
     // if input isn't valid pops up an error message
-    if (!form.checkValidity()) {
-        alert("Please check your input, username must be at least 3 characters, \n Password must be at least 5 characters")
-    }
-    else {
+    // if (!form.checkValidity()) {
+    //     alert("Please check your input, username must be at least 3 characters, \n Password must be at least 5 characters")
+    // }
+    // else {
         mentorLoginCred();
         
          // erasing values from form
          document.getElementById("userNameId").value = "";
          document.getElementById("passwordId").value = "";
-    }
+    //}
 }
   
 function mentorLoginCred(){
@@ -467,8 +470,6 @@ function clickMentching(form) {
     alert("You successfully created a profile. Please login.")
     logout();
 }
-
-
 
 function goToHomePage() {
     window.location.href = "homepage.html";
