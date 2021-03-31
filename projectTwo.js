@@ -121,7 +121,7 @@ function processProfilePage(){
     console.log(localStorage.getItem('id1'));
     console.log(localStorage.getItem('name1'));
 
-    
+
 
 }
 
@@ -606,10 +606,9 @@ function connectButtonMentorPage(){
         document.getElementById("mentorConnectButton").innerHTML = 'Delete Connection';
 
     }
-    console.log("hobby array: "+localStorage.getItem('hobbyArray'));
-    console.log("type array: "+localStorage.getItem('typeArray'));
-
+    console.log(localStorage.getItem('name1'));
     console.log("connect button id1: "+localStorage.getItem('id1'));
+    processMentorPage();
  
 }
 function connectButtonMenteePage(){
@@ -852,11 +851,12 @@ function matchType() {
             //console.log('Type: ' + typeArray);
             localStorage.setItem('typeArray', typeArray);
         }
-            
+        matchingResults();
+
     });
     console.log(localStorage.getItem('hobbyArray'));
     console.log(localStorage.getItem('typeArray'));
-    matchingResults();
+    //matchingResults();
 
 }
 
@@ -891,7 +891,7 @@ function compareArrays() {
             break;
         }
         for (var j=0; j < typeArray.length; j++) {
-            console.log(typeArray[j]);
+            //console.log(typeArray[j]);
             if (hobbyArray[i] == typeArray[j]) {
                 console.log("id: " +hobbyArray[i]);
                 console.log("id: " +typeArray[j]);
@@ -914,7 +914,7 @@ function newMentorInfo () {
     console.log(localStorage.getItem('id1'));
     let sqlStatement, whereClause;
     sqlStatement = "SELECT * FROM Mentor";
-    whereClause = " WHERE MentorId = " + localStorage.getItem('id1');
+    whereClause = " WHERE MentorId = " + localStorage.getItem('id1')+";";
     sqlStatement = sqlStatement + whereClause;
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         id1 = data.Result.MentorId;
@@ -978,8 +978,7 @@ function updateDbAfterMatch(){
 //    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
 //    });
 
-    // console.log(localStorage.getItem('id1'));
-    // console.log(localStorage.getItem('name1'));
+    console.log("UPdate function: "+localStorage.getItem('name1'));
 
   // processMentorPage();
 //    processMenteePage();
