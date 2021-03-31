@@ -828,7 +828,7 @@ function matchHobby() {
     });
 }
 
-function matchType() {
+async function matchType() {
     var userType = localStorage.getItem('formCas');
     var matchMentorStatus;
     let sqlStatement, whereClause;
@@ -840,7 +840,7 @@ function matchType() {
         matchMentorStatus = 1;
     }
     sqlStatement = "SELECT * FROM Mentor";
-    whereClause = " WHERE FormalCasual = " + userType + " AND ConnectionId IS NULL AND MentorStatus = "+matchMentorStatus;
+    whereClause = " WHERE FormalCasual = " + userType + " AND ConnectionId IS NULL AND MentorStatus = "+ matchMentorStatus;
     sqlStatement = sqlStatement + whereClause;
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         for (var i=0; data.Result.length > i; i++){
@@ -853,6 +853,7 @@ function matchType() {
             
     });
     console.log(localStorage.getItem('hobbyArray'));
+    await sleep(3000);
     console.log(localStorage.getItem('typeArray'));
     matchingResults();
 
@@ -907,33 +908,39 @@ function compareArrays() {
     
 }
 
-function newMentorInfo () {
+async function newMentorInfo () {
     // getting info of the new mentor
     console.log(localStorage.getItem('id1'));
+    let tempId = localStorage.getItem('id1');
+    console.log(tempId);
     let sqlStatement, whereClause;
     sqlStatement = "SELECT * FROM Mentor";
-    whereClause = " WHERE MentorId = " + localStorage.getItem('id1');
+    whereClause = " WHERE MentorId = " + tempId;
+    // whereClause = " WHERE MentorId = 16";
     sqlStatement = sqlStatement + whereClause;
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
-        id1 = data.Result.MentorId;
-        profileName1 = data.Result.Name;
-        bio1 = data.Result.Bio;
-        email1 = data.Result.Email;
-        phone1 = data.Result.Phone;       
-        slack1 = data.Result.Slack;
-        skype1 = data.Result.Skype;
-        department1 = data.Result.Department;
-        years1 = data.Result.YearsWorked;
-        hobby1 = data.Result.FavoriteHobby;
-        formCas1 = data.Result.FormalCasual;
-        mStone1 = data.Result.Milestone;
-        connectionId1 = data.Result.ConnectionId;
-        userCredential1 = data.Result.Username;
-        passCredential1 = data.Result.Password;
-        mentorStatus1 = data.Result.MentorStatus;
-        connectionId1 = data.Result.ConnectionId;
-        photo1 = data.Result.Photo;  
+        for (var i=0; data.Result.length > i; i++){
+                id1 = data.Result[i].MentorId;
+                profileName1 = data.Result[i].Name;
+                bio1 = data.Result[i].Bio;
+                email1 = data.Result[i].Email;
+                phone1 = data.Result[i].Phone;       
+                slack1 = data.Result[i].Slack;
+                skype1 = data.Result[i].Skype;
+                department1 = data.Result[i].Department;
+                years1 = data.Result[i].YearsWorked;
+                hobby1 = data.Result[i].FavoriteHobby;
+                formCas1 = data.Result[i].FormalCasual;
+                mStone1 = data.Result[i].Milestone;
+                connectionId1 = data.Result[i].MenteeFK;
+                userCredential1 = data.Result[i].Username;
+                passCredential1 = data.Result[i].Password;
+                mentorStatus1 = data.Result[i].MentorStatus;
+                connectionId1 = data.Result[i].ConnectionId;
+                photo1 = data.Result[i].Photo;
+            }
     });
+    await sleep(2000);
     localStorage.setItem('id1', id1)
     localStorage.setItem('name1', profileName1);
     localStorage.setItem('bio1', bio1);
@@ -960,23 +967,53 @@ function newMentorInfo () {
  
 }
 function updateDbAfterMatch(){
-   //update id connectionid
-//    let sqlStmt = "UPDATE Mentor SET ConnectionId = "+ localStorage.getItem("connectionId");
-//    let whereClause2 = " WHERE MentorId = "+localStorage.getItem('id1')+";";
-//    sqlStmt = sqlStmt + whereClause2;
-//    console.log(sqlStmt);
-//    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
-//    });
-//    sqlStmt = "UPDATE Mentor SET ConnectionId = "+ localStorage.getItem("connectionId1");
-//    whereClause2 = " WHERE MentorId = "+localStorage.getItem('id')+";";
-//    sqlStmt = sqlStmt + whereClause2;
-//    console.log(sqlStmt);
-//    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
-//    });
+    let sqlStatement, whereClause;
+    var tempId = localStorage.getItem(id1);
+    // updating mentee connection id 
+    sqlStatement = "UPDATE Mentor SET ConnectionId = " + tempId;
+    whereClause = " WHERE MentorId = " + localStorage.getItem('id');
+    sqlStatement = sqlStatement + whereClause;
+    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+    })
 
-    console.log(localStorage.getItem('id1'));
-    console.log(localStorage.getItem('name1'));
+    // updating mentor connection id 
+    tempId = localStorage.getItem(id);
+    sqlStatement = "UPDATE Mentor SET ConnectionId = " + tempId;
+    whereClause = " WHERE MentorId = " + localStorage.getItem('id1');
+    sqlStatement = sqlStatement + whereClause;
+    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+    })
+
+    localStorage.setItem('connectionId', id);
+    localStorage.setItem('connectionId1', id1);
+    
+    testing();
 
   // processMentorPage();
 //    processMenteePage();
 }
+
+async function testing() {
+    await sleep(2000);
+    console.log(localStorage.getItem('id1'));
+    console.log(localStorage.getItem('name1'));
+    console.log(localStorage.getItem('bio1'));
+    console.log(localStorage.getItem('email1'));
+    console.log(localStorage.getItem('phone1'));
+    console.log(localStorage.getItem('slack1'));
+    console.log(localStorage.getItem('skype1'));
+    console.log(localStorage.getItem('department1'));
+    console.log(localStorage.getItem('years1'));
+    console.log(localStorage.getItem('hobby1'));
+    console.log(localStorage.getItem('formCas1'));
+    console.log(localStorage.getItem('mStone1'));
+    console.log(localStorage.getItem('userCredential1'));
+    console.log(localStorage.getItem('passCredential1'));
+    console.log(localStorage.getItem('mentorStatus1'));
+    console.log(localStorage.getItem('connectionId1'));
+    console.log(localStorage.getItem('photo1'));
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+ }
