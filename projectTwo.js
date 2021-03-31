@@ -758,26 +758,26 @@ function newMentorInfo () {
     whereClause = " WHERE MentorId = " + localStorage.getItem('id1');
     sqlStatement = sqlStatement + whereClause;
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
-        id1 = data.Result[i].MentorId;
-        profileName1 = data.Result[i].Name;
-        bio1 = data.Result[i].Bio;
-        email1 = data.Result[i].Email;
-        phone1 = data.Result[i].Phone;       
-        slack1 = data.Result[i].Slack;
-        skype1 = data.Result[i].Skype;
-        department1 = data.Result[i].Department;
-        years1 = data.Result[i].YearsWorked;
-        hobby1 = data.Result[i].FavoriteHobby;
-        formCas1 = data.Result[i].FormalCasual;
-        mStone1 = data.Result[i].Milestone;
-        connectionId1 = data.Result[i].MenteeFK;
-        userCredential1 = data.Result[i].Username;
-        passCredential1 = data.Result[i].Password;
-        mentorStatus1 = data.Result[i].MentorStatus;
-        connectionId1 = data.Result[i].ConnectionId;
-        photo1 = data.Result[i].Photo;  
+        id1 = data.Result.MentorId;
+        profileName1 = data.Result.Name;
+        bio1 = data.Result.Bio;
+        email1 = data.Result.Email;
+        phone1 = data.Result.Phone;       
+        slack1 = data.Result.Slack;
+        skype1 = data.Result.Skype;
+        department1 = data.Result.Department;
+        years1 = data.Result.YearsWorked;
+        hobby1 = data.Result.FavoriteHobby;
+        formCas1 = data.Result.FormalCasual;
+        mStone1 = data.Result.Milestone;
+        connectionId1 = data.Result.MenteeFK;
+        userCredential1 = data.Result.Username;
+        passCredential1 = data.Result.Password;
+        mentorStatus1 = data.Result.MentorStatus;
+        connectionId1 = data.Result.ConnectionId;
+        photo1 = data.Result.Photo;  
     });
-    
+
     localStorage.setItem('name1', profileName1);
     localStorage.setItem('bio1', bio1);
     localStorage.setItem('email1', email1);
