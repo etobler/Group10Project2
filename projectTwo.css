@@ -362,10 +362,6 @@ select {
     margin-bottom: 0.5%;
 }
 
-#updateProfilePicButton {
-    font-size: 95% !important;
-}
-
 #changeStatusDesc {
     width: 75%;
     text-align: center;
