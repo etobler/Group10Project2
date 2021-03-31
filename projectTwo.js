@@ -246,17 +246,13 @@ function clickSignUp(form) {
 }
 
 function clickSignIn(form) {
-    // if input isn't valid pops up an error message
-    // if (!form.checkValidity()) {
-    //     alert("Please check your input, username must be at least 3 characters, \n Password must be at least 5 characters")
-    // }
-    // else {
+
         mentorLoginCred();
         
          // erasing values from form
          document.getElementById("userNameId").value = "";
          document.getElementById("passwordId").value = "";
-    //}
+
 }
 
 function mentorLoginCred(){
@@ -535,16 +531,43 @@ function connectButton(){
     // Change the button to "confirm match".
     // if the button says confirm the match, update the database.
     // Change button back to delete 
+    if (document.getElementById("mentorConnectButton").innerHTML == 'Delete Connection'){
+        let sqlStmt = "UPDATE Mentor SET ConnectionId = null";
+        let whereClause = " WHERE MentorId = "+localStorage.getItem('id')+";";
+        sqlStmt = sqlStmt + whereClause;
+        console.log(sqlStmt);
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+        });
+    }else if (document.getElementById("mentorConnectButton").innerHTML = 'Connect'){
+        matchMentor();
+        document.getElementById("mentorConnectButton").innerHTML = 'Confirm';
+    }else if (document.getElementById("mentorConnectButton").innerHTML = 'Confirm'){
+        //update database
+    }
 
-    let sqlStatement, whereClause;
+    if (document.getElementById("menteeConnectButton").innerHTML == 'Delete Connection'){
+        let sqlStmt = "UPDATE Mentor SET ConnectionId = null";
+        let whereClause = " WHERE MentorId = "+localStorage.getItem('id')+";";
+        sqlStmt = sqlStmt + whereClause;
+        console.log(sqlStmt);
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+        });
+    }else if (document.getElementById("menteeConnectButton").innerHTML = 'Connect'){
+        matchMentor();
+        document.getElementById("menteeConnectButton").innerHTML = 'Confirm';
+    }else if (document.getElementById("menteeConnectButton").innerHTML = 'Confirm'){
+        //update database
+    }
 
-    //update milestone spot in database
-    sqlStatement = "UPDATE Mentor SET Milestone = " + 2;
-    whereClause = " WHERE MentorId = " + localStorage.getItem('id');
-    sqlStatement = sqlStatement + whereClause;
-    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
-    })
-    localStorage.setItem('mStone', 2);
+    // let sqlStatement, whereClause;
+
+    // //update milestone spot in database
+    // sqlStatement = "UPDATE Mentor SET Milestone = " + 2;
+    // whereClause = " WHERE MentorId = " + localStorage.getItem('id');
+    // sqlStatement = sqlStatement + whereClause;
+    // MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+    // })
+    // localStorage.setItem('mStone', 2);
 }
 
 function deleteProfile() {
