@@ -121,6 +121,8 @@ function processProfilePage(){
     console.log(localStorage.getItem('id1'));
     console.log(localStorage.getItem('name1'));
 
+    
+
 }
 
 function processMentorPage(){
@@ -810,7 +812,7 @@ function matchHobby() {
     }
 
     sqlStatement = "SELECT * FROM Mentor";
-    whereClause = " WHERE FavoriteHobby = " + userHobby + " AND ConnectionId IS NULL AND MentorStatus = "+matchMentorStatus;
+    whereClause = " WHERE FavoriteHobby = " + userHobby + " AND ConnectionId IS NULL AND MentorStatus = "+matchMentorStatus+";";
     sqlStatement = sqlStatement + whereClause;
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         for (var i=0; data.Result.length > i; i++){
@@ -840,7 +842,7 @@ function matchType() {
         matchMentorStatus = 1;
     }
     sqlStatement = "SELECT * FROM Mentor";
-    whereClause = " WHERE FormalCasual = " + userType + " AND ConnectionId IS NULL AND MentorStatus = "+matchMentorStatus;
+    whereClause = " WHERE FormalCasual = " + userType + " AND ConnectionId IS NULL AND MentorStatus = "+matchMentorStatus +';';
     sqlStatement = sqlStatement + whereClause;
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         for (var i=0; data.Result.length > i; i++){
@@ -933,7 +935,11 @@ function newMentorInfo () {
         mentorStatus1 = data.Result.MentorStatus;
         connectionId1 = data.Result.ConnectionId;
         photo1 = data.Result.Photo;  
-    });
+        setMatchedStorage();
+    }); 
+}
+
+function setMatchedStorage(){
     localStorage.setItem('id1', id1)
     localStorage.setItem('name1', profileName1);
     localStorage.setItem('bio1', bio1);
@@ -954,11 +960,9 @@ function newMentorInfo () {
     localStorage.setItem('photo1', photo1);
 
 
-    console.log(localStorage.getItem('id1'));
-    console.log(localStorage.getItem('name1'));
     updateDbAfterMatch();
- 
 }
+
 function updateDbAfterMatch(){
    //update id connectionid
 //    let sqlStmt = "UPDATE Mentor SET ConnectionId = "+ localStorage.getItem("connectionId");
@@ -974,8 +978,8 @@ function updateDbAfterMatch(){
 //    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
 //    });
 
-    console.log(localStorage.getItem('id1'));
-    console.log(localStorage.getItem('name1'));
+    // console.log(localStorage.getItem('id1'));
+    // console.log(localStorage.getItem('name1'));
 
   // processMentorPage();
 //    processMenteePage();
