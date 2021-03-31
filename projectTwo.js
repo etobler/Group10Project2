@@ -540,6 +540,8 @@ function connectButton(){
         });
     }else if (document.getElementById("mentorConnectButton").innerHTML = 'Connect'){
         matchMentor();
+        console.log(localStorage.getItem('id1'));
+        console.log(localStorage.getItem('name1'));
         document.getElementById("mentorConnectButton").innerHTML = 'Confirm';
     }else if (document.getElementById("mentorConnectButton").innerHTML = 'Confirm'){
         //update database
@@ -673,6 +675,7 @@ function matchMentor() {
     console.log(localStorage.getItem('hobbyArray'));
     console.log(localStorage.getItem('typeArray'));
 
+
     // making sure the arrays are sorted in ascending order
     hobbyArray.sort(function(a, b){return a - b});
     typeArray.sort(function(a, b){return a - b});
@@ -691,9 +694,9 @@ function matchHobby() {
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         for (var i=0; data.Result.length > i; i++){
             // id = data.Result[i].MentorId;
-            id = data.Result[i].MentorId;
+            var tempIid = data.Result[i].MentorId;
             // adding mentor id to an array if they like the same hobby 
-            hobbyArray.push(id);
+            hobbyArray.push(tempIid);
             console.log('hobby: '+ hobbyArray);
         }
         // calling function here so it goes after 
@@ -714,9 +717,9 @@ function matchType() {
     sqlStatement = sqlStatement + whereClause;
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         for (var i=0; data.Result.length > i; i++){
-            id = data.Result[i].MentorId;
+            var tempId = data.Result[i].MentorId;
             // adding mentor id to an array if they like the same relationship type
-            typeArray.push(id);
+            typeArray.push(tempId);
             console.log('Type: ' + typeArray);
             localStorage.setItem('typeArray', typeArray);
         }
