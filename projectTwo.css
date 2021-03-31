@@ -179,6 +179,7 @@ select {
     background-color: #4b667e;
     color: white;
     width: 12%;
+    height: 100vh;
     border-collapse: collapse;
     float: left;
 }
@@ -348,6 +349,12 @@ select {
     margin-right: 25%;
 }
 
+.pfpPathId {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
 .centerButton {
     margin-top: 1%;
     margin-left: 45%;
@@ -360,6 +367,7 @@ select {
     text-align: center;
     margin-left: 12.5%;
 } 
+
 
 /* CODE BELOW THIS IS FOR THE PROGRESS BAR  */
 

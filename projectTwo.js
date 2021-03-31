@@ -684,15 +684,14 @@ function matchHobby() {
     var userHobby = localStorage.getItem('hobby');
     let sqlStatement, whereClause;
     var hobbyArray = []; 
-
     // favorite hobby
     sqlStatement = "SELECT * FROM Mentor";
-    whereClause = " WHERE FavoriteHobby = " + userHobby;
+    whereClause = " WHERE FavoriteHobby = " + userHobby + " AND ConnectionId IS NULL AND MentorStatus = 1";
     sqlStatement = sqlStatement + whereClause;
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         for (var i=0; data.Result.length > i; i++){
             // id = data.Result[i].MentorId;
-            id = data.Result[i].Name;
+            id = data.Result[i].MentorId;
             // adding mentor id to an array if they like the same hobby 
             hobbyArray.push(id);
             console.log('hobby: '+ hobbyArray);
@@ -711,7 +710,7 @@ function matchType() {
     var typeArray = [];
     
     sqlStatement = "SELECT * FROM Mentor";
-    whereClause = " WHERE FormalCasual = " + userType;
+    whereClause = " WHERE FormalCasual = " + userType + " AND ConnectionId IS NULL AND MentorStatus = 1";
     sqlStatement = sqlStatement + whereClause;
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         for (var i=0; data.Result.length > i; i++){
@@ -723,7 +722,6 @@ function matchType() {
         }
             
     });
-    // localStorage.setItem('typeArray', typeArray);
     console.log(localStorage.getItem('hobbyArray'));
     console.log(localStorage.getItem('typeArray'));
     matchingResults();
@@ -736,18 +734,88 @@ function matchingResults() {
     console.log(localStorage.getItem('hobbyArray'));
     console.log(localStorage.getItem('typeArray'));
     compareArrays();
-    // console.log(hobbyArray);
-    // console.log(typeArray);
 }
 
 function compareArrays() {
     //comparing the arrays to see if any numbers are the same
     localStorage.getItem('hobbyArray');
     localStorage.getItem('typeArray');
-    console.log(localStorage.getItem('hobbyArray').length);
-    console.log(localStorage.getItem('typeArray').length);
 
-    for (var i = 0; i <= localStorage.getItem('hobbyArray').length; i++) {
-        console.log(localStorage.getItem('hobbyArray')[i]);
+    // changing the strings to arrays for comparison 
+    var hobbyArray = localStorage.getItem('hobbyArray').split(",");
+    console.log(hobbyArray);
+    localStorage.setItem('hobbyArray', hobbyArray);
+
+    var typeArray = localStorage.getItem('typeArray').split(",");
+    console.log(typeArray);
+    console.log(typeArray.length);
+    localStorage.setItem('typeArray', typeArray);
+
+    for (var i=0; i < hobbyArray.length; i++) {
+        console.log(hobbyArray[i]);
+        if( id1 ) {
+            break;
+        }
+        for (var j=0; j < typeArray.length; j++) {
+            console.log(typeArray[j]);
+            if (hobbyArray[i] == typeArray[j]) {
+                console.log("id" +hobbyArray[i]);
+                console.log("id" +typeArray[j]);
+                var id1 = typeArray[j];
+                // setting the value if the ids are the same to id1 variable 
+                localStorage.setItem('id1', id1);
+                break;
+            }
+        }
+
     }
+    newMentorInfo();
+    
+}
+
+function newMentorInfo () {
+    // getting info of the new mentor
+    localStorage.getItem('id1');
+    let sqlStatement, whereClause;
+    sqlStatement = "SELECT * FROM Mentor";
+    whereClause = " WHERE MentorId = " + localStorage.getItem('id1');
+    sqlStatement = sqlStatement + whereClause;
+    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+        id1 = data.Result.MentorId;
+        profileName1 = data.Result.Name;
+        bio1 = data.Result.Bio;
+        email1 = data.Result.Email;
+        phone1 = data.Result.Phone;       
+        slack1 = data.Result.Slack;
+        skype1 = data.Result.Skype;
+        department1 = data.Result.Department;
+        years1 = data.Result.YearsWorked;
+        hobby1 = data.Result.FavoriteHobby;
+        formCas1 = data.Result.FormalCasual;
+        mStone1 = data.Result.Milestone;
+        connectionId1 = data.Result.MenteeFK;
+        userCredential1 = data.Result.Username;
+        passCredential1 = data.Result.Password;
+        mentorStatus1 = data.Result.MentorStatus;
+        connectionId1 = data.Result.ConnectionId;
+        photo1 = data.Result.Photo;  
+    });
+
+    localStorage.setItem('name1', profileName1);
+    localStorage.setItem('bio1', bio1);
+    localStorage.setItem('email1', email1);
+    localStorage.setItem('phone1', phone1);
+    localStorage.setItem('slack1', slack1);
+    localStorage.setItem('skype1', skype1);
+    localStorage.setItem('department1', department1);
+    localStorage.setItem('years1', years1);
+    localStorage.setItem('hobby1', hobby1);
+    localStorage.setItem('formCas1', formCas1);
+    localStorage.setItem('mStone1', mStone1);
+    localStorage.setItem('userCredential1', userCredential1);
+    localStorage.setItem('passCredential1', passCredential1);
+    localStorage.setItem('mentorStatus1', mentorStatus1);
+    localStorage.setItem('connectionId1', connectionId1);
+    localStorage.setItem('photo1', photo1);
+
 }
