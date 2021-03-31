@@ -121,6 +121,8 @@ function processProfilePage(){
     console.log(localStorage.getItem('id1'));
     console.log(localStorage.getItem('name1'));
 
+    
+
 }
 
 function processMentorPage(){
@@ -810,7 +812,7 @@ function matchHobby() {
     }
 
     sqlStatement = "SELECT * FROM Mentor";
-    whereClause = " WHERE FavoriteHobby = " + userHobby + " AND ConnectionId IS NULL AND MentorStatus = "+matchMentorStatus;
+    whereClause = " WHERE FavoriteHobby = " + userHobby + " AND ConnectionId IS NULL AND MentorStatus = "+matchMentorStatus+";";
     sqlStatement = sqlStatement + whereClause;
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
         for (var i=0; data.Result.length > i; i++){
@@ -961,11 +963,9 @@ async function newMentorInfo () {
     localStorage.setItem('photo1', photo1);
 
 
-    console.log(localStorage.getItem('id1'));
-    console.log(localStorage.getItem('name1'));
     updateDbAfterMatch();
- 
 }
+
 function updateDbAfterMatch(){
     let sqlStatement, whereClause;
     var tempId = localStorage.getItem(id1);
@@ -984,8 +984,8 @@ function updateDbAfterMatch(){
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
     })
 
-    localStorage.setItem('connectionId', id);
-    localStorage.setItem('connectionId1', id1);
+    localStorage.setItem('connectionId', id1);
+    localStorage.setItem('connectionId1', id);
     
     testing();
 
