@@ -133,7 +133,9 @@ function processMentorPage(){
         var mentorButton = document.getElementById("mentorConnectButton");
         mentorButton.disabled = true;
     }else{
-        //do nothing
+        document.getElementById("profilePictureId").src = 'profilepictures/profilePicture.jpg';
+        document.getElementById("profileName").innerHTML = 'No mentor yet!'
+        document.getElementById("mentorConnectButton").innerHTML = 'Connect';
     }
 }
 
@@ -523,7 +525,7 @@ function changeStatus() {
     localStorage.setItem('mStone', 3);
 }
 
-function connectButton(){
+function connectButtonMentorPage(){
     // Throw an if statement in here to determine if the button says connect or delete.
     // If it says delete, first delete the connection. 
     //Change the button back to connect and the connectionId back to null.
@@ -531,47 +533,149 @@ function connectButton(){
     // Change the button to "confirm match".
     // if the button says confirm the match, update the database.
     // Change button back to delete 
+
+
     if (document.getElementById("mentorConnectButton").innerHTML == 'Delete Connection'){
+         //update id connectionid
         let sqlStmt = "UPDATE Mentor SET ConnectionId = null";
         let whereClause = " WHERE MentorId = "+localStorage.getItem('id')+";";
         sqlStmt = sqlStmt + whereClause;
         console.log(sqlStmt);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
         });
+         //update id1 connectionid1
+        sqlStmt = "UPDATE Mentor SET ConnectionId = null";
+        whereClause = " WHERE MentorId = "+localStorage.getItem('id1')+";";
+        sqlStmt = sqlStmt + whereClause;
+        console.log(sqlStmt);
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+        });
+        //update id milestone
+        sqlStmt = "UPDATE Mentor SET Milestone = 0";
+        whereClause = " WHERE MentorId = "+localStorage.getItem('id')+";";
+        sqlStmt = sqlStmt + whereClause;
+        console.log(sqlStmt);
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+        });
+        //update id1 milestone
+        sqlStmt = "UPDATE Mentor SET Milestone = 0";
+        whereClause = " WHERE MentorId = "+localStorage.getItem('id1')+";";
+        sqlStmt = sqlStmt + whereClause;
+        console.log(sqlStmt);
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+        });
+
+        //reset local storage
+        localStorage.setItem("connectionId", 'null');
+        localStorage.setItem("mStone", 0);
+        localStorage.removeItem("id1");
+        localStorage.removeItem("name1");
+        localStorage.removeItem("bio1");
+        localStorage.removeItem("email1");
+        localStorage.removeItem("phone1");
+        localStorage.removeItem("slack1");
+        localStorage.removeItem("skype1");
+        localStorage.removeItem("department1");
+        localStorage.removeItem("hobby1");
+        localStorage.removeItem("formCas1");
+        localStorage.removeItem("slack1");
+        localStorage.removeItem("mStone1");
+        localStorage.removeItem("userCredential1");
+        localStorage.removeItem("passCredential1");
+        localStorage.removeItem("mentorStatus1");
+        localStorage.removeItem("connectionId1");
+        localStorage.removeItem("photo1");
+        
+        //reset mentor page
+        document.getElementById("profilePictureId").src = 'profilepictures/profilePicture.jpg';
+        document.getElementById("profileName").innerHTML = 'No mentor yet!'
+        document.getElementById("mentorConnectButton").innerHTML = 'Connect';
     }else if (document.getElementById("mentorConnectButton").innerHTML = 'Connect'){
         matchMentor();
-        console.log(localStorage.getItem('id1'));
-        console.log(localStorage.getItem('name1'));
-        document.getElementById("mentorConnectButton").innerHTML = 'Confirm';
-    }else if (document.getElementById("mentorConnectButton").innerHTML = 'Confirm'){
-        //update database
+    //     console.log(localStorage.getItem('id1'));
+    //     console.log(localStorage.getItem('name1'));
+    //     document.getElementById("mentorConnectButton").innerHTML = 'Confirm';
     }
+    // else if (document.getElementById("mentorConnectButton").innerHTML = 'Confirm'){
+    //     //update database
+    // }
 
+ 
+}
+function connectButtonMenteePage(){
     if (document.getElementById("menteeConnectButton").innerHTML == 'Delete Connection'){
+        //update id connectionid
         let sqlStmt = "UPDATE Mentor SET ConnectionId = null";
         let whereClause = " WHERE MentorId = "+localStorage.getItem('id')+";";
         sqlStmt = sqlStmt + whereClause;
         console.log(sqlStmt);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
         });
-    }else if (document.getElementById("menteeConnectButton").innerHTML = 'Connect'){
-        matchMentor();
-        document.getElementById("menteeConnectButton").innerHTML = 'Confirm';
-    }else if (document.getElementById("menteeConnectButton").innerHTML = 'Confirm'){
-        //update database
-    }
+         //update id1 connectionid1
+        sqlStmt = "UPDATE Mentor SET ConnectionId = null";
+        whereClause = " WHERE MentorId = "+localStorage.getItem('id1')+";";
+        sqlStmt = sqlStmt + whereClause;
+        console.log(sqlStmt);
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+        });
+        //update id milestone
+        sqlStmt = "UPDATE Mentor SET Milestone = 0";
+        whereClause = " WHERE MentorId = "+localStorage.getItem('id')+";";
+        sqlStmt = sqlStmt + whereClause;
+        console.log(sqlStmt);
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+        });
+        //update id1 milestone
+        sqlStmt = "UPDATE Mentor SET Milestone = 0";
+        whereClause = " WHERE MentorId = "+localStorage.getItem('id1')+";";
+        sqlStmt = sqlStmt + whereClause;
+        console.log(sqlStmt);
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+        });
 
-    // let sqlStatement, whereClause;
+        //reset local storage
+        localStorage.setItem("connectionId", 'null');
+        localStorage.setItem("mStone", 0);
+        localStorage.removeItem("id1");
+        localStorage.removeItem("name1");
+        localStorage.removeItem("bio1");
+        localStorage.removeItem("email1");
+        localStorage.removeItem("phone1");
+        localStorage.removeItem("slack1");
+        localStorage.removeItem("skype1");
+        localStorage.removeItem("department1");
+        localStorage.removeItem("hobby1");
+        localStorage.removeItem("formCas1");
+        localStorage.removeItem("slack1");
+        localStorage.removeItem("mStone1");
+        localStorage.removeItem("userCredential1");
+        localStorage.removeItem("passCredential1");
+        localStorage.removeItem("mentorStatus1");
+        localStorage.removeItem("connectionId1");
+        localStorage.removeItem("photo1");
+        
+        //reset mentor page
+        document.getElementById("profilePictureId").src = 'profilepictures/profilePicture.jpg';
+        document.getElementById("profileName").innerHTML = 'No mentor yet!'
+        document.getElementById("menteeConnectButton").innerHTML = 'Connect';
+   }else if (document.getElementById("menteeConnectButton").innerHTML = 'Connect'){
+       matchMentor();
+   //     document.getElementById("menteeConnectButton").innerHTML = 'Confirm';
+   }
+//    else if (document.getElementById("menteeConnectButton").innerHTML = 'Confirm'){
+   //     //update database
+//    }
 
-    // //update milestone spot in database
-    // sqlStatement = "UPDATE Mentor SET Milestone = " + 2;
-    // whereClause = " WHERE MentorId = " + localStorage.getItem('id');
-    // sqlStatement = sqlStatement + whereClause;
-    // MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
-    // })
-    // localStorage.setItem('mStone', 2);
+   // let sqlStatement, whereClause;
+
+   // //update milestone spot in database
+   // sqlStatement = "UPDATE Mentor SET Milestone = " + 2;
+   // whereClause = " WHERE MentorId = " + localStorage.getItem('id');
+   // sqlStatement = sqlStatement + whereClause;
+   // MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+   // })
+   // localStorage.setItem('mStone', 2);
 }
-
 function deleteProfile() {
     var deleteVar = confirm("Are you sure you want to delete your profile?");
     if (deleteVar == true) {
@@ -762,8 +866,8 @@ function compareArrays() {
         for (var j=0; j < typeArray.length; j++) {
             console.log(typeArray[j]);
             if (hobbyArray[i] == typeArray[j]) {
-                console.log("id" +hobbyArray[i]);
-                console.log("id" +typeArray[j]);
+                console.log("id: " +hobbyArray[i]);
+                console.log("id: " +typeArray[j]);
                 var id1 = typeArray[j];
                 // setting the value if the ids are the same to id1 variable 
                 localStorage.setItem('id1', id1);
@@ -796,14 +900,14 @@ function newMentorInfo () {
         hobby1 = data.Result.FavoriteHobby;
         formCas1 = data.Result.FormalCasual;
         mStone1 = data.Result.Milestone;
-        connectionId1 = data.Result.MenteeFK;
+        connectionId1 = data.Result.ConnectionId;
         userCredential1 = data.Result.Username;
         passCredential1 = data.Result.Password;
         mentorStatus1 = data.Result.MentorStatus;
         connectionId1 = data.Result.ConnectionId;
         photo1 = data.Result.Photo;  
     });
-
+    localStorage.setItem('id1', id1)
     localStorage.setItem('name1', profileName1);
     localStorage.setItem('bio1', bio1);
     localStorage.setItem('email1', email1);
@@ -818,7 +922,26 @@ function newMentorInfo () {
     localStorage.setItem('userCredential1', userCredential1);
     localStorage.setItem('passCredential1', passCredential1);
     localStorage.setItem('mentorStatus1', mentorStatus1);
-    localStorage.setItem('connectionId1', connectionId1);
+    localStorage.setItem('connectionId1', id);
+    localStorage.setItem('connectionId', id1)
     localStorage.setItem('photo1', photo1);
-
+    updateDbAfterMatch();
+ 
+}
+function updateDbAfterMatch(){
+   //update id connectionid
+   let sqlStmt = "UPDATE Mentor SET ConnectionId = "+ localStorage.getItem("connectionId");
+   let whereClause2 = " WHERE MentorId = "+localStorage.getItem('id1')+";";
+   sqlStmt = sqlStmt + whereClause2;
+   console.log(sqlStmt);
+   MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+   });
+   sqlStmt = "UPDATE Mentor SET ConnectionId = "+ localStorage.getItem("connectionId1");
+   whereClause2 = " WHERE MentorId = "+localStorage.getItem('id')+";";
+   sqlStmt = sqlStmt + whereClause2;
+   console.log(sqlStmt);
+   MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStmt, function(data) {
+   });
+//    processMentorPage();
+//    processMenteePage();
 }
