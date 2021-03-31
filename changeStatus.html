@@ -5,9 +5,9 @@
         <link rel="stylesheet" type="text/css" href="projectTwo.css">
         <script type="text/javascript" src="projectTwo.js"></script>
         <script type="text/javascript" src="https://mysqljs.com/mysql.js"></script>
-        <title>Mentch Mentors</title>
+        <title>Change Status</title>
     </head>
-    <body onload="processMentorPage()">
+    <body>
         <table id="homepageTable">
             <tbody id="homePageTableBody">
             <tr>
@@ -43,7 +43,7 @@
             </tr>
             <tr>
                 <td class="buttonSpacing">
-                    <button class="buttonTableClass" id="changeStatusButtonId" type="button" onclick="goToChangeStatusPage()">Change Status</button>        
+                    <button class="buttonTableClass" id="changeStatusButtonId" type="button">Change Status</button>        
                 </td>
             </tr>
             <!-- <tr>
@@ -67,16 +67,20 @@
             <!-- <p id="homePagePicture">picture</p> -->
         </div>
         <div>
-            <h1 id="titleBanner">My Mentor</h1>
+            <h1 id="titleBanner">Change Status</h1>
         </div>
         <div id="profileId">
-            <img id="profilePictureId" src="profilepictures/profilePicture.jpg" alt="profilePicture">
+            
             <div id="profileTextId">
-                <p id="profileName">No mentor yet!</p>
                 <br>
-                XYZ Company Inc
             </div>
-            <button type="button" class="centerButton" id="mentorConnectButton" onclick="connectButtonMentorPage()">Connect</button>
+            
+            <button type="button" class="centerButton" id="changeStatus" onclick="changeStatus()">Change Status</button>
+            <div id="changeStatusDesc">
+                <p> Changing status from Mentee to Mentor means you will now be able to mentor other Mentees. User must have at least three years of experience at their 
+                    place of employment to be eligible for Mentor status. </p>
+            </div>
+            
             
         </div>
     </body>

@@ -9,10 +9,10 @@
     </head>
 
     <body>
-        <br> <br>
+        <br> 
         <h1>MENTCH</h1>
         <h2>Find your perfect mentor or mentee</h2>
-        <br><br>
+        <br>
         <form id="logInFormId">
             <table id="logInTableId">
                 <tr>
@@ -40,14 +40,17 @@
                 </tr>
                 <tr>
                     <td>
-                        <input id="passwordId" type="text"
+                        <input id="passwordId" type="password"
                         minlength="5" placeholder="enterPassword" required>
+
                     </td>
-                </tr>
             </table>
             <table id="signInButtonFormId">
                 <tr>
                     <td id="forgotPasswordId">
+                        <u>Show Password
+                        <input id="passwordCheckboxId" type="checkbox"
+                         onclick="hidePassword()"></u>
                         <u>Forgot Password?</u>
                     </td>
                 </tr>
