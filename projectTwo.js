@@ -121,7 +121,7 @@ function processProfilePage(){
     console.log(localStorage.getItem('id1'));
     console.log(localStorage.getItem('name1'));
 
-    
+
 
 }
 
@@ -606,10 +606,9 @@ function connectButtonMentorPage(){
         document.getElementById("mentorConnectButton").innerHTML = 'Delete Connection';
 
     }
-    console.log("hobby array: "+localStorage.getItem('hobbyArray'));
-    console.log("type array: "+localStorage.getItem('typeArray'));
-
+    console.log(localStorage.getItem('name1'));
     console.log("connect button id1: "+localStorage.getItem('id1'));
+    processMentorPage();
  
 }
 function connectButtonMenteePage(){
@@ -852,12 +851,13 @@ async function matchType() {
             //console.log('Type: ' + typeArray);
             localStorage.setItem('typeArray', typeArray);
         }
-            
+        matchingResults();
+
     });
     console.log(localStorage.getItem('hobbyArray'));
     await sleep(3000);
     console.log(localStorage.getItem('typeArray'));
-    matchingResults();
+    //matchingResults();
 
 }
 
@@ -892,7 +892,7 @@ function compareArrays() {
             break;
         }
         for (var j=0; j < typeArray.length; j++) {
-            console.log(typeArray[j]);
+            //console.log(typeArray[j]);
             if (hobbyArray[i] == typeArray[j]) {
                 console.log("id: " +hobbyArray[i]);
                 console.log("id: " +typeArray[j]);
