@@ -746,4 +746,53 @@ function compareArrays() {
         }
 
     }
+    newMentorInfo();
+    
+}
+
+function newMentorInfo () {
+    // getting info of the new mentor
+    localStorage.getItem('id1');
+    let sqlStatement, whereClause;
+    sqlStatement = "SELECT * FROM Mentor";
+    whereClause = " WHERE MentorId = " + localStorage.getItem('id1');
+    sqlStatement = sqlStatement + whereClause;
+    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+        id1 = data.Result[i].MentorId;
+        profileName1 = data.Result[i].Name;
+        bio1 = data.Result[i].Bio;
+        email1 = data.Result[i].Email;
+        phone1 = data.Result[i].Phone;       
+        slack1 = data.Result[i].Slack;
+        skype1 = data.Result[i].Skype;
+        department1 = data.Result[i].Department;
+        years1 = data.Result[i].YearsWorked;
+        hobby1 = data.Result[i].FavoriteHobby;
+        formCas1 = data.Result[i].FormalCasual;
+        mStone1 = data.Result[i].Milestone;
+        connectionId1 = data.Result[i].MenteeFK;
+        userCredential1 = data.Result[i].Username;
+        passCredential1 = data.Result[i].Password;
+        mentorStatus1 = data.Result[i].MentorStatus;
+        connectionId1 = data.Result[i].ConnectionId;
+        photo1 = data.Result[i].Photo;  
+    });
+    
+    localStorage.setItem('name1', profileName1);
+    localStorage.setItem('bio1', bio1);
+    localStorage.setItem('email1', email1);
+    localStorage.setItem('phone1', phone1);
+    localStorage.setItem('slack1', slack1);
+    localStorage.setItem('skype1', skype1);
+    localStorage.setItem('department1', department1);
+    localStorage.setItem('years1', years1);
+    localStorage.setItem('hobby1', hobby1);
+    localStorage.setItem('formCas1', formCas1);
+    localStorage.setItem('mStone1', mStone1);
+    localStorage.setItem('userCredential1', userCredential1);
+    localStorage.setItem('passCredential1', passCredential1);
+    localStorage.setItem('mentorStatus1', mentorStatus1);
+    localStorage.setItem('connectionId1', connectionId1);
+    localStorage.setItem('photo1', photo1);
+
 }
