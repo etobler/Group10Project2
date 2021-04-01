@@ -968,21 +968,23 @@ async function newMentorInfo () {
 
 function updateDbAfterMatch(){
     let sqlStatement, whereClause;
-    var tempId = localStorage.getItem(id1);
+    var tempId = localStorage.getItem('id1');
+    var tempId2 = localStorage.getItem('id');
+    console.log(tempId);
+    console.log(tempId2);
     // updating mentee connection id 
     sqlStatement = "UPDATE Mentor SET ConnectionId = " + tempId;
-    whereClause = " WHERE MentorId = " + localStorage.getItem('id');
+    whereClause = " WHERE MentorId = " + tempId2;
     sqlStatement = sqlStatement + whereClause;
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
-    })
+    });
 
     // updating mentor connection id 
-    tempId = localStorage.getItem(id);
-    sqlStatement = "UPDATE Mentor SET ConnectionId = " + tempId;
-    whereClause = " WHERE MentorId = " + localStorage.getItem('id1');
+    sqlStatement = "UPDATE Mentor SET ConnectionId = " + tempId2;
+    whereClause = " WHERE MentorId = " + tempId;
     sqlStatement = sqlStatement + whereClause;
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
-    })
+    });
 
     localStorage.setItem('connectionId', id1);
     localStorage.setItem('connectionId1', id);
