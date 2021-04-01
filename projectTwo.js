@@ -597,7 +597,7 @@ function connectButtonMentorPage(){
     }else if (document.getElementById("mentorConnectButton").innerHTML == 'Connect'){
         matchMentor();
     //     console.log(localStorage.getItem('id1'));
-
+        //processMentorPage();
         document.getElementById("mentorConnectButton").innerHTML = 'Confirm';
     }else if (document.getElementById("mentorConnectButton").innerHTML == 'Confirm'){
         console.log("im in the confirm else if");
@@ -670,20 +670,17 @@ function connectButtonMenteePage(){
    }else if (document.getElementById("menteeConnectButton").innerHTML == 'Connect'){
        matchMentor();
    //     document.getElementById("menteeConnectButton").innerHTML = 'Confirm';
-   }
-//    else if (document.getElementById("menteeConnectButton").innerHTML == 'Confirm'){
-   //     //update database
-//    }
+   }else if (document.getElementById("menteeConnectButton").innerHTML == 'Confirm'){
+    //console.log("im in the confirm else if");
+    //update database
+    //updateDbAfterMatch();
+    document.getElementById("menteeConnectButton").innerHTML = 'Delete Connection';
 
-   // let sqlStatement, whereClause;
+    }
+    console.log(localStorage.getItem('name1'));
+    console.log("connect button id1: "+localStorage.getItem('id1'));
+    processMentorPage();
 
-   // //update milestone spot in database
-   // sqlStatement = "UPDATE Mentor SET Milestone = " + 2;
-   // whereClause = " WHERE MentorId = " + localStorage.getItem('id');
-   // sqlStatement = sqlStatement + whereClause;
-   // MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
-   // })
-   // localStorage.setItem('mStone', 2);
 }
 
 function deleteProfile() {
@@ -961,7 +958,6 @@ async function newMentorInfo () {
     localStorage.setItem('connectionId1', id);
     localStorage.setItem('connectionId', id1)
     localStorage.setItem('photo1', photo1);
-
 
     updateDbAfterMatch();
 }
