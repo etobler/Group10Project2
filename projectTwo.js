@@ -154,6 +154,9 @@ function processMenteePage(){
         menteeButton.disabled = true;
     }else{
         //do nothing
+        document.getElementById("profilePictureId").src = 'profilepictures/profilePicture.jpg';
+        document.getElementById("profileName").innerHTML = 'No mentor yet!'
+        document.getElementById("menteeConnectButton").innerHTML = 'Connect';
     }
 }
 
@@ -608,7 +611,7 @@ function connectButtonMentorPage(){
     }
     console.log(localStorage.getItem('name1'));
     console.log("connect button id1: "+localStorage.getItem('id1'));
-    processMentorPage();
+    //processMentorPage();
  
 }
 
@@ -680,7 +683,7 @@ function connectButtonMenteePage(){
     }
     console.log(localStorage.getItem('name1'));
     console.log("connect button id1: "+localStorage.getItem('id1'));
-    processMenteePage();
+    //processMenteePage();
 
 }
 
@@ -932,7 +935,6 @@ async function newMentorInfo () {
                 hobby1 = data.Result[i].FavoriteHobby;
                 formCas1 = data.Result[i].FormalCasual;
                 mStone1 = data.Result[i].Milestone;
-                connectionId1 = data.Result[i].MenteeFK;
                 userCredential1 = data.Result[i].Username;
                 passCredential1 = data.Result[i].Password;
                 mentorStatus1 = data.Result[i].MentorStatus;
@@ -952,7 +954,8 @@ async function newMentorInfo () {
     localStorage.setItem('years1', years1);
     localStorage.setItem('hobby1', hobby1);
     localStorage.setItem('formCas1', formCas1);
-    localStorage.setItem('mStone1', mStone1);
+    localStorage.setItem('mStone1', 1);
+    localStorage.setItem('mStone', 1);
     localStorage.setItem('userCredential1', userCredential1);
     localStorage.setItem('passCredential1', passCredential1);
     localStorage.setItem('mentorStatus1', mentorStatus1);
@@ -995,9 +998,10 @@ function updateDbAfterMatch(){
     // console.log(sqlStmt);
     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
     });
-    localStorage.setItem('connectionId', id1);
-    localStorage.setItem('connectionId1', id);
-    
+    // localStorage.setItem('connectionId', id1);
+    // localStorage.setItem('connectionId1', id);
+    // localStorage.setItem('mStone', 1);
+    // localStorage.setItem('mStone1', 1);
     testing();
 
 
