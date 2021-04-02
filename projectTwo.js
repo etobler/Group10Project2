@@ -1,14 +1,10 @@
 "use strict";
 
-
-
-
 // Sign in page variables
 var signInUsername; 
 var signInPassword;
 
 // Sign up page variables
-
 var signUpEmail;
 var signUpUsername;
 var SignUpPassword;
@@ -22,8 +18,6 @@ var mentorOrMentee;
 var yearsWorked;
 var favoriteHobby;
 var formalOrCasual;
-
-// Home page variables
 
 // My profile variables
 var id;
@@ -62,18 +56,10 @@ var passCredential1;
 var mentorStatus1;
 var connectionId1;
 var photo1;
-// Mentors variables
 
-// Mentees variables
+// Mentors/Mentees variables
 var hobbyArray = [];
 var typeArray = [];
-// Milestones variables
-
-// Change status variables
-
-// Chat variables
-
-// Settings variables 
 
 function hidePassword() {
     var x = document.getElementById("passwordId");
@@ -129,10 +115,11 @@ function processMentorPage(){
     if(localStorage.getItem('mentorStatus') == 0 && localStorage.getItem('connectionId') != 'null'){
         document.getElementById("profilePictureId").src = localStorage.getItem('photo1');
         document.getElementById("profileName").innerHTML = localStorage.getItem('name1');
+        document.getElementById("sendMentorEmail").innerHTML = "Email: "+localStorage.getItem('email1');
         document.getElementById("mentorConnectButton").innerHTML = 'Delete Connection';
 
     }else if(localStorage.getItem('mentorStatus') == 1){
-        document.getElementById("profileName").innerHTML = 'Not Available for your Current Status as a Mentor';
+        document.getElementById("profileName").innerHTML = 'Not Available for a Mentor';
         var mentorButton = document.getElementById("mentorConnectButton");
         mentorButton.disabled = true;
     }else{
@@ -146,10 +133,11 @@ function processMenteePage(){
     if(localStorage.getItem('mentorStatus') == 1 && localStorage.getItem('connectionId') != 'null'){
         document.getElementById("profilePictureId").src = localStorage.getItem('photo1');
         document.getElementById("profileName").innerHTML = localStorage.getItem('name1');
+        document.getElementById("sendMenteeEmail").innerHTML = "Email: "+localStorage.getItem('email1');
         document.getElementById("menteeConnectButton").innerHTML = 'Delete Connection';
 
     }else if (localStorage.getItem('mentorStatus') == 0){
-        document.getElementById("profileName").innerHTML = 'Not Available for your Current Status as a Mentee';
+        document.getElementById("profileName").innerHTML = 'Not Available for a Mentee';
         var menteeButton = document.getElementById("menteeConnectButton");
         menteeButton.disabled = true;
     }else{
@@ -532,16 +520,9 @@ function changeStatus() {
 }
 
 function connectButtonMentorPage(){
-    // Throw an if statement in here to determine if the button says connect or delete.
-    // If it says delete, first delete the connection. 
-    //Change the button back to connect and the connectionId back to null.
-    // Else, when the button says connect, populate a new match by calling matchMentor function.
-    // Change the button to "confirm match".
-    // if the button says confirm the match, update the database.
-    // Change button back to delete 
-
 
     if (document.getElementById("mentorConnectButton").innerHTML == 'Delete Connection'){
+
          //update id connectionid
         let sqlStmt = "UPDATE Mentor SET ConnectionId = null";
         let whereClause = " WHERE MentorId = "+localStorage.getItem('id')+";";
@@ -592,27 +573,17 @@ function connectButtonMentorPage(){
         localStorage.removeItem("connectionId1");
         localStorage.removeItem("photo1");
         
-        
         //reset mentor page
         document.getElementById("profilePictureId").src = 'profilepictures/profilePicture.jpg';
         document.getElementById("profileName").innerHTML = 'No mentor yet!'
+        document.getElementById("sendMentorEmail").innerHTML = 'Email: '
         document.getElementById("mentorConnectButton").innerHTML = 'Connect';
+
     }else if (document.getElementById("mentorConnectButton").innerHTML == 'Connect'){
         matchMentor();
-    //     console.log(localStorage.getItem('id1'));
         processMentorPage();
-        document.getElementById("mentorConnectButton").innerHTML = 'Confirm';
-    }else if (document.getElementById("mentorConnectButton").innerHTML == 'Confirm'){
-        // console.log("im in the confirm else if");
-        //update database
-        //updateDbAfterMatch();
-        document.getElementById("mentorConnectButton").innerHTML = 'Delete Connection';
-
+        document.getElementById("menteeConnectButton").innerHTML = 'Delete Connection';
     }
-    console.log(localStorage.getItem('name1'));
-    console.log("connect button id1: "+localStorage.getItem('id1'));
-    //processMentorPage();
- 
 }
 
 function connectButtonMenteePage(){
@@ -669,21 +640,88 @@ function connectButtonMenteePage(){
         
         //reset mentor page
         document.getElementById("profilePictureId").src = 'profilepictures/profilePicture.jpg';
-        document.getElementById("profileName").innerHTML = 'No mentor yet!'
+        document.getElementById("profileName").innerHTML = 'No mentee yet!'
+        document.getElementById("sendMenteeEmail").innerHTML = 'Email: '
         document.getElementById("menteeConnectButton").innerHTML = 'Connect';
+
    }else if (document.getElementById("menteeConnectButton").innerHTML == 'Connect'){
        matchMentor();
-       document.getElementById("menteeConnectButton").innerHTML = 'Confirm';
-   }else if (document.getElementById("menteeConnectButton").innerHTML == 'Confirm'){
-    //console.log("im in the confirm else if");
-    //update database
-    //updateDbAfterMatch();
-    document.getElementById("menteeConnectButton").innerHTML = 'Delete Connection';
+       processMenteePage();
+       document.getElementById("menteeConnectButton").innerHTML = 'Delete Connection';
+   }
 
+}
+
+function sendMentorEmail() {
+    var emailButton = document.getElementById("sendMentorEmail");
+
+    if(localStorage.getItem('mentorStatus')==0 && document.getElementById("sendMentorEmail").innerHTML != "Email: "){
+
+        emailButton.disabled = false;
+
+        console.log("I ran sendMentorEmail()")
+        let sqlStatement, whereClause;
+
+        //update id milestone
+        sqlStatement = "UPDATE Mentor SET Milestone = 2";
+        whereClause = " WHERE MentorId = "+localStorage.getItem('id')+";";
+        sqlStatement = sqlStatement + whereClause;
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+        });
+        //update id1 milestone
+        sqlStatement = "UPDATE Mentor SET Milestone = 2";
+        whereClause = " WHERE MentorId = "+localStorage.getItem('id1')+";";
+        sqlStatement = sqlStatement + whereClause;
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+
+        });
+
+        localStorage.setItem('mStone', 2);
+        localStorage.setItem('mStone1', 2);
+
+        window.location = "mailto:"+localStorage.getItem("email1");
+ 
+    }else if (localStorage.getItem('mentorStatus')==0){
+        emailButton.disabled = false;
+    }else{
+        emailButton.disabled = true;
     }
-    console.log(localStorage.getItem('name1'));
-    console.log("connect button id1: "+localStorage.getItem('id1'));
-    //processMenteePage();
+
+}
+function sendMenteeEmail() {
+    var emailButton = document.getElementById("sendMenteeEmail");
+
+    if(localStorage.getItem('mentorStatus')==1 && document.getElementById("sendMenteeEmail").innerHTML != "Email: "){
+
+        emailButton.disabled = false;
+        console.log("I ran the sendMenteeEmail()")
+
+        let sqlStatement, whereClause;
+
+        //update id milestone
+        sqlStatement = "UPDATE Mentor SET Milestone = 2";
+        whereClause = " WHERE MentorId = "+localStorage.getItem('id')+";";
+        sqlStatement = sqlStatement + whereClause;
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+        });
+        //update id1 milestone
+        sqlStatement = "UPDATE Mentor SET Milestone = 2";
+        whereClause = " WHERE MentorId = "+localStorage.getItem('id1')+";";
+        sqlStatement = sqlStatement + whereClause;
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+
+        });
+
+        localStorage.setItem('mStone', 2);
+        localStorage.setItem('mStone1', 2);
+
+        window.location = "mailto:"+localStorage.getItem("email1");
+
+    }else if (localStorage.getItem('mentorStatus')==1){
+        emailButton.disabled = false;
+    }else{
+        emailButton.disabled = true;
+    }
 
 }
 
