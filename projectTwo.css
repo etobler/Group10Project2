@@ -255,6 +255,25 @@ select {
     padding-left: 2%;
 }
 
+
+#sendMentorEmail{
+    background-color: #dadada;
+    color: rgb(92, 91, 91);
+    border: none;
+    cursor: pointer;
+
+}
+
+#sendMenteeEmail{
+    background-color: #dadada;
+    color: rgb(92, 91, 91);
+    border: none;
+    cursor: pointer;
+
+
+
+}
+
 #profileId {
     margin: 1%;
     width: 85%;
