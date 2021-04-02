@@ -555,6 +555,7 @@ function connectButtonMentorPage(){
 
             //reset local storage
             localStorage.setItem("connectionId", 'null');
+            localStorage.setItem("connectionId1", 'null');
             localStorage.setItem("mStone", 0);
             localStorage.removeItem("id1");
             localStorage.removeItem("name1");
@@ -624,6 +625,7 @@ function connectButtonMenteePage(){
 
             //reset local storage
             localStorage.setItem("connectionId", 'null');
+            localStorage.setItem("connectionId1", 'null');
             localStorage.setItem("mStone", 0);
             localStorage.removeItem("id1");
             localStorage.removeItem("name1");
@@ -757,7 +759,25 @@ function deleteQuery(){
     });
 }
 
+// function openFileSystem() {
+
+//     document.getElementById("pfpUpdateId").value = localStorage.getItem('photo');
+//     //localStorage.setItem('photo', document.getElementById("pfpUpdateId").value);
+
+//     let sqlStatement, whereClause;
+//     //update bio
+//     sqlStatement = "UPDATE Mentor SET Photo = " + document.getElementById("pfpUpdateId").value ;
+//     whereClause = " WHERE MentorId = " + localStorage.getItem('id')+";";
+//     sqlStatement = sqlStatement + whereClause;
+//     console.log(sqlStatement);
+//     MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+//     })
+//     //C:\Users\nahod\OneDrive\Desktop\School\Final Semester\CIS 440\Group10Project2\profilepictures\female11.jpg
+//     //in the db:    ./profilepictures/female11.jpg
+// }
+
 function processUpdatePage(){
+    document.getElementById("pfpUpdateId").value = localStorage.getItem('photo');
     document.getElementById("bioUpdateId").value = localStorage.getItem('bio');
     document.getElementById("emailUpdateId").value = localStorage.getItem('email');
     document.getElementById("phoneUpdateId").value = localStorage.getItem('phone');
@@ -766,6 +786,7 @@ function processUpdatePage(){
 }
 
 function updateProfileInfo() {
+    localStorage.setItem('photo', document.getElementById("pfpUpdateId").value);
     localStorage.setItem('bio', document.getElementById("bioUpdateId").value);
     localStorage.setItem('email', document.getElementById("emailUpdateId").value);
     localStorage.setItem('phone', document.getElementById("phoneUpdateId").value);
@@ -790,6 +811,7 @@ function updateQuery(){
 
         //update email
         sqlStatement = "UPDATE Mentor SET Email = " + "'" + document.getElementById("emailUpdateId").value + "'";
+        whereClause = " WHERE MentorId = " + localStorage.getItem('id');
         sqlStatement = sqlStatement + whereClause;
         console.log(sqlStatement);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
@@ -797,6 +819,7 @@ function updateQuery(){
 
         //update phone
         sqlStatement = "UPDATE Mentor SET Phone = " + "'" + document.getElementById("phoneUpdateId").value + "'";
+        whereClause = " WHERE MentorId = " + localStorage.getItem('id');
         sqlStatement = sqlStatement + whereClause;
         console.log(sqlStatement);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
@@ -804,6 +827,7 @@ function updateQuery(){
 
         //update slack
         sqlStatement = "UPDATE Mentor SET Slack = " + "'" + document.getElementById("slackUpdateId").value + "'";
+        whereClause = " WHERE MentorId = " + localStorage.getItem('id');
         sqlStatement = sqlStatement + whereClause;
         console.log(sqlStatement);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
@@ -811,6 +835,14 @@ function updateQuery(){
 
         //update skype
         sqlStatement = "UPDATE Mentor SET Skype = " + "'" + document.getElementById("skypeUpdateId").value + "'";
+        whereClause = " WHERE MentorId = " + localStorage.getItem('id');
+        sqlStatement = sqlStatement + whereClause;
+        console.log(sqlStatement);
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+        })
+
+        sqlStatement = "UPDATE Mentor SET Photo = " + "'" + document.getElementById("pfpUpdateId").value + "'";
+        whereClause = " WHERE MentorId = " + localStorage.getItem('id')+";";
         sqlStatement = sqlStatement + whereClause;
         console.log(sqlStatement);
         MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
