@@ -591,7 +591,7 @@ function connectButtonMentorPage(){
     }else if (document.getElementById("mentorConnectButton").innerHTML == 'Connect'){
         matchMentor();
         processMentorPage();
-        document.getElementById("menteeConnectButton").innerHTML = 'Delete Connection';
+        document.getElementById("mentorConnectButton").innerHTML = 'Delete Connection';
     }
 }
 
