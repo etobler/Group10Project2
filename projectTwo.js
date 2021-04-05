@@ -143,7 +143,7 @@ function processMenteePage(){
     }else{
         //do nothing
         document.getElementById("profilePictureId").src = 'profilepictures/profilePicture.jpg';
-        document.getElementById("profileName").innerHTML = 'No mentor yet!'
+        document.getElementById("profileName").innerHTML = 'No mentee yet!'
         document.getElementById("menteeConnectButton").innerHTML = 'Connect';
     }
 }
@@ -498,25 +498,31 @@ function goToChangeStatusPage(){
 }
 
 function changeStatus() {
-    let sqlStatement, whereClause;
 
-    //update mentor status in database
-    sqlStatement = "UPDATE Mentor SET MentorStatus = " + 1;
-    whereClause = " WHERE MentorId = " + localStorage.getItem('id');
-    sqlStatement = sqlStatement + whereClause;
-    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
-    })
-    localStorage.setItem('mentorStatus', 1);
+    var confirmDelete = confirm("Are you sure you want to change your status to Mentor?");
+    if (confirmDelete === true) {
 
-    // let sqlStatement, whereClause;
+        let sqlStatement, whereClause;
 
-    //update milestone spot in database
-    sqlStatement = "UPDATE Mentor SET Milestone = " + 3;
-    whereClause = " WHERE MentorId = " + localStorage.getItem('id');
-    sqlStatement = sqlStatement + whereClause;
-    MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
-    })
-    localStorage.setItem('mStone', 3);
+        //update mentor status in database
+        sqlStatement = "UPDATE Mentor SET MentorStatus = " + 1;
+        whereClause = " WHERE MentorId = " + localStorage.getItem('id');
+        sqlStatement = sqlStatement + whereClause;
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+        })
+        localStorage.setItem('mentorStatus', 1);
+
+        // let sqlStatement, whereClause;
+
+        //update milestone spot in database
+        sqlStatement = "UPDATE Mentor SET Milestone = " + 0;
+        whereClause = " WHERE MentorId = " + localStorage.getItem('id');
+        sqlStatement = sqlStatement + whereClause;
+        MySql.Execute("107.180.1.16", "group102021", "2021group10", "2021group10", sqlStatement, function(data) {
+        })
+        localStorage.setItem('mStone', 0);
+        alert("You are now a Mentor and can connect to a New Mentee!");
+    }
 }
 
 function connectButtonMentorPage(){
